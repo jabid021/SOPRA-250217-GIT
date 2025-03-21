@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import transport.model.Adresse;
 import transport.model.Billet;
 import transport.model.Civilite;
 import transport.model.Passager;
@@ -15,6 +16,8 @@ public class TestJPA {
 	public static void main(String[] args) {
 		
 		Passager passager1 = new Passager("John","Doe",Civilite.homme);
+		passager1.setAdresse(new Adresse("1","rue de paris","Paris","75009"));
+		
 		Passager passager2 = new Passager("Jane","Doe",Civilite.femme);
 
 		

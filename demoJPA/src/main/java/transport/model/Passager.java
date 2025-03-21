@@ -1,19 +1,36 @@
 package transport.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity //Obligatoire
+@Table(name="traveler")
 public class Passager  {
 
 	@Id //Obligatoire
 	@GeneratedValue(strategy =GenerationType.IDENTITY) //SEMI-OBLIGATOIRE
 	private Integer id;
+	@Column(name="firstname",nullable = false,unique = true,length = 50)
 	private String prenom;
+	
+	@Column(name="lastname",columnDefinition = "VARCHAR(35)")
 	private String nom;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="genre",columnDefinition = "ENUM('homme','femme','nb')", nullable = false)
 	private Civilite civilite;
+	
+	
+	@Embedded
+	private Adresse adresse;
+	
 	
 	public Passager() {} //Obligatoire
 	
@@ -65,11 +82,24 @@ public class Passager  {
 	}
 
 
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Passager [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", civilite=" + civilite + "]";
+		return "Passager [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", civilite=" + civilite + ", adresse="
+				+ adresse + "]";
 	}
-	
+
+
+
 	
 	
 	
