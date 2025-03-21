@@ -1,4 +1,4 @@
-package hopital.dao;
+package hopital.dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hopital.context.Singleton;
+import hopital.dao.IDAOVisite;
 import hopital.model.Medecin;
 import hopital.model.Patient;
 import hopital.model.Visite;
 
-public class DAOVisite implements IDAO<Visite,Integer> {
+public class DAOVisiteJDBC implements IDAOVisite {
 
 	@Override
 	public List<Visite> findAll() {
@@ -29,7 +30,7 @@ public class DAOVisite implements IDAO<Visite,Integer> {
 			while(rs.next()) 
 			{
 				Patient patient = Singleton.getInstance().getDaoPatient().findById(rs.getInt("id_patient"));
-				Medecin medecin = (Medecin) Singleton.getInstance().getDaoCompte().findById(rs.getInt("id_medecin"));
+				Medecin medecin = (Medecin) Singleton.getInstance().getCompteSrv().getById(rs.getInt("id_medecin"));
 				visite = new Visite(rs.getInt("numero"),patient,medecin,rs.getDouble("prix"),rs.getInt("salle"),LocalDate.parse(rs.getString("date_visite")));
 				visites.add(visite);
 			}
@@ -58,7 +59,7 @@ public class DAOVisite implements IDAO<Visite,Integer> {
 			while(rs.next()) 
 			{
 				Patient patient = Singleton.getInstance().getDaoPatient().findById(rs.getInt("id_patient"));
-				Medecin medecin = (Medecin) Singleton.getInstance().getDaoCompte().findById(rs.getInt("id_medecin"));
+				Medecin medecin = (Medecin) Singleton.getInstance().getCompteSrv().getById(rs.getInt("id_medecin"));
 				visite = new Visite(rs.getInt("1"),patient,medecin,rs.getDouble("prix"),rs.getInt("salle"),LocalDate.parse(rs.getString("date_visite")));
 			}
 
@@ -159,7 +160,7 @@ public class DAOVisite implements IDAO<Visite,Integer> {
 			while(rs.next()) 
 			{
 				Patient patient = Singleton.getInstance().getDaoPatient().findById(rs.getInt("id_patient"));
-				Medecin medecin = (Medecin) Singleton.getInstance().getDaoCompte().findById(rs.getInt("id_medecin"));
+				Medecin medecin = (Medecin) Singleton.getInstance().getCompteSrv().getById(rs.getInt("id_medecin"));
 				visite = new Visite(rs.getInt("numero"),patient,medecin,rs.getDouble("prix"),rs.getInt("salle"),LocalDate.parse(rs.getString("date_visite")));
 				visites.add(visite);
 			}

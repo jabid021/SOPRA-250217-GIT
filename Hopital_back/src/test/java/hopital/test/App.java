@@ -1,6 +1,5 @@
 package hopital.test;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -10,19 +9,19 @@ import java.util.List;
 import java.util.Scanner;
 
 import hopital.context.Singleton;
-import hopital.dao.DAOCompte;
-import hopital.dao.DAOPatient;
-import hopital.dao.DAOVisite;
+import hopital.dao.IDAOPatient;
 import hopital.model.Compte;
 import hopital.model.Medecin;
 import hopital.model.Patient;
 import hopital.model.Visite;
+import hopital.service.CompteService;
+import hopital.service.VisiteService;
 
 public class App {
 
-	static DAOCompte daoCompte = Singleton.getInstance().getDaoCompte();
-	static DAOPatient daoPatient = Singleton.getInstance().getDaoPatient();
-	static DAOVisite daoVisite = Singleton.getInstance().getDaoVisite();
+	static CompteService compteSrv = Singleton.getInstance().getCompteSrv();
+	static IDAOPatient daoPatient = Singleton.getInstance().getDaoPatient();
+	static VisiteService visiteSrv = Singleton.getInstance().getVisiteSrv();
 	static Compte connected = null;
 	static boolean isPause = false;
 
@@ -62,7 +61,7 @@ public class App {
 	public static void seConnecter() {
 		String login =saisieString("Saisir le login");
 		String password = saisieString("Saisir le password");
-		connected = daoCompte.findByLoginAndPassword(login, password);
+		connected = compteSrv.getByLoginAndPassword(login, password);
 		if(connected == null) 
 		{
 			System.out.println("Identifiants invalides");
@@ -166,7 +165,7 @@ public class App {
 
 	public static void anciennesVisites() {
 		Integer idPatient = saisieInt("Saisir l'id du patient");
-		List<Visite> visites = daoVisite.findByPatient(idPatient);
+		List<Visite> visites = visiteSrv.getAllByPatient(idPatient);
 		if(visites.isEmpty()) {System.out.println("Pas de visite pour ce patient");}
 		for(Visite v : visites) 
 		{
@@ -236,7 +235,7 @@ public class App {
 		}
 		for(Visite v : medecin.getConsultations()) 
 		{
-			daoVisite.insert(v);
+			visiteSrv.create(v);
 			System.out.println("Sauvegarde en bdd de la visite : "+v);
 		}
 		medecin.getConsultations().clear();
@@ -261,8 +260,6 @@ public class App {
 				saveVisites();
 			}
 		}
-		
-
 	}
 
 	public static void main(String[] args) {
