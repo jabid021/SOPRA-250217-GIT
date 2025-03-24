@@ -5,23 +5,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="product")
 public class Produit {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	@Column(name="label",length = 30,nullable = false)
 	private String libelle;
 	
 	@Column(name="price",columnDefinition = "DECIMAL(6,2)")
 	private double prix;
 	
+	
 	@ManyToOne
+	@JoinColumn(name="vendeur",nullable = false)
 	private Fournisseur vendeur;
 	
 	public Produit() {}

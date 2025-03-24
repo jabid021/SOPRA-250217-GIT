@@ -1,6 +1,7 @@
 package transport.test;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collections;
 
 import javax.persistence.EntityManager;
@@ -8,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import transport.model.Adresse;
+import transport.model.Arret;
 import transport.model.Billet;
 import transport.model.Bus;
 import transport.model.Civilite;
@@ -33,11 +35,16 @@ public class TestJPA {
 		Bus bus1 = new Bus(LocalDate.parse("2022-01-01"),30);
 		Train train1 = new Train(LocalDate.parse("2022-01-01"),"Gris");
 		
-		bus1.getStations().add(station1);
+		//bus1.getStations().add(station1);
 	
 		
-		train1.getStations().add(station1);
-		train1.getStations().add(station2);
+		Arret arret1 = new Arret(LocalTime.parse("15:05:00"),station1,train1);
+		Arret arret2 = new Arret(LocalTime.parse("15:12:00"),station2,train1);
+		
+		Arret arret3 = new Arret(LocalTime.parse("18:00"),station1,bus1);
+		
+		//train1.getStations().add(station1);
+		//train1.getStations().add(station2);
 		
 		
 		Billet billet1 = new Billet(LocalDate.now(), 49.99, true,bus1);
@@ -77,17 +84,17 @@ public class TestJPA {
 			em.persist(passager1);
 			em.persist(passager2);
 			
-			
+			em.persist(arret1);
+			em.persist(arret2);
+			em.persist(arret3);
 			
 		
 		em.getTransaction().commit();
 		
-		
-		System.out.println(em.find(Passager.class, 1));
+	
 			
 		em.close();
 		emf.close();
-		
 		
 		
 		

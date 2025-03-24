@@ -11,11 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 
 @Entity
@@ -32,14 +29,14 @@ public abstract class Transport {
 	
 	//Etant dans la classe Transport avec un lien vers Station
 	//Transport est la clé principale (joinColumn), Station est secondaire (inverseJoinColumn)
-	@ManyToMany
-	@JoinTable(
-			name="arret",
+	@OneToMany(mappedBy="transport")
+	/*@JoinTable(
+			name="old_table_arret",
 			joinColumns = @JoinColumn(name="transport",nullable=false),
 			inverseJoinColumns = @JoinColumn(name="station",nullable=false),
 			uniqueConstraints = @UniqueConstraint(columnNames = {"transport","station"})
-			)
-	protected List<Station> stations = new ArrayList();
+			)*/
+	protected List<Arret> arrets = new ArrayList();
 	
 	public Transport() {}
 	
@@ -48,17 +45,6 @@ public abstract class Transport {
 		this.dateFabrication = dateFabrication;
 	}
 	
-
-
-	public List<Station> getStations() {
-		return stations;
-	}
-
-
-	public void setStations(List<Station> stations) {
-		this.stations = stations;
-	}
-
 
 	public Integer getId() {
 		return id;
@@ -80,6 +66,16 @@ public abstract class Transport {
 
 	public void setDateFabrication(LocalDate dateFabrication) {
 		this.dateFabrication = dateFabrication;
+	}
+
+
+	public List<Arret> getArrets() {
+		return arrets;
+	}
+
+
+	public void setArrets(List<Arret> arrets) {
+		this.arrets = arrets;
 	}
 	
 	

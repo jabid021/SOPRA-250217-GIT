@@ -30,7 +30,7 @@ public class Passager  {
 	@Column(name="genre",columnDefinition = "ENUM('homme','femme','nb')", nullable = false)
 	private Civilite civilite;
 	
-	
+
 	@Embedded
 	private Adresse adresse;
 	
@@ -113,7 +113,7 @@ public class Passager  {
 	@Override
 	public String toString() {
 		return "Passager [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", civilite=" + civilite + ", adresse="
-				+ adresse + ", billet=" + billet + "]";
+				+ adresse + "]";
 	}
 
 

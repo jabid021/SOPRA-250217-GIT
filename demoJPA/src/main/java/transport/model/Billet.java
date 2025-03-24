@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -33,6 +34,11 @@ public class Billet {
 	@JoinColumn(name="transport",nullable = false)
 	private Transport transport;
 
+	//mappedBy evite la creation inutile d'une case voyageur_id dans la bdd
+	//la jointure se fera de l'autre coté
+	@OneToOne(mappedBy = "billet")
+	private Passager voyageur;
+	
 	
 	public Billet() {}
 		
@@ -95,7 +101,7 @@ public class Billet {
 	@Override
 	public String toString() {
 		return "Billet [id=" + id + ", dateTrajet=" + dateTrajet + ", prix=" + prix + ", valide=" + valide
-				+ ", transport=" + transport + "]";
+				+ ", transport=" + transport + ", voyageur=" + voyageur + "]";
 	}
 
 	

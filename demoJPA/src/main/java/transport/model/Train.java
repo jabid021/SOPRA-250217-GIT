@@ -29,8 +29,9 @@ public class Train extends Transport {
 
 	@Override
 	public String toString() {
-		return "Train [couleur=" + couleur + "]";
+		return "Train [id=" + id + ", dateFabrication=" + dateFabrication + ", couleur=" + couleur + "]";
 	}
+
 	
 	
 	
