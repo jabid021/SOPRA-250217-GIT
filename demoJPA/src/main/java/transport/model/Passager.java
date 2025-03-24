@@ -9,15 +9,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity //Obligatoire
-@Table(name="traveler")
+@Table(name="traveler",uniqueConstraints = @UniqueConstraint(columnNames = { "lastname","firstname" }))
 public class Passager  {
 
 	@Id //Obligatoire
 	@GeneratedValue(strategy =GenerationType.IDENTITY) //SEMI-OBLIGATOIRE
 	private Integer id;
-	@Column(name="firstname",nullable = false,unique = true,length = 50)
+	@Column(name="firstname",nullable = false,length = 50)
 	private String prenom;
 	
 	@Column(name="lastname",columnDefinition = "VARCHAR(35)")
