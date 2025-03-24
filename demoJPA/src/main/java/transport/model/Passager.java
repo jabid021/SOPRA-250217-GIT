@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -33,13 +34,17 @@ public class Passager  {
 	private Adresse adresse;
 	
 	
+	@OneToOne
+	private Billet billet;
+	
 	public Passager() {} //Obligatoire
 	
 	
-	public Passager(String prenom, String nom, Civilite civilite) {
+	public Passager(String prenom, String nom, Civilite civilite,Billet billet) {
 		this.prenom = prenom;
 		this.nom = nom;
 		this.civilite = civilite;	
+		this.billet=billet;
 	}
 
 
@@ -93,11 +98,24 @@ public class Passager  {
 	}
 
 
+	public Billet getBillet() {
+		return billet;
+	}
+
+
+	public void setBillet(Billet billet) {
+		this.billet = billet;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Passager [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", civilite=" + civilite + ", adresse="
-				+ adresse + "]";
+				+ adresse + ", billet=" + billet + "]";
 	}
+
+
+	
 
 
 

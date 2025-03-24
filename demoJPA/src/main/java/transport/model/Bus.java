@@ -28,8 +28,11 @@ public class Bus extends Transport{
 
 	@Override
 	public String toString() {
-		return "Bus [id=" + id + ", dateFabrication=" + dateFabrication + ", nbPlace=" + nbPlace + "]";
+		return "Bus [id=" + id + ", dateFabrication=" + dateFabrication + ", stations=" + stations + ", nbPlace="
+				+ nbPlace + "]";
 	}
+
+	
 	
 	
 	

@@ -20,14 +20,7 @@ public class TestJPA {
 
 	public static void main(String[] args) {
 		
-		Passager passager1 = new Passager("John","Doe",Civilite.homme);
-		passager1.setAdresse(new Adresse("1","rue de paris","Paris","75009"));
 		
-		Passager passager2 = new Passager("Jane","Doe",Civilite.femme);
-
-		
-		Billet billet1 = new Billet(LocalDate.now(), 49.99, true);
-		Billet billet2 = new Billet(LocalDate.parse("2000-01-01"), 0, false);
 		
 		Station station1 = new Station("Auber");
 		Collections.addAll(station1.getLignes(), Ligne.L1,Ligne.L13);
@@ -36,8 +29,29 @@ public class TestJPA {
 		station2.getLignes().add(Ligne.L2);
 		station2.getLignes().add(Ligne.L13);
 		
+		
 		Bus bus1 = new Bus(LocalDate.parse("2022-01-01"),30);
 		Train train1 = new Train(LocalDate.parse("2022-01-01"),"Gris");
+		
+		bus1.getStations().add(station1);
+		
+		train1.getStations().add(station1);
+		train1.getStations().add(station2);
+		
+		
+		Billet billet1 = new Billet(LocalDate.now(), 49.99, true,bus1);
+		Billet billet2 = new Billet(LocalDate.parse("2000-01-01"), 0, false,train1);
+		
+		
+		Passager passager1 = new Passager("John","Doe",Civilite.homme,billet1);
+		passager1.setAdresse(new Adresse("1","rue de paris","Paris","75009"));
+		
+		Passager passager2 = new Passager("Jane","Doe",Civilite.femme,billet2);
+
+		
+		
+		
+		
 		
 		
 		

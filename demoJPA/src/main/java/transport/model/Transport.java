@@ -1,6 +1,8 @@
 package transport.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
@@ -24,6 +27,9 @@ public abstract class Transport {
 	protected LocalDate dateFabrication;
 	
 	
+	@ManyToMany
+	protected List<Station> stations = new ArrayList();
+	
 	public Transport() {}
 	
 	
@@ -31,6 +37,16 @@ public abstract class Transport {
 		this.dateFabrication = dateFabrication;
 	}
 	
+
+
+	public List<Station> getStations() {
+		return stations;
+	}
+
+
+	public void setStations(List<Station> stations) {
+		this.stations = stations;
+	}
 
 
 	public Integer getId() {
