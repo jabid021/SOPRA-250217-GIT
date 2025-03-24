@@ -11,8 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 @Entity
@@ -27,7 +30,15 @@ public abstract class Transport {
 	protected LocalDate dateFabrication;
 	
 	
+	//Etant dans la classe Transport avec un lien vers Station
+	//Transport est la clé principale (joinColumn), Station est secondaire (inverseJoinColumn)
 	@ManyToMany
+	@JoinTable(
+			name="arret",
+			joinColumns = @JoinColumn(name="transport",nullable=false),
+			inverseJoinColumns = @JoinColumn(name="station",nullable=false),
+			uniqueConstraints = @UniqueConstraint(columnNames = {"transport","station"})
+			)
 	protected List<Station> stations = new ArrayList();
 	
 	public Transport() {}

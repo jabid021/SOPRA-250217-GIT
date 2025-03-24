@@ -30,8 +30,8 @@ public class Test {
 		em.getTransaction().begin();
 	
 		
-		em.persist(personne1);
-		em.persist(personne2);
+		em.persist(client);
+		em.persist(fournisseur);
 		em.persist(produit1);
 		em.persist(produit2);
 		

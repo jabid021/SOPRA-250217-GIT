@@ -34,6 +34,7 @@ public class TestJPA {
 		Train train1 = new Train(LocalDate.parse("2022-01-01"),"Gris");
 		
 		bus1.getStations().add(station1);
+	
 		
 		train1.getStations().add(station1);
 		train1.getStations().add(station2);
@@ -62,14 +63,22 @@ public class TestJPA {
 		em.getTransaction().begin();
 		
 			//persist => insert bdd
-			em.persist(passager1);
-			em.persist(passager2);
-			em.persist(billet1);
-			em.persist(billet2);
+		
 			em.persist(station1);
 			em.persist(station2);
+		
 			em.persist(bus1);
 			em.persist(train1);
+		
+	
+			em.persist(billet1);
+			em.persist(billet2);
+			
+			em.persist(passager1);
+			em.persist(passager2);
+			
+			
+			
 		
 		em.getTransaction().commit();
 		
