@@ -11,6 +11,8 @@ public class Medecin extends Compte{
 	private transient int salle;
 	private transient List<Visite> consultations = new ArrayList();
 	
+	public Medecin() {}
+	
 	public Medecin(Integer id, String login, String password) {
 		super(id, login, password);
 	}

@@ -31,7 +31,7 @@ public class TestJPA {
 		station2.getLignes().add(Ligne.L2);
 		station2.getLignes().add(Ligne.L13);
 		
-		
+
 		Bus bus1 = new Bus(LocalDate.parse("2022-01-01"),30);
 		Train train1 = new Train(LocalDate.parse("2022-01-01"),"Gris");
 		

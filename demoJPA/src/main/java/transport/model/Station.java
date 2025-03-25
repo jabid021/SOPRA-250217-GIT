@@ -3,12 +3,16 @@ package transport.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
 
 @Entity
@@ -21,8 +25,10 @@ public class Station {
 	private Integer id;
 	private String nom;
 	
-
-	//@Enumerated(EnumType.STRING)
+	@ElementCollection(targetClass = Ligne.class)
+	@JoinTable(name = "lignes_disponibles", joinColumns = @JoinColumn(name = "station"))
+	@Column(name="ligne",nullable = false)
+	@Enumerated(EnumType.STRING)
 	private transient List<Ligne> lignes = new ArrayList();
 	
 	

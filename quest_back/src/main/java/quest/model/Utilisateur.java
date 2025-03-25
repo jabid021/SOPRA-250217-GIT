@@ -1,11 +1,30 @@
 package quest.model;
 
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type_utilisateur",columnDefinition = "ENUM('Admin','Formateur','Stagiaire')")
+@Table(name="utilisateur")
 public abstract class Utilisateur{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
+	@Column(length = 25,nullable = false,unique = true)
 	protected String login;
+	@Column(length = 150,nullable = false)
 	protected String password;
+	
+	public Utilisateur() {}
 	
 	public Utilisateur(Integer id, String login, String password) {
 		this.id = id;

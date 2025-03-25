@@ -1,9 +1,22 @@
 package quest.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+@Entity
 public class Formateur extends Utilisateur {
+	@Column(length = 25)
 	private String nom;
+	@Column(length = 25)
 	private String prenom;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('homme','femme','nb')")
 	private Genre genre;
+	
+	public Formateur() {}
 	
 	public Formateur(Integer id, String login, String password, String nom, String prenom, Genre genre) {
 		super(id, login, password);

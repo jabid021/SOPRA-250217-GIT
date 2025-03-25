@@ -1,14 +1,39 @@
 package quest.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Stagiaire extends Utilisateur {
+	
+	@Column(length = 25)
 	private String nom;
+	@Column(length = 25)
 	private String prenom;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('homme','femme','nb')")
 	private Genre genre;
+	
+	@Column(length = 30)
 	private String email;
+	@Embedded
 	private Adresse adresse;
+	
+	@ManyToOne
+	@JoinColumn(name="filiere")
 	private Filiere filiere;
+	
+	@OneToOne(mappedBy = "stagiaire")
 	private Ordinateur ordinateur;
 	
+	public Stagiaire() {}
 
 	public Stagiaire(Integer id, String login, String password, String nom, String prenom, Genre genre, String email,
 			String numero,String voie,String ville,String cp, Filiere filiere,Ordinateur ordinateur) {
