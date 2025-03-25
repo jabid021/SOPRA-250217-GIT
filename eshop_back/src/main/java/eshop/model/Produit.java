@@ -1,5 +1,8 @@
 package eshop.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +31,9 @@ public class Produit {
 	@ManyToOne
 	@JoinColumn(name="vendeur",nullable = false)
 	private Fournisseur vendeur;
+	
+	@OneToMany(mappedBy = "produit")
+	private List<Achat> ventes = new ArrayList();
 	
 	public Produit() {}
 
@@ -68,6 +75,15 @@ public class Produit {
 
 	public void setVendeur(Fournisseur vendeur) {
 		this.vendeur = vendeur;
+	}
+	
+
+	public List<Achat> getVentes() {
+		return ventes;
+	}
+
+	public void setVentes(List<Achat> ventes) {
+		this.ventes = ventes;
 	}
 
 	@Override

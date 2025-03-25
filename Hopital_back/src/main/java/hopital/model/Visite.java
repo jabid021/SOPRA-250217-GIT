@@ -2,8 +2,13 @@ package hopital.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Visite {
 
+	@Id
 	private Integer id;
 	private Patient patient;
 	private Medecin medecin;

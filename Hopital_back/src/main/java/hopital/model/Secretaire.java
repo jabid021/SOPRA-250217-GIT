@@ -1,5 +1,8 @@
 package hopital.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Secretaire extends Compte{
 
 	public Secretaire(Integer id, String login, String password) {

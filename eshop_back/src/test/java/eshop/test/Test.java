@@ -7,10 +7,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import eshop.model.Achat;
 import eshop.model.Adresse;
 import eshop.model.Client;
 import eshop.model.Fournisseur;
-import eshop.model.Personne;
 import eshop.model.Produit;
 
 public class Test {
@@ -25,19 +25,22 @@ public class Test {
 		
 		Client client1 = new Client("Abid","Jordan",31,LocalDate.parse("1993-05-01"),new Adresse("6","rue rougemont","75009","Paris"));
 
-		Collections.addAll(client1.getAchats(), produit1,produit2);
+		Achat achat1 = new Achat(LocalDate.parse("2020-01-01"),2,client1,produit1);
+		Achat achat2 = new Achat(LocalDate.parse("2020-03-01"),1,client1,produit2);
+		
+		//Collections.addAll(client1.getAchats(), achat1,achat2);
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("contextJPA");
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
 	
-		/*em.persist(fournisseur1);
+		em.persist(fournisseur1);
 		em.persist(produit1);
 		em.persist(produit2);
 		em.persist(client1);
-		*/
-		
+		em.persist(achat1);
+		em.persist(achat2);
 		em.getTransaction().commit();
 		
 		em.close();

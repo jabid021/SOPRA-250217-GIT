@@ -2,8 +2,13 @@ package hopital.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Patient implements Serializable{
 
+	@Id
 	private Integer id;
 	private String nom;
 	private String prenom;

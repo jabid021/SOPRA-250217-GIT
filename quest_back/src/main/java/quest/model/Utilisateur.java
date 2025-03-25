@@ -1,18 +1,19 @@
-package hopital.model;
+package quest.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.io.Serializable;
 
-@Entity
-public abstract class Compte {
-
-	@Id
+public abstract class Utilisateur{
 	protected Integer id;
 	protected String login;
 	protected String password;
 	
-	public Compte(Integer id, String login, String password) {
+	public Utilisateur(Integer id, String login, String password) {
 		this.id = id;
+		this.login = login;
+		this.password = password;
+	}
+	
+	public Utilisateur(String login, String password) {
 		this.login = login;
 		this.password = password;
 	}
@@ -40,7 +41,6 @@ public abstract class Compte {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 	
 	
 }
