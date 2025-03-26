@@ -8,6 +8,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,11 +26,11 @@ public class Station {
 	private Integer id;
 	private String nom;
 	
-	@ElementCollection(targetClass = Ligne.class)
+	@ElementCollection(fetch = FetchType.EAGER, targetClass = Ligne.class)
 	@JoinTable(name = "lignes_disponibles", joinColumns = @JoinColumn(name = "station"))
 	@Column(name="ligne",nullable = false)
 	@Enumerated(EnumType.STRING)
-	private transient List<Ligne> lignes = new ArrayList();
+	private List<Ligne> lignes = new ArrayList();
 	
 	
 	public Station() {}

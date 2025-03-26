@@ -88,6 +88,18 @@ public class TestRequetes {
 		System.out.println("Liste de ses billets :");
 		System.out.println(recherche.getBillets());
 		
+		System.out.println(Singleton.getInstance().getDaoStation().findById(1));
+		
+		System.out.println("\n\n\n----------\n\n\n");
+		List<Transport> allTransports = Singleton.getInstance().getDaoTransport().findAll();
+		
+		for(Transport t : allTransports)
+		{
+			System.out.println("Id du transport : "+t.getId());
+			System.out.println("Liste des billets pour ce transport : "+t.getBillets());
+			System.out.println("\n");
+			
+		}
 		
 		Singleton.getInstance().closeEmf();		
 		
