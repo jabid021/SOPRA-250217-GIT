@@ -1,82 +1,95 @@
 package transport.test;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import transport.context.Singleton;
-import transport.model.Arret;
+import transport.model.Billet;
 import transport.model.Passager;
-import transport.model.Station;
-import transport.model.Train;
+import transport.model.Transport;
 
 public class TestRequetes {
 
-
-
-	public static void demo() 
-	{
-		Station station1 = new Station("Nouvelle Station");
-		Train train1 = new Train(LocalDate.parse("2022-01-01"),"Gris");
-
-		//Station station2 = new Station("Auber");
-
-		//listes des methodes d'un EM
-			//persist(x) => ne fait que de l'insert (plante si on lui donne un id en autoincrement)
-				//x est managed
-			//y=merge(x)
-					//=> si l'objet possede ne possede pas d'id ou un id inconnu dans la bdd => insert
-					//=> si l'objet possede un id existant => update
-				//x n'est pas managed, y est managed
-			//x= find => findById 
-					//x est managed
-			//remove(x) => remove
-					//x doit etre managed
-			// em.createQuery => findAll ou tout autre requete SELECT
+	
+	
+	
+	public static void main(String[] args) {
 		
-		//Pour toute modification dans la bdd (insert/update/delete) il faut encadrer le code par un transaction.begin et commit
+		//Quand on fait une query, on peut utiliser getSingleResult / getResultList
+		//getResultList peut return : tableau complet, tableau vide [];
+		//getSingleResult peut return  : l'objet recherché, si plusieurs objets => exception, si 0 objet => exception
 		
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		
-		em.getTransaction().begin();
-			Station stationCopie = em.merge(station1);
-			Train trainCopie = em.merge(train1);
-			Arret arret = new Arret(LocalTime.parse("15:05:00"),stationCopie,trainCopie);
-			arret=em.merge(arret);
-			//em.remove(station2);
+		System.out.println("TOUS LES PASSAGERS");
+		List<Passager> passagers = em.createQuery("from Passager").getResultList();
+		System.out.println(passagers);
+		
+		System.out.println("--------------------------------");
+		System.out.println("BILLETS > 40€");
+		List<Billet> billets = em.createQuery("SELECT b from Billet b where b.prix>40").getResultList();
+		System.out.println(billets);
+		
+		System.out.println("--------------------------------");
+		System.out.println("BILLETS NON VALIDES");
+		List<Billet> billets2 = em.createQuery("SELECT b from Billet b where b.valide=false").getResultList();
+		System.out.println(billets2);
+		
+		
+		System.out.println("--------------------------------");
+		System.out.println("BILLETS TRAJET EN 2025");
+		List<Billet> billets3 = em.createQuery("SELECT b from Billet b where b.dateTrajet like '2025%' ").getResultList();
+		System.out.println(billets3);
+		
+		
+		System.out.println("--------------------------------");
+		System.out.println("BILLETS D'UN PASSAGER 'DOE' ");
+		
+		/*SELECT * from billet join traveler on traveler.billet=billet.id where traveler.lastname='DOE';*/
+		List<Billet> billets4 = em.createQuery("SELECT b from Billet b where b.voyageur.nom='Doe'").getResultList();
+		System.out.println(billets4);
+		
+		
+		System.out.println("--------------------------------");
+		System.out.println("BILLETS D'UN PASSAGER 'DOE' avec une VRAIE Requete SQL ");
+		
+		List<Billet> billets5 = em.createNativeQuery("SELECT * from billet join traveler on traveler.billet=billet.id where traveler.lastname='DOE'",Billet.class).getResultList();
+		System.out.println(billets5);
+		
+				
+		
+		
+		
+		double x = 40;
 
-		em.getTransaction().commit();
+		System.out.println("--------------------------------");
+		System.out.println("BILLETS >= x");
 		
-		System.out.println(station1); // station1 est la version qu'on veut save, qui n'a pas encore d'idet qui n'est pas managed
-		System.out.println(stationCopie); //stationCopie est la version managed avec un id provenant de la bdd
-		//em.find(Station.class, 1);
-		//JavaProgramingQueryLanguage
+		Query requete = em.createQuery("SELECT b from Billet b where b.prix>= :price");
+		//requete.setParameter(1, x);
+		requete.setParameter("price", x);
+		List<Billet> billets6 = requete.getResultList();
+		
+		List<Billet> billets7 = em.createQuery("SELECT b FROM Billet b where b.prix>= :price").setParameter("price", x).getResultList();
+		System.out.println(billets6);
+		System.out.println(billets7);
 		
 		
-		 List<Passager> passagers = em.createQuery("FROM Passager").getResultList();
-		 System.out.println("Liste des passages :" );
-		 if(passagers.isEmpty()) {System.out.println("Aucun passager");}
-		 for(Passager p : passagers) 
-		 {
-			 System.out.println(p);
-		 }
-		 
-		 
-		System.out.println(em.createQuery("FROM Train").getResultList());
+		
+		System.out.println("--------------");
+		
+		Transport recherche = em.createQuery("SELECT t FROM Transport t JOIN FETCH t.billets where t.id=1",Transport.class).getSingleResult();	
 		em.close();
+		
+		
+		System.out.println("Informations du transport : "+recherche.getId());
+		System.out.println("Liste de ses billets :");
+		System.out.println(recherche.getBillets());
+		
+		
+		Singleton.getInstance().closeEmf();		
+		
 	}
-
-	public static void main(String[] args) {
-		Singleton.getInstance();
-
-		demo();
-
-		Singleton.getInstance().closeEmf();	
-	}
-
-
-
-
 }

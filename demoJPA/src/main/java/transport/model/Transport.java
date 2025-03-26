@@ -38,6 +38,9 @@ public abstract class Transport {
 			)*/
 	protected List<Arret> arrets = new ArrayList();
 	
+	@OneToMany(mappedBy = "transport")
+	protected List<Billet> billets;
+	
 	public Transport() {}
 	
 	
@@ -76,6 +79,16 @@ public abstract class Transport {
 
 	public void setArrets(List<Arret> arrets) {
 		this.arrets = arrets;
+	}
+
+
+	public List<Billet> getBillets() {
+		return billets;
+	}
+
+
+	public void setBillets(List<Billet> billets) {
+		this.billets = billets;
 	}
 	
 	

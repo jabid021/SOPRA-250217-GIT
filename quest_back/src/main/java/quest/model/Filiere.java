@@ -9,9 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,7 +26,7 @@ public class Filiere {
 	@Column(nullable = false)
 	private LocalDate fin;
 	
-	@ManyToMany
+	/*@ManyToMany
 	@JoinTable
 	(
 			name="module",
@@ -37,7 +34,10 @@ public class Filiere {
 			inverseJoinColumns = @JoinColumn(name="matiere",nullable = false)
 	)
 	private List<Matiere> matieres = new ArrayList();
+	*/
 	
+	@OneToMany(mappedBy = "filiere")
+	private List<Module> modules = new ArrayList(); 
 	
 	@OneToMany(mappedBy = "filiere")
 	private List<Stagiaire> eleves = new ArrayList();
@@ -92,12 +92,13 @@ public class Filiere {
 		this.fin = fin;
 	}
 
-	public List<Matiere> getMatieres() {
-		return matieres;
+
+	public List<Module> getModules() {
+		return modules;
 	}
 
-	public void setMatieres(List<Matiere> matieres) {
-		this.matieres = matieres;
+	public void setModules(List<Module> modules) {
+		this.modules = modules;
 	}
 
 	public List<Stagiaire> getEleves() {

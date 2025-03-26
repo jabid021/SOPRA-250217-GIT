@@ -16,21 +16,17 @@ public class Matiere {
 	private Integer id;
 	@Column(length = 50,nullable = false)
 	private String libelle;
-	@Column(columnDefinition ="INTEGER(4)")
-	private int quest;
 	
 	
 	public Matiere() {}	
 	
-	public Matiere(Integer id, String libelle, int quest) {
+	public Matiere(Integer id, String libelle) {
 		this.id = id;
 		this.libelle = libelle;
-		this.quest = quest;
 	}
 
-	public Matiere(String libelle, int quest) {
+	public Matiere(String libelle) {
 		this.libelle = libelle;
-		this.quest = quest;
 	}
 	public Integer getId() {
 		return id;
@@ -48,17 +44,10 @@ public class Matiere {
 		this.libelle = libelle;
 	}
 
-	public int getQuest() {
-		return quest;
-	}
 
-	public void setQuest(int quest) {
-		this.quest = quest;
-	}
-	
 
 	public String toString() {
-		return "Matiere [id=" + id + ", libelle=" + libelle + ", quest=" + quest + "]";
+		return "Matiere [id=" + id + ", libelle=" + libelle + "]";
 	}
 		
 }
