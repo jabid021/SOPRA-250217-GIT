@@ -1,19 +1,7 @@
 package hopital.dao.jdbc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-
-import hopital.dao.IDAOCompte;
-import hopital.model.Compte;
-import hopital.model.Medecin;
-import hopital.model.Patient;
-import hopital.model.Secretaire;
-
-public class DAOCompteJDBC implements IDAOCompte {
+public class DAOCompteJDBC {
+	/*implements IDAOCompte {
 
 	@Override
 	public List<Compte> findAll() {
@@ -173,5 +161,5 @@ public class DAOCompteJDBC implements IDAOCompte {
 		}
 		return compte;
 	}
-
+*/
 }

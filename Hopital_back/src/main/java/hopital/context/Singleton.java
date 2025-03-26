@@ -3,10 +3,11 @@ package hopital.context;
 import java.io.File;
 import java.util.LinkedList;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import hopital.dao.IDAOPatient;
-import hopital.dao.IDAOVisite;
-import hopital.dao.jdbc.DAOPatientJDBC;
-import hopital.dao.jdbc.DAOVisiteJDBC;
+import hopital.dao.jpa.DAOPatient;
 import hopital.model.Patient;
 import hopital.service.CompteService;
 import hopital.service.VisiteService;
@@ -16,11 +17,12 @@ public class Singleton {
 	private static Singleton instance=null; 
 	private CompteService compteSrv = new CompteService();
 	private VisiteService visiteSrv = new VisiteService();
-	private IDAOPatient daoPatient = new DAOPatientJDBC();
+	private IDAOPatient daoPatient = new DAOPatient();
 	
 	private LinkedList<Patient> fileAttente = new LinkedList();
 	private File fichier = new File("fileAttente.txt");
 	
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("contextJPA");
 	
 	private Singleton() {}
 
@@ -77,7 +79,17 @@ public class Singleton {
 
 
 
-	
+	public EntityManagerFactory getEmf() {
+		return emf;
+	}
+
+
+
+	public void closeEmf() 
+	{
+		this.emf.close();
+	}
+
 	
 
 	

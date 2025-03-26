@@ -5,59 +5,53 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import hopital.context.Singleton;
-import hopital.dao.IDAOCompte;
-import hopital.model.Compte;
+import hopital.dao.IDAOPatient;
+import hopital.model.Patient;
 
-public class DAOCompte implements IDAOCompte {
+public class DAOPatient implements IDAOPatient {
 
 	@Override
-	public List<Compte> findAll() {
+	public List<Patient> findAll() {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 
-		List<Compte>  comptes = em.createQuery("FROM Compte").getResultList();
+		List<Patient>  patients = em.createQuery("FROM Patient").getResultList();
 
 		em.close();
-		return comptes;
+		return patients;
 	}
 
 	@Override
-	public Compte findById(Integer id) {
+	public Patient findById(Integer id) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 
-		Compte compte = em.find(Compte.class, id);
+		Patient patient = em.find(Patient.class, id);
 
 		em.close();
-		return compte;
+		return patient;
 	}
 
 	@Override
-	public Compte save(Compte compte) {
+	public Patient save(Patient patient) {
 		EntityManager em=Singleton.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
 
-		compte = em.merge(compte);
+		patient = em.merge(patient);
 
 		em.getTransaction().commit();
 		em.close();
-		return compte;
+		return patient;
 	}
 
 	@Override
 	public void delete(Integer id) {
 		EntityManager em=Singleton.getInstance().getEmf().createEntityManager();
-		Compte compte = em.find(Compte.class,id);
+		Patient patient = em.find(Patient.class,id);
 		em.getTransaction().begin();
 
-		em.remove(compte);
+		em.remove(patient);
 
 		em.getTransaction().commit();
 		em.close();
-	}
-
-	@Override
-	public Compte findByLoginAndPassword(String login, String password) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 

@@ -184,7 +184,7 @@ public class App {
 			String nom = saisieString("Saisir votre nom");
 			String prenom = saisieString("Saisir votre prenom");
 			patient = new Patient(id,nom,prenom);
-			daoPatient.insert(patient);
+			patient = daoPatient.save(patient);
 		}
 		System.out.println("Patient ajouté à la file d'attente : "+patient);
 		Singleton.getInstance().getFileAttente().add(patient);

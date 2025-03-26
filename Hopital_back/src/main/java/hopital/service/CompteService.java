@@ -3,12 +3,12 @@ package hopital.service;
 import java.util.List;
 
 import hopital.dao.IDAOCompte;
-import hopital.dao.jdbc.DAOCompteJDBC;
+import hopital.dao.jpa.DAOCompte;
 import hopital.model.Compte;
 
 public class CompteService {
 
-	IDAOCompte daoCompte = new DAOCompteJDBC();
+	IDAOCompte daoCompte = new DAOCompte();
 	
 	public Compte getById(Integer id) throws Exception 
 	{
@@ -29,13 +29,13 @@ public class CompteService {
 	}
 	public Compte create(Compte compte) 
 	{
-		daoCompte.insert(compte);
+		compte = daoCompte.save(compte);
 		return compte;
 	}
 	
 	public Compte update(Compte compte) 
 	{
-		daoCompte.update(compte);
+		compte = daoCompte.save(compte);
 		return compte;
 	}
 	public boolean deleteById(Integer id) 

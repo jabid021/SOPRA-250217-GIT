@@ -3,12 +3,12 @@ package hopital.service;
 import java.util.List;
 
 import hopital.dao.IDAOVisite;
-import hopital.dao.jdbc.DAOVisiteJDBC;
+import hopital.dao.jpa.DAOVisite;
 import hopital.model.Visite;
 
 public class VisiteService {
 
-	IDAOVisite daoVisite = new DAOVisiteJDBC();
+	IDAOVisite daoVisite = new DAOVisite();
 	
 	public Visite getById(Integer id) throws Exception 
 	{
@@ -27,13 +27,13 @@ public class VisiteService {
 	
 	public Visite create(Visite visite) 
 	{
-		daoVisite.insert(visite);
+		visite=daoVisite.save(visite);
 		return visite;
 	}
 	
 	public Visite update(Visite visite) 
 	{
-		daoVisite.update(visite);
+		visite=daoVisite.save(visite);
 		return visite;
 	}
 	

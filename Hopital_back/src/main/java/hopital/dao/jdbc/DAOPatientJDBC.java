@@ -10,7 +10,7 @@ import java.util.List;
 import hopital.dao.IDAOPatient;
 import hopital.model.Patient;
 
-public class DAOPatientJDBC implements IDAOPatient {
+public class DAOPatientJDBC {/*implements IDAOPatient {
 
 	@Override
 	public List<Patient> findAll() {
@@ -128,5 +128,5 @@ public class DAOPatientJDBC implements IDAOPatient {
 			e.printStackTrace();
 		}
 	}
-
+*/
 }

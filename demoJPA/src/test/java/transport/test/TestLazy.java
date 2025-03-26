@@ -189,7 +189,6 @@ public class TestLazy {
 	}
 	
 	public static void demoJPQLCount() {
-		List<Transport> transports;
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 
 		List<Integer>  nb =em.createQuery("SELECT COUNT(t) from Transport t group by t").getResultList();
@@ -209,10 +208,7 @@ public class TestLazy {
 			System.out.println(Arrays.toString(o));
 		}
 		em.close();
-
-	
 	}
-	publi
 	public static void main(String[] args) {
 
 		demoJPQLCount();

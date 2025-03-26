@@ -15,7 +15,7 @@ import hopital.model.Medecin;
 import hopital.model.Patient;
 import hopital.model.Visite;
 
-public class DAOVisiteJDBC implements IDAOVisite {
+public class DAOVisiteJDBC {/* implements IDAOVisite {
 
 	@Override
 	public List<Visite> findAll() {
@@ -175,5 +175,5 @@ public class DAOVisiteJDBC implements IDAOVisite {
 		}
 		return visites;
 	}
-
+*/
 }
