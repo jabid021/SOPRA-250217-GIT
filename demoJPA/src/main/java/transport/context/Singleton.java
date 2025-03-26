@@ -5,6 +5,7 @@ import javax.persistence.Persistence;
 
 import transport.dao.DAOArret;
 import transport.dao.DAOBillet;
+import transport.dao.DAOCompagnie;
 import transport.dao.DAOPassager;
 import transport.dao.DAOStation;
 import transport.dao.DAOTransport;
@@ -17,8 +18,7 @@ public class Singleton {
 	private DAOPassager daoPassager = new DAOPassager();
 	private DAOStation daoStation = new DAOStation();
 	private DAOTransport daoTransport = new DAOTransport();
-	
-	
+	private DAOCompagnie daoCompagnie = new DAOCompagnie();
 	
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("contextJPA");
 	
@@ -62,6 +62,12 @@ public class Singleton {
 
 	public DAOTransport getDaoTransport() {
 		return daoTransport;
+	}
+
+
+
+	public DAOCompagnie getDaoCompagnie() {
+		return daoCompagnie;
 	}
 
 
