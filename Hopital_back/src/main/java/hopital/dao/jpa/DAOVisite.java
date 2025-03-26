@@ -56,8 +56,10 @@ public class DAOVisite implements IDAOVisite {
 
 	@Override
 	public List<Visite> findByPatient(Integer idPatient) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em=Singleton.getInstance().getEmf().createEntityManager();
+		List<Visite> visites = em.createQuery("SELECT v from Visite v where v.patient.id=:id").setParameter("id", idPatient).getResultList();
+		em.close();
+		return visites;
 	}
 	
 

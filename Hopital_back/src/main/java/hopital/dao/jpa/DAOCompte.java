@@ -56,8 +56,13 @@ public class DAOCompte implements IDAOCompte {
 
 	@Override
 	public Compte findByLoginAndPassword(String login, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em=Singleton.getInstance().getEmf().createEntityManager();
+		Compte compte=null;
+		try {
+		 compte = em.createQuery("SELECT c from Compte c where c.login=:login and c.password=:password",Compte.class).setParameter("login", login).setParameter("password", password).getSingleResult();
+		}catch(Exception e) {}
+
+		return compte;
 	}
 	
 
