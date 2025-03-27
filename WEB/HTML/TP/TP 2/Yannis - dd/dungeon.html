@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes de Donjon et Dragon</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="https://5e-drs.fr/creation-du-personnage/" id="rules-link"><img src="img/book1.png" alt="Règles de D&D"></a>
+    </header>
+    <audio controls loop > <source src="musique/fantasy.mp3" type="audio/mp3"> Votre navigateur ne supporte pas l'élément audio.</audio>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Classe</th>
+                    <th>Caractéristiques Importantes</th>
+                    <th>Races Recommandées</th>
+                    <th>Équipement de Base</th>
+                    <th>Informations</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td>
+                      <img src="img/bard.png" alt="Barde">
+                      <p>Barde</p>
+                  </td>
+                  <td>
+                      <ul>
+                          <li><span class="stat" data-info="Charisme est la source de magie du Barde. La Dextérité et la Constitution permettent de survivre plus longtemps.">Charisme, Dextérité/Constitution</span></li>
+                          <li><a href="https://5e-drs.fr/grimoire/?classes=Barde"><img src="img/spellbook.webp" alt="Sorts du Barde"></a></li>
+                      </ul>
+                  </td>
+                  <td>Humain, Tieffelin, Elfe</td>
+                  <td>Instrument</td>
+                  <td>
+                      <a href="https://5e-drs.fr/classes/barde/"><img src="img/bard_logo.svg" alt="Barde"></a>
+                  </td>
+              </tr>
+                <tr>
+                    <td>
+                        <img src="img/warrior.png" alt="Guerrier">
+                        <p>Guerrier</p>
+                    </td>
+                    <td>
+                        <ul>
+                            <li><span class="stat" data-info="Force est primordiale pour un guerrier utilisant les armes lourdes, sinon la Dextérité.">Force ou Dextérité</span></li>
+                            <li><span class="stat" data-info="Constitution augmente vos points de vie.">Constitution</span></li>
+                        </ul>
+                    </td>
+                    <td>Humain, Nain, Demi-Orque, Goliath - ou une race spécialisé en Dextérité</td>
+                    <td>Épée longue, Armure lourde ou Rapière et Armure légère</td>
+                    <td>
+                        <a href="https://5e-drs.fr/classes/guerrier/"><img src="img/warrior_logo.svg" alt="Guerrier"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="img/wizard.png" alt="Mage">
+                        <p>Mage</p>
+                    </td>
+                    <td>
+                        <ul>
+                            <li><span class="stat" data-info="Intelligence est clé pour la magie.">Intelligence</span></li>
+                            <li><span class="stat" data-info="Constitution augmente vos points de vies et vous permet de rester concentrer sur vos sorts.">Constitution</span></li>
+                            <li><span class="stat" data-info="Dextérité vous rends plus difficile à toucher, à choisir avec au moins un peu de Constitution.">Dextérité</span></li>
+                            <li><a href="https://5e-drs.fr/grimoire/?classes=Magicien"><img src="img/spellbook.webp" alt="Sorts du Mage"></a></li>
+                        </ul>
+                    </td>
+                    <td>Elfe, Gnome, Humain, Aasimar</td>
+                    <td>Catalyseur, grimoire</td>
+                    <td>
+                        <a href="https://5e-drs.fr/classes/magicien/"><img src="img/mage_logo.svg" alt="Mage"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="img/barbarian.png" alt="Barbare">
+                        <p>Barbare</p>
+                    </td>
+                    <td>
+                        <ul>
+                            <li><span class="stat" data-info="Force est essentielle pour les attaques du Barbare.">Force</span></li>
+                            <li><span class="stat" data-info="Constitution améliore l'endurance du Barbare.">Constitution</span></li>
+                        </ul>
+                    </td>
+                    <td>Humain, Demi-Orque, Nain (montagne), Goliath</td>
+                    <td>Arme lourde, Armure légère</td>
+                    <td>
+                        <a href="https://5e-drs.fr/classes/barbare/"><img src="img/barbarian_logo.svg" alt="Barbare"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="img/druid.png" alt="Druide">
+                        <p>Druide</p>
+                    </td>
+                    <td>
+                        <ul>
+                            <li><span class="stat" data-info="Sagesse est clé pour les sorts du Druide.">Sagesse</span></li>
+                            <li><span class="stat" data-info="Constitution est importante sur un Druide, pour vos sorts demandant votre concentration.">Constitution</span></li>
+                            <li><a href="https://5e-drs.fr/grimoire/?classes=Druide"><img src="img/spellbook.webp" alt="Sorts du Druide"></a></li>
+                        </ul>
+                    </td>
+                    <td>Elfe (des bois), Gnome, Humain</td>
+                    <td>Bâton de druide, Armure de cuir</td>
+                    <td>
+                        <a href="https://5e-drs.fr/classes/druide/"><img src="img/druid_logo.svg" alt="Druide"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="img/monk.png" alt="Moine">
+                        <p>Moine</p>
+                    </td>
+                    <td>
+                        <ul>
+                            <li><span class="stat" data-info="Dextérité permet d'éviter les attaques et renforce les coups du moine.">Dextérité</span></li>
+                            <li><span class="stat" data-info="Sagesse améliore la concentration du Moine et le rend plus difficile à toucher.">Sagesse</span></li>
+                        </ul>
+                    </td>
+                    <td>Humain, Demi-Elfe, Elfe, Nain</td>
+                    <td>Bâton de combat, Tenue légère</td>
+                    <td>
+                        <a href="https://5e-drs.fr/classes/moine/"><img src="img/monk_logo.svg" alt="Moine"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="img/rogue.png" alt="Voleur">
+                        <p>Voleur</p>
+                    </td>
+                    <td>
+                        <ul>
+                            <li><span class="stat" data-info="Dextérité améliore la furtivité.">Dextérité</span></li>
+                            <li><span class="stat" data-info="Sagesse est utile si vous voulez savoir qu'est ce qui est important (à voler).">Sagesse</span></li>
+                        </ul>
+                    </td>
+                    <td>Humain, Halfelin, (demi) Elfe, Felys</td>
+                    <td>Dague et arc, Armure de cuir</td>
+                    <td>
+                        <a href="https://5e-drs.fr/classes/roublard/"><img src="img/rogue_logo.svg" alt="Voleur"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="img/ranger.png" alt="Ranger">
+                        <p>Ranger</p>
+                    </td>
+                    <td>
+                        <ul>
+                            <li><span class="stat" data-info="Dextérité améliore la furtivité et vos compétences de tir.">Dextérité</span></li>
+                            <li><span class="stat" data-info="Sagesse est utile si vous apprenez des sorts ou pour percevoir les choses importante.">Sagesse</span></li>
+                        </ul>
+                    </td>
+                    <td>Humain, Halfelin, (demi) Elfe, Felys</td>
+                    <td>Arc et arme légère, Armure de cuir</td>
+                    <td>
+                        <a href="https://5e-drs.fr/classes/rodeur/"><img src="img/ranger_logo.svg" alt="Ranger"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="img/sorcerer.png" alt="Ensorceleur">
+                        <p>Ensorceleur</p>
+                    </td>
+                    <td>
+                        <ul>
+                            <li><span class="stat" data-info="Charisme est la source de magie de l'Ensorceleur.">Charisme</span></li>
+                            <li><a href="https://5e-drs.fr/grimoire/?classes=Ensorceleur"><img src="img/spellbook.webp" alt="Sorts de l'Ensorceleur"></a></li>
+                        </ul>
+                    </td>
+                    <td>Humain, Tieffelin, Elfe</td>
+                    <td>Talisman</td>
+                    <td>
+                        <a href="https://5e-drs.fr/classes/ensorceleur/"><img src="img/sorcerer_logo.svg" alt="Ensorceleur"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="img/warlock.png" alt="Sorcier">
+                        <p>Sorcier</p>
+                    </td>
+                    <td>
+                        <ul>
+                            <li><span class="stat" data-info="Charisme alimente la magie du Sorcier.">Charisme</span></li>
+                            <li><a href="https://5e-drs.fr/grimoire/?classes=Sorcier"><img src="img/spellbook.webp" alt="Sorts du Sorcier"></a></li>
+                        </ul>
+                    </td>
+                    <td>Humain, Drakéide, Elfe</td>
+                    <td>Catalyseur, Robe</td>
+                    <td>
+                        <a href="https://5e-drs.fr/classes/sorcier/"><img src="img/warlock_logo.svg" alt="Sorcier"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="img/cleric.png" alt="Clerc">
+                        <p>Clerc</p>
+                    </td>
+                    <td>
+                        <ul>
+                            <li><span class="stat" data-info="Sagesse influence les pouvoirs divins du Clerc.">Sagesse</span></li>
+                            <li><span class="stat" data-info="Constitution pour ne pas vous affaiblir en perdant vos sorts lancés.">Constitution</span></li>
+                            <li><a href="https://5e-drs.fr/grimoire/?classes=Clerc"><img src="img/spellbook.webp" alt="Sorts du Clerc"></a></li>
+                        </ul>
+                    </td>
+                    <td>Humain, Nain, Elfe</td>
+                    <td>Masse, Armure moyenne</td>
+                    <td>
+                        <a href="https://5e-drs.fr/classes/clerc/"><img src="img/cleric_logo.svg" alt="Clerc"></a>
+                    </td>
+                </tr>
+                <tr>
+                   <td>
+                       <img src="img/paladin.png" alt="Paladin">
+                       <p>Paladin</p>
+                   </td>
+                   <td>
+                       <ul>
+                           <li><span class="stat" data-info="Force et Charisme sont essentiels pour un Paladin.">Force, Charisme</span></li>
+                           <li><a href="https://5e-drs.fr/grimoire/?classes=Paladin"><img src="img/spellbook.webp" alt="Sorts du Paladin"></a></li>
+                       </ul>
+                   </td>
+                   <td>Humain, Nain, Demi-Elfe</td>
+                   <td>Arme lourde, Armure de plate</td>
+                   <td>
+                       <a href="https://5e-drs.fr/classes/paladin/"><img src="img/paladin_logo.svg" alt="Paladin"></a>
+                   </td>
+               </tr>
+            </tbody>
+        </table>
+    </main>
+    <script>
+        document.querySelectorAll('.stat').forEach(stat => {
+            stat.addEventListener('click', function() {
+                alert(this.getAttribute('data-info'));
+            });
+        });
+    </script>
+</body>
+</html>
