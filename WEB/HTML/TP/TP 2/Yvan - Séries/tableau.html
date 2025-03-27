@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon top séries</title>
+    <style>
+        body {
+            background-color: #2e2e2e;
+            font-family: 'Helvetica', sans-serif;
+            color: #d2b48c;
+            margin: 0;
+            padding: 0;
+            display: inline;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            table-layout: fixed;
+        }
+
+        th, td {
+            border: 1px solid #555;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #3a3a3a;
+        }
+
+        th:nth-child(1), td:nth-child(1) {
+            width: 10%; /* Width for the first column */
+        }
+
+        th:nth-child(2), td:nth-child(2) {
+            width: 20%; /* Width for the second column */
+        }
+
+        th:nth-child(3), td:nth-child(3) {
+            width: 10%; /* Width for the third column */
+        }
+
+        th:nth-child(4), td:nth-child(4) {
+            width: 10%; /* Width for the fourth column */
+        }
+
+        th:nth-child(5), td:nth-child(5) {
+            width: 50%; /* Width for the fifth column */
+}
+
+        tr:nth-child(even) {
+            background-color: #3f3f3f;
+        }
+
+        tr:hover {
+            background-color: #4c4c4c;
+        }
+
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        @media (max-width: 600px) {
+            table {
+                width: 100%;
+            }
+            th, td {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Mon top séries et anime</h1>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Poster</th>
+        <th>Number of seasons</th>
+        <th>Episode length</th>
+        <th>Trailer</th>
+    </tr>
+    <tr>
+        <td>Severance</td>
+        <td><img src="./assets/poster_severance.jpg" alt="Severance Poster"></td>
+        <td>2</td>
+        <td>50 min</td>
+        <td><iframe src="https://www.youtube.com/embed/xEQP4VVuyrY?si=AYSiGxbccqXqD7ZM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+    </tr>
+
+    <tr>
+        <td>Andor</td>
+        <td><img src="./assets/poster_andor.jpg" alt="Andor poster"></td>
+        <td>1</td>
+        <td>40min</td>
+        <td><iframe src="https://www.youtube.com/embed/cKOegEuCcfw?si=iTnpCEQpH3WJ0N2M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+    </tr>
+
+    <tr>
+        <td>The expanse</td>
+        <td><img src="./assets/poster_the_expanse.jpg" alt="The expanse poster"></td>
+        <td>6</td>
+        <td>60min</td>
+        <td><iframe src="https://www.youtube.com/embed/nR8nmInjFT4?si=dBuXn06onBozvzMB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+    </tr>
+
+    <tr>
+        <td>Game of Thrones</td>
+        <td><img src="./assets/poster_got.jpg" alt="GoT poster"></td>
+        <td>8</td>
+        <td>60min</td>
+        <td><iframe src="https://www.youtube.com/embed/bjqEWgDVPe0?si=OKRByBRzk6ThwH54" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+    </tr>
+
+    <tr>
+        <td>HunterXHunter</td>
+        <td><img src="./assets/poster_HxH.jpg" alt="HxH poster"></td>
+        <td>6</td>
+        <td>24min</td>
+        <td><iframe src="https://www.youtube.com/embed/d6kBeJjTGnY?si=6yAA9qj-1KdRJSRj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+    </tr>
+
+    <tr>
+        <td>Cowboy bebop</td>
+        <td><img src="./assets/poster_cowboy_bebop.jpg" alt="Cowboy bebop poster"></td>
+        <td>1</td>
+        <td>24min</td>
+        <td><iframe src="https://www.youtube.com/embed/OhNwckCLzis?si=OQCkjRLy_qqjYZo4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
+    </tr>
+
+
+    <!-- Add more rows as needed -->
+</table>
+
+</body>
+</html>
