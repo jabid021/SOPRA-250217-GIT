@@ -1,0 +1,103 @@
+body {
+    font-size: 100%;
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    background-color: rgb(234, 243, 251);
+    padding: 20px;
+}
+
+div.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%; /* Centrage vertical sur la page */
+}
+
+.table-style {
+    width: 80%;
+    margin-top: 20px; /* Espace au-dessus du tableau */
+    border-collapse: collapse;
+    box-shadow: 0 5px 50px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgb(0, 10, 18);
+}
+
+thead tr {
+    background-color: rgb(0, 38, 69);
+    color: #fff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Couleur de fond pour les lignes paires */
+}
+
+tbody tr:hover {
+    background-color: #ffffff; /* Couleur de fond au survol */
+}
+
+th {
+    padding: 10px 15px;
+    align-items: center;
+    text-transform: uppercase; /* Met les titres en majuscule */
+}
+
+img.symbole {
+    height: 100px;
+    width: 100px;
+}
+
+img.carte {
+    height: 340px;
+    width: 244px;
+}
+
+.rouge {
+    background-color: rgb(255, 127, 127);
+}
+
+.bleu {
+    background-color: rgb(162, 162, 253);
+}
+
+.noir {
+    background-color: rgb(99, 99, 99);
+}
+
+.vert {
+    background-color: rgb(172, 246, 172);
+}
+
+.blanc {
+    background-color: rgb(243, 253, 201);
+}
+
+.blanc-bleu {
+    background: linear-gradient(to right, rgb(243, 253, 201), rgb(162, 162, 253));
+}
+.bleu-noir {
+    background: linear-gradient(to right, rgb(162, 162, 253), rgb(99, 99, 99));
+}
+.noir-rouge {
+    background: linear-gradient(to right, rgb(99, 99, 99), rgb(255, 127, 127));
+}
+.rouge-vert {
+    background: linear-gradient(to right, rgb(255, 127, 127), rgb(172, 246, 172));
+}
+.vert-blanc {
+    background: linear-gradient(to right, rgb(172, 246, 172), rgb(243, 253, 201));
+}
+.blanc-noir {
+    background: linear-gradient(to right, rgb(243, 253, 201), rgb(99, 99, 99));
+}
+.noir-vert {
+    background: linear-gradient(to right, rgb(99, 99, 99), rgb(172, 246, 172));
+}
+.bleu-rouge {
+    background: linear-gradient(to right, rgb(162, 162, 253), rgb(255, 127, 127));
+}
+.rouge-blanc {
+    background: linear-gradient(to right, rgb(255, 127, 127), rgb(243, 253, 201));
+}
+.bleu-vert {
+    background: linear-gradient(to right, rgb(162, 162, 253), rgb(172, 246, 172));
+}
