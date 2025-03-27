@@ -1,33 +1,19 @@
 package quest.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="ordinateur")
 public class Ordinateur {
-
-	@Id
-	@GeneratedValue(strategy =  GenerationType.IDENTITY)
-	@Column(name="id")
+	   @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer numero;
-	@Column(length = 25,nullable = false)
 	private String marque;
-	@Column(columnDefinition = "INTEGER(2) default 4")
 	private int ram;
-	
-	@OneToOne
-	@JoinColumn(name="stagiaire")
-	private Stagiaire stagiaire; 
+	private Stagiaire stagiaire; //mappedBy
 
-	public Ordinateur() {}
-	
 	public Ordinateur(Integer numero, String marque, int ram) {
 		this.numero = numero;
 		this.marque = marque;
