@@ -1,0 +1,141 @@
+<style>
+
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; /* L'image remplie l'écran */
+    width: 100%; height: 180%;
+    background-image: url('/Users/leenapermallee/Desktop/pré.jpg');
+    background-size: cover; /* L'image remplie l'écran sans être déformée. Elle s'adapte à la taille des écrans. */
+    background-position: center;
+    opacity: 0.5; /* Ajuste la transparence */
+    z-index: -1; /* L'image est placée en arrière plan */
+  }
+
+  h1{
+    font-size: 40px;
+    color:#196F3D;
+    text-align: center;
+    }
+
+  table{
+    border-collapse: collapse;
+    caption-side: bottom;
+  }
+
+  th,tr,td{
+    border : 2px solid #196F3D;
+  }
+
+  th{
+    background-color : #D4EFDF;
+  }
+
+  caption{
+    background-color: #196F3D;
+    font-weight: bold;
+  }
+
+  .gif{
+    display: block; /*Transforme l'image en un élément de type block*/
+    margin: 0 auto; /*Applique des marges automatiques pour centrer l'image*/
+  }
+
+  tr:hover {
+            transform: scale(1.01); /* Agrandit la ligne */
+            transition: transform 0.3s ease; /* Ajoute une transition douce */
+            background-color: #D4EFDF;
+  }
+
+  a{
+    color: black;
+    text-decoration: none;
+  }
+
+</style>
+
+
+<h1>Bienvenue dans mon élevage de chèvres en tout genre</h1>
+
+<table class="t1" border align="center" width="98%">
+<caption>La liste est non exhaustive. Le cheptel caprin de France compte environ 1 200 000 têtes dont 800 000 chèvres. <br> Pour en savoir plus, c'est par ici :
+  <a target="_blank"
+  href="https://fr.wikipedia.org/wiki/Liste_des_races_caprines_de_France#:~:text=Races%20reconnues%20%3A%20Alpine%20(Alpine%20chamoisée,%3B%20Saanen%20(Alpine%20Saanen).">Liste des races caprines de France</a> </caption>
+<thead>
+<tr>
+<th>Race de la chèvre</th>
+<th>Origine</th>
+<th>Robe & morphologie</th>
+<th>Aptitudes</th>
+<th>A quoi ressemble-t-elle ?</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<th align="center">Alpine</th>
+<td> Elle est originaire du massif alpin. <br> A partir de la Seconde Guerre mondiale, elle conquiert le centre ouest de la France.</td>
+<td align="center">Chaloisée (brun et noir)</td>
+<td>Laitière <br> Elle produit : <br> <ul>
+  <li>En moyenne 780L/Lactation</li>
+  <li>Taux protéique de 32,4g/kg</li>
+  <li>Taux butyreux de 37,3g/kg</li>
+</ul></td>
+<td align="center"><img src="assets/images/Alpine.jpg" alt="Image de la chèvre alpine" width="120px" height="120px"></td>
+</tr>
+
+<tr>
+<th align="center">Angora</th>
+<td> Elle est apparue 2000 ans av. J.-C au Tibet. <br> Elle arrive en Turquie, dans la région d'Angora au onzième siècle. </td>
+<td align="center">Blanche</td>
+<td>Fibre mohair <br> Sa fibre permet de confectionner : <br> <ul>
+  <li>Des vêtements de luxe</li>
+  <li>Des lainages</li>
+  <li>Des draperies</li>
+</ul></td>
+<td align="center"><img src="assets/images/Angora.jpg" alt="Image de la chèvre angora" width="120px" height="120px"></td>
+</tr>
+
+<tr>
+<th align="center">Boer</th>
+<td> Elle est originaire du Cap-Oriental en Afrique du Sud. <br> Elle apparaît à partir de années 1900.</td>
+<td align="center">Hétérogène car elle provient du métissage de plusieurs races.</td>
+<td>Bouchère</td>
+<td align="center"><img src="assets/images/Boer.jpg" alt="Image de la chèvre boer" width="120px" height="120px"></td>
+</tr>
+
+<tr>
+<th align="center">Corse</th>
+<td> Elle a été introduire sur l'île par les premiers colons de celle-ci. <br> Sa présence sur l'île est attestée depuis plusieurs millénaires.</td>
+<td align="center">Couleur variable (roux,fauve,gris ou noir)</td>
+<td>Laitière <br> Son lait contient : <br> <ul>
+  <li>Taux protéique de 32g/kg</li>
+  <li>Taux de matière grasse de 48g/kg</li>
+</ul>
+<br> Son lait donne un caractère unique aux fromages corses.</td>
+<td align="center"><img src="assets/images/Corse.jpg" alt="Image de la chèvre corse" width="120px" height="120px"></td>
+</tr>
+
+<tr>
+<th align="center">Chèvre des fossés</th>
+<td> C'est la chèvre commune du Nord-Ouest de la France. <br> C'était autrefois la chèvre des plus démunis qui en tiraient de quoi survivre en la faisant patûrer sur le bord des talus et des fossés.</td>
+<td align="center">Couleur variable</td>
+<td>Autrefois laitière <br> Elle est aujourd'hui utilisée pour débrouissailler.</td>
+<td align="center"><img src="assets/images/Fosses.jpg" alt="Image de la chèvre des fossés" width="120px" height="120px"></td>
+</tr>
+
+<tr>
+<th align="center">Poitevine</th>
+<td> Elle est originaire du Centre-Ouest de la France. <br> Très nombreuse autrefois en Poitou, pays de fromage de chèvre par excellence, elle a été victime d'une épidémie de fièvre aphteuse au début du XXe siècle.</td>
+<td align="center">Brune ou noir</td>
+<td>Laitière <br> Son lait contient : <br> <ul>
+  <li>Taux protéique de 30,7g/kg</li>
+  <li>Taux butyreux de 35,9g/kg</li>
+</ul>
+<br>Son lait est apprécié pour ses grandes qualités fromagères.</td>
+<td align="center"><img src="assets/images/Poitevine.jpg" alt="Image de la chèvre poitevine" width="120px" height="120px"></td>
+</tr>
+
+</table>
+
+<br><img class="gif" src="assets/gif/photofunky.gif" alt="">
