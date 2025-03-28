@@ -1,0 +1,108 @@
+<!--
+
+champ de texte (input) => text, password, number, email, url, date,time,week, tel (affche uniquement des chiffres sur le mobile de l'utilisateur), hidden, file, range
+input choix  => checkbox (0,*), radio (0,1)
+
+Zone de texte (textarea)
+
+Liste deroulante (select) => select / option
+
+button => submit / reset / button
+
+label
+
+fieldset / legend
+
+-->
+
+
+
+<form>
+
+
+  <fieldset>
+    <legend>BLOC 1</legend>
+    <table>
+      <tr>
+        <td><label for="input-login">Login</label> </td>
+        <td><input id="input-login" type="text" value="Jaxx" name="login" placeholder="Saisir votre login"></td>
+      </tr>
+      <tr>
+        <td><label for="input-password">Password</label></td>
+        <td><input id="input-password" type="password" value="tititoto" name="password" placeholder="Saisir votre password"></td>
+      </tr>
+
+      <tr>
+        <td>VOS OS</td>
+        <td>
+          <label for="input-os-windows">Windows</label><input type="checkbox" id="input-os-windows" name="os">
+          <label for="input-os-linux">Linux</label><input checked="checked" type="checkbox" id="input-os-linux" name="os">
+          <label for="input-os-mac">MacOs</label><input type="checkbox" id="input-os-mac" name="os"> </td>
+        </tr>
+
+
+        <tr>
+          <td>Civilite</td>
+          <td>
+            <label for="input-civilite-homme">Homme</label><input type="radio" id="input-civilite-homme" name="civilite">
+            <label for="input-civilite-femme">Femme</label><input checked="checked" type="radio" id="input-civilite-femme" name="civilite">
+            <label for="input-civilite-nb">NB</label><input type="radio" id="input-civilite-nb" name="civilite"> </td>
+          </tr>
+
+
+
+          <tr>
+            <td>
+              Civilite 2
+            </td>
+            <td>
+            <select name="civilite">
+              <option>Homme</option>
+              <option selected="selected">Femme</option>
+              <option>NB</option>
+            </select>
+            </td>
+          </tr>
+        </table>
+      </fieldset>
+
+      <fieldset>
+        <legend>Bloc 2</legend>
+
+        <table>
+          <tr>
+            <td><label for="input-naissance">Naissance</label></td>
+            <td><input type="date" id="input-naissance" name="naissance"><input type="time"><input type="week"></td>
+          </tr>
+
+          <tr>
+            <td><label for="input-age">Age</label></td>
+            <td><input type="number" id="input-age" name="age" placeholder="Saisir votre age"></td>
+          </tr>
+
+
+          <tr>
+            <td><label for="input-email">Email</label></td>
+            <td><input type="email" id="input-email" name="email" placeholder="Saisir votre email"></td>
+          </tr>
+
+
+          <tr>
+            <td><label for="input-tel">Tel</label></td>
+            <td><input type="tel" id="input-tel" name="tel" placeholder="Saisir votre tel"></td>
+          </tr>
+
+
+          <tr>
+            <td><label for="input-commentaire" >Commentaire</label></td>
+            <td><textarea placeholder="Saisir votre commentaire"></textarea></td>
+          </tr>
+        </table>
+      </fieldset>
+
+
+
+
+
+      <input type="submit" value="Save" ><input type="reset">
+    </form>
