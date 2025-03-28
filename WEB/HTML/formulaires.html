@@ -8,24 +8,38 @@ Zone de texte (textarea)
 Liste deroulante (select) => select / option
 
 button => submit / reset / button
+  <input type="submit"> => valide le formulaire
+  <button> => si dans un <form> valide le formulaire, si en dehors, use avec du js
+  <input type="button"> => ne fait rien sans js
+
 
 label
 
 fieldset / legend
 
+
+attributs de la balise <form>
+
+action => page cible du formulaire vers laquelle les données seront send
+method => GET ou POST
+    En GET => parametres du formulaire passent dans l'url => www.ajc.fr/pageCible.html?param1=value1&param2=value2&param3=value3...
+    En POST => parametres n'apparaissent pas dans l'url (transmission direct au serveur)
 -->
 
 
-
-<form>
+<a href="produit.html?idProduit=12"> Afficher le produit 12</a>
+<form action="pageCible.html" method="GET" enctype="multipart/form-data">
 
 
   <fieldset>
     <legend>BLOC 1</legend>
+
+    <input type="hidden" value="5" name="id">
+
     <table>
       <tr>
         <td><label for="input-login" >Login*</label> </td>
-        <td><input required="required" id="input-login" minlength="5" maxlength="10" type="text"  name="login" placeholder="Saisir votre login"></td>
+        <td><input  autofocus size="80"    value="Jaxx" required="required" id="input-login" minlength="5" maxlength="10" type="text"  name="login" placeholder="Saisir votre login"></td>
       </tr>
       <tr>
         <td><label for="input-password">Password* ()</label></td>
@@ -36,7 +50,7 @@ fieldset / legend
         <td>VOS OS</td>
         <td>
           <label for="input-os-windows">Windows</label><input type="checkbox" id="input-os-windows" name="os[]" value="windows">
-          <label for="input-os-linux">Linux</label><input checked="checked" type="checkbox" id="input-os-linux" name="os[]" value=linux"">
+          <label for="input-os-linux">Linux</label><input checked="checked" type="checkbox" id="input-os-linux" name="os[]" value="linux">
           <label for="input-os-mac">MacOs</label><input type="checkbox" id="input-os-mac" name="os[]" value="mac"> </td>
         </tr>
 
@@ -56,7 +70,8 @@ fieldset / legend
               Civilite 2
             </td>
             <td>
-              <select name="civilite">
+              <select required name="civilite">
+                <option value="">CHOISIR UNE CIVILITE</option>
                 <option value="h">Homme</option>
                 <option value="f" selected="selected">Femme</option>
                 <option value="nb">NB</option>
@@ -70,7 +85,7 @@ fieldset / legend
               OS 2
             </td>
             <td>
-              <select multiple name="os2[]">
+              <select required multiple name="os2[]">
                 <optgroup label="MSDOS">
                   <option>Windows</option>
                 </optgroup>
@@ -94,7 +109,7 @@ fieldset / legend
 
             <tr>
               <td><label for="input-age">Age</label></td>
-              <td><input type="number" min="0"  id="input-age" name="age" placeholder="Saisir votre age"></td>
+              <td><input type="number" min="0" id="input-age" name="age" placeholder="Saisir votre age"></td>
             </tr>
 
             <tr>
@@ -105,13 +120,13 @@ fieldset / legend
 
             <tr>
               <td><label for="input-email">Email</label></td>
-              <td><input type="email" id="input-email" name="email" placeholder="Saisir votre email"></td>
+              <td><input readonly value="j@gmail.Com" type="email" id="input-email" name="email" placeholder="Saisir votre email"></td>
             </tr>
 
 
             <tr>
               <td><label for="input-tel">Tel</label></td>
-              <td><input type="tel" id="input-tel" name="tel" placeholder="Saisir votre tel"></td>
+              <td><input disabled value="+331234567" type="tel" id="input-tel" name="tel" placeholder="Saisir votre tel"></td>
             </tr>
 
 
@@ -129,14 +144,37 @@ fieldset / legend
 
             <tr>
               <td><label for="input-note">Une note</label></td>
-              <td><input type="range" id="input-note" min="0" max="10" name="note"></td>
+              <td><input type="range" id="input-note" min="0" max="10" name="note"><input readonly type="number" id="input-note-show" value="5"> <span id="span-note">5</span> </td>
             </tr>
+
+
+            <tr>
+              <td>Upload votre CV</td>
+              <td>
+                <input type="file" name="cv">
+              </tr>
+
           </table>
         </fieldset>
 
 
 
 
+        <input type="button" value="Modifier">
 
         <input type="submit" value="Save" ><input type="reset">
       </form>
+
+      <button>Afficher le formulaire</button>
+
+
+      <script>
+
+        var inputNote =   document.getElementById("input-note");
+        inputNote.onchange = function()
+        {
+          document.getElementById("span-note").innerText=inputNote.value;
+          document.getElementById("input-note-show").value=inputNote.value;
+        }
+
+      </script>
