@@ -1,6 +1,6 @@
 <!--
 
-champ de texte (input) => text, password, number, email, url, date,time,week, tel (affche uniquement des chiffres sur le mobile de l'utilisateur), hidden, file, range
+champ de texte (input) => text, password, number, email, url, date,time,week, tel (affche uniquement des chiffres sur le mobile de l'utilisateur), hidden, file, color, range
 input choix  => checkbox (0,*), radio (0,1)
 
 Zone de texte (textarea)
@@ -24,29 +24,29 @@ fieldset / legend
     <legend>BLOC 1</legend>
     <table>
       <tr>
-        <td><label for="input-login">Login</label> </td>
-        <td><input id="input-login" type="text" value="Jaxx" name="login" placeholder="Saisir votre login"></td>
+        <td><label for="input-login" >Login*</label> </td>
+        <td><input required="required" id="input-login" minlength="5" maxlength="10" type="text"  name="login" placeholder="Saisir votre login"></td>
       </tr>
       <tr>
-        <td><label for="input-password">Password</label></td>
+        <td><label for="input-password">Password* ()</label></td>
         <td><input id="input-password" type="password" value="tititoto" name="password" placeholder="Saisir votre password"></td>
       </tr>
 
       <tr>
         <td>VOS OS</td>
         <td>
-          <label for="input-os-windows">Windows</label><input type="checkbox" id="input-os-windows" name="os">
-          <label for="input-os-linux">Linux</label><input checked="checked" type="checkbox" id="input-os-linux" name="os">
-          <label for="input-os-mac">MacOs</label><input type="checkbox" id="input-os-mac" name="os"> </td>
+          <label for="input-os-windows">Windows</label><input type="checkbox" id="input-os-windows" name="os[]" value="windows">
+          <label for="input-os-linux">Linux</label><input checked="checked" type="checkbox" id="input-os-linux" name="os[]" value=linux"">
+          <label for="input-os-mac">MacOs</label><input type="checkbox" id="input-os-mac" name="os[]" value="mac"> </td>
         </tr>
 
 
         <tr>
           <td>Civilite</td>
           <td>
-            <label for="input-civilite-homme">Homme</label><input type="radio" id="input-civilite-homme" name="civilite">
-            <label for="input-civilite-femme">Femme</label><input checked="checked" type="radio" id="input-civilite-femme" name="civilite">
-            <label for="input-civilite-nb">NB</label><input type="radio" id="input-civilite-nb" name="civilite"> </td>
+            <label for="input-civilite-homme">Homme</label><input type="radio" id="input-civilite-homme" name="civilite" value="homme">
+            <label for="input-civilite-femme">Femme</label><input checked="checked" type="radio" id="input-civilite-femme" name="civilite" value="femme">
+            <label for="input-civilite-nb">NB</label><input type="radio" id="input-civilite-nb" name="civilite" value="nb"> </td>
           </tr>
 
 
@@ -56,53 +56,87 @@ fieldset / legend
               Civilite 2
             </td>
             <td>
-            <select name="civilite">
-              <option>Homme</option>
-              <option selected="selected">Femme</option>
-              <option>NB</option>
-            </select>
+              <select name="civilite">
+                <option value="h">Homme</option>
+                <option value="f" selected="selected">Femme</option>
+                <option value="nb">NB</option>
+              </select>
             </td>
+
           </tr>
-        </table>
-      </fieldset>
-
-      <fieldset>
-        <legend>Bloc 2</legend>
-
-        <table>
           <tr>
-            <td><label for="input-naissance">Naissance</label></td>
-            <td><input type="date" id="input-naissance" name="naissance"><input type="time"><input type="week"></td>
-          </tr>
 
-          <tr>
-            <td><label for="input-age">Age</label></td>
-            <td><input type="number" id="input-age" name="age" placeholder="Saisir votre age"></td>
-          </tr>
+            <td>
+              OS 2
+            </td>
+            <td>
+              <select multiple name="os2[]">
+                <optgroup label="MSDOS">
+                  <option>Windows</option>
+                </optgroup>
+                <optgroup label="UNIX">
+                  <option>MacOs</option>
+                  <option>Linux</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+
+        <fieldset>
+          <legend>Bloc 2</legend>
+
+          <table>
+            <tr>
+              <td><label for="input-naissance">Naissance</label></td>
+              <td><input min="2025-01-01" max="2025-12-31" value="2025-03-24" step="7" type="date" id="input-naissance" name="naissance"><input type="time" step="900"><input name="week" value="2025-W4"type="week" value=""step="4"></td>
+            </tr>
+
+            <tr>
+              <td><label for="input-age">Age</label></td>
+              <td><input type="number" min="0"  id="input-age" name="age" placeholder="Saisir votre age"></td>
+            </tr>
+
+            <tr>
+              <td><label for="input-salaire">Salaire</label></td>
+              <td><input type="number" step="0.01" min="0" id="input-salaire" name="salaire" placeholder="Saisir votre salaire"></td>
+            </tr>
 
 
-          <tr>
-            <td><label for="input-email">Email</label></td>
-            <td><input type="email" id="input-email" name="email" placeholder="Saisir votre email"></td>
-          </tr>
+            <tr>
+              <td><label for="input-email">Email</label></td>
+              <td><input type="email" id="input-email" name="email" placeholder="Saisir votre email"></td>
+            </tr>
 
 
-          <tr>
-            <td><label for="input-tel">Tel</label></td>
-            <td><input type="tel" id="input-tel" name="tel" placeholder="Saisir votre tel"></td>
-          </tr>
+            <tr>
+              <td><label for="input-tel">Tel</label></td>
+              <td><input type="tel" id="input-tel" name="tel" placeholder="Saisir votre tel"></td>
+            </tr>
 
 
-          <tr>
-            <td><label for="input-commentaire" >Commentaire</label></td>
-            <td><textarea placeholder="Saisir votre commentaire"></textarea></td>
-          </tr>
-        </table>
-      </fieldset>
+            <tr>
+              <td><label for="input-commentaire">Commentaire</label></td>
+              <td><textarea placeholder="Saisir votre commentaire"></textarea></td>
+            </tr>
+
+
+            <tr>
+              <td><label for="input-couleur-pref">Couleur Pref</label></td>
+              <td><input type="color" id="input-couleur-pref"  name="couleur-pref" ></td>
+            </tr>
+
+
+            <tr>
+              <td><label for="input-note">Une note</label></td>
+              <td><input type="range" id="input-note" min="0" max="10" name="note"></td>
+            </tr>
+          </table>
+        </fieldset>
 
 
 
 
 
-      <input type="submit" value="Save" ><input type="reset">
-    </form>
+        <input type="submit" value="Save" ><input type="reset">
+      </form>
