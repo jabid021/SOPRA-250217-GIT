@@ -1,0 +1,60 @@
+<!--
+
+4 positions  : relative, absolute, fixed, sticky => donne acces aux attributs top, left, right, bottom
+
+
+-->
+
+
+<style>
+
+body{background-color:#F4EFE7;height:200%;}
+
+content
+{
+  display:block;
+  width:80%;
+  margin-left:10%;
+  background-color:lightgrey;
+  position:relative;
+  height:850px;
+}
+
+content div
+{
+   height:70px;
+}
+
+#element1
+{
+   background-color:green;
+}
+
+#element2
+{
+  background-color:blue;
+  position:sticky;
+  top:50px;
+  width:100%;
+}
+
+#element3
+{
+   background-color:red;
+}
+
+#element4
+{
+   background-color:orange;
+}
+</style>
+
+
+
+
+<content>
+  <div id="element1">Element 1</div>
+  <div id="element2">Element 2</div>
+  <div id="element3">Element 3</div>
+  <div id="element4">Element 4</div>
+</content>

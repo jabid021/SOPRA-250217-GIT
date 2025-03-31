@@ -1,14 +1,25 @@
+<!--
+
+Balises semantiques :
+
+header , main, content, nav,footer, asside
+
+
+
+-->
+
 <style>
 
 	body{margin:0;}
-	#header
+
+	header
 	{
 		display:flex;
 		height: 15%;
 		border:solid black 1px;
 	}
 
-	#header > div
+	header > div
 	{
 		display:flex;
 		justify-content:center;
@@ -16,104 +27,163 @@
 
 	}
 
-	#header > div:nth-of-type(1)
+	header > div:nth-of-type(1)
 	{
 		width:15%;
 		font-weight:bold;
 		font-size:60px;
 	}
 
-	#header > div:nth-of-type(2)
+	header > div:nth-of-type(2)
 	{
 		width : 85%;
 		background-color:grey;
 		font-size:40px;
 		text-transform:uppercase;
 	}
+
+	main
+	{
+		height:90%;
+		display:flex;
+	}
+
+	main > nav
+	{
+		margin-top:10px;
+		width: 20%;
+		display:flex;
+		flex-direction:column;
+	}
+
+	main> nav > a
+	{
+		width: 20%;
+		display:flex;
+		flex-direction:column;
+		margin-left:80px;
+	}
+
+	main > content
+	{
+		width: 65%;
+	}
+
+	main > aside
+	{
+		width: 15%;
+	}
+
+	main>asside ul
+	{
+		list-style-type: none;
+	}
+
+
+	footer
+	{
+		height:10%;
+		background-color:yellow;
+		display:flex;
+		align-items:center;
+	}
+
+	footer>nav
+	{
+		width:30%;
+		display:flex;
+		justify-content:space-around;
+	}
+	footer>div:nth-of-type(1)
+	{
+		width:50%;
+		text-align:center;
+	}
+
 </style>
 
-
-<div id="header">
+<header>
 	<div>Logo</div>
 	<div>Accueil</div>
-</div>
+</header>
 
 
-<div id="main">
-	<div></div>
-	<div></div>
-	<div></div>
-</div>
+<main>
+	<nav>
+		<a href="">Accueil</a>
+		<a href="">Item 1</a>
+		<a href="">Item 2</a>
+		<a href="">Item 3</a>
+		<a href="">Contact</a>
+	</nav>
+
+	<content>
+		<h1>Sujet de la page</h1>
+
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco</p>
 
 
-<div id="footer">
-	<div></div>
-	<div></div>
-</div>
+			<h3>Article 1</h3>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco</p>
+
+				<h3>Article 2</h3>
+
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco rcitation ullamco</p>
 
 
-Accueil
-Item 1
-Item 2
-Item 3
-Contact
-Sujet de la page
+					<h3>Article 3</h3>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco</p>
 
+						<h3>Article 4</h3>
 
-Article 1
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco</p>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco
+							<h3>Article 5</h3>
 
-Article 2
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco</p>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco rcitation ullamco
+								<h3>Article 6</h3>
 
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+									quis nostrud exercitation ullamco</p>
 
-Article 3
+								</content>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco
-
-Article 4
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco
-
-Article 5
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco
-
-Article 6
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco
+								<aside>
+									<p>Archives</p>
+									<nav>
+										<ul>
+											<li><a href="">Août 2019</a></li>
+											<li><a href="">Juillet 2019</a></li>
+											<li><a href="">Juin 2019</a></li>
+											<li><a href="">Mai 2019</a></li>
+										</ul>
+									</nav>
+								</aside>
+							</main>
 
 
-Archives
-Août 2019
-Juillet 2019
-Juin 2019
-Mai 2019
-
-
-
-
-Accueil
-Plan
-Contact
-CGU
-
-Gabarit - Copyrigth &#8471; 2019-2022
+							<footer>
+							<nav>
+								<a href="">Accueil</a>
+								<a href="">Plan</a>
+								<a href="">Contact</a>
+								<a href="">CGU</a>
+							</nav>
+							<div>Gabarit - Copyrigth &#8471; 2019-2022</div>
+						</footer>

@@ -1,0 +1,65 @@
+/*CSS Mobile*/
+@media(max-width:768px)
+{
+
+  #navPc
+  {
+    display:none;
+  }
+
+  #navTel
+  {
+    display:flex;
+    justify-content:center;
+  }
+  container
+  {
+    display:flex;
+    flex-wrap:wrap;
+    background-color:cyan;
+  }
+  p{width:calc(100%/2);}
+
+  p:last-of-type
+  {
+    order:-1;
+  }
+}
+
+/*CSS Tablette */
+
+@media (min-width:768px) and (max-width:992px)
+{
+
+  #navTel
+  {
+    display:none;
+  }
+
+  container
+  {
+    display:flex;
+    flex-wrap:wrap;
+    background-color:salmon;
+  }
+  p{width: calc(100%/3);}
+}
+
+/*CSS PC */
+
+@media(min-width:992px)
+{
+
+  #navTel
+  {
+    display:none;
+  }
+
+  container
+  {
+    display:flex;
+    flex-wrap:wrap;
+    background-color:orange;
+  }
+  p{width:25%;}
+}
