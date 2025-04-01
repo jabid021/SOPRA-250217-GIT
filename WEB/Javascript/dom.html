@@ -1,0 +1,173 @@
+<style>
+
+.input-important
+{
+  color:red;
+}
+
+</style>
+
+<html>
+<head>
+
+<meta charset="utf-8"/>
+<title>Demo DOM</title>
+</head>
+
+<body>
+
+<h1 class="demoPointeur" id="header-1">TITRE DE LA PAGE</h1>
+
+<p class="demoPointeur">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<h2 id="header-2" title="Ceci est un titre qui apparait au survol de la balise h2">Sous titre</h2>
+
+<div id="divParags">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>Lorem ipsum dolor <b>sit amet, consectetur adipisicing elit</b>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+</div>
+
+
+<div id="divParags2"></div>
+
+<input type="text" id="inputLogin" value="Jordan"><br>
+<input type="checkbox" id="input-chexkbox-validate"> C'est VALIDE ?
+
+<select id="selectDemo">
+<option value="windows">Windows</option>
+<option value="mac">MacOS</option>
+<option value="linux">Linux</option>
+</select>
+</body>
+
+</html>
+
+
+
+<script charset="utf-8">
+
+
+/*
+En JS, on peut pointer une / des balises par id, class, tag
+
+Pour les id, 2 facons de gerer les pointeurs =>
+document.getElementById("x").style;
+x.style => ATTENTION à ne pas avoir de variables, de fonctions, ou d'autre elements html avec le nom "x"
+
+
+*/
+
+
+
+document.getElementById("divParags").style.color="yellow";
+divParags.style.backgroundColor="blue";
+
+var prop = "font-size";
+divParags.style.setProperty(prop,"25px");
+
+
+
+
+
+var baliseTitre = document.getElementById("header-1");
+
+console.log(baliseTitre.innerHTML);
+console.log(divParags.innerHTML);
+console.log(divParags.textContent);
+
+
+
+
+//Ctrl c ctrl v du content HTML de divParags vers divParags2
+divParags2.innerHTML= divParags.innerHTML;
+
+baliseTitre.innerHTML="NOUVEAU TITRE";
+
+
+
+var baliseTitre2 = document.getElementById("header-2");
+
+console.log(baliseTitre2.getAttribute("title")); // return la contenu de l'attribut title, null s'il n'existe pas
+console.log(baliseTitre2.getAttribute("toto"));
+
+baliseTitre2.setAttribute("title","NOUVELLE LEGENDE"); //modifier ou ajoute un attribut
+baliseTitre2.setAttribute("toto","titi");
+
+baliseTitre2.removeAttribute("toto");//Retire l'attribut toto, s'il n'existe pas, ne fera rien
+baliseTitre2.removeAttribute("john");
+
+inputLogin.setAttribute("disabled","disabled");
+inputLogin.removeAttribute("disabled");
+
+inputLogin.disabled=true; //equivalent de setAttribute("disabled","disabled");
+inputLogin.disabled=false; //equivalent de removeAttribute("disabled");
+
+inputLogin.classList.add("input-important");
+inputLogin.classList.remove("input-important");
+
+
+console.log(inputLogin.value);
+inputLogin.value="TOTO";
+console.log(selectDemo.value);
+selectDemo.value="mac";
+
+
+console.log(document.getElementById("input-chexkbox-validate").checked);
+document.getElementById("input-chexkbox-validate").checked=true;
+
+
+
+
+
+var balisesClass = document.getElementsByClassName("demoPointeur");
+
+for(b of balisesClass)
+{
+  b.style.color="green";
+}
+
+var balisesTags = document.getElementsByTagName("p");
+
+
+for(b of balisesTags)
+{
+  b.style.border="solid black 1px";
+}
+
+
+console.log("-------DEMO POINTEUR------------");
+//Permet de pointer un element avec les selecteurs CSS
+document.querySelector("#divParags p").style.color="red"; //Ne peut retourner qu'une seule balise (la 1ere qu'il rencontre)
+
+
+for(b of document.querySelectorAll("#divParags p"))
+{
+  b.style.fontFamily="Arial";
+}
+
+
+var titlePage = "Demo DOM";
+
+setInterval(changeTitle,2000);
+
+function changeTitle()
+{
+  if(titlePage=="Demo DOM")
+  {
+    titlePage="(1) NEW MESSAGE";
+  }
+  else
+  {
+    titlePage="Demo DOM";
+  }
+
+  if(document.hasFocus()==false){
+      titlePage="REVIENS STP....";
+    }
+
+  document.title=titlePage;
+}
+
+</script>

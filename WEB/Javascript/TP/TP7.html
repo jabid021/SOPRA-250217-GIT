@@ -1,0 +1,30 @@
+<script charset="utf-8">
+  var tabPays =
+  [
+    {nom:"France",capitale:"Paris"},
+    {nom:"Espagne",capitale:"Madrid"},
+    {nom:"Italie",capitale:"Rome"},
+    {nom:"UK",capitale:"Londres"},
+    {nom:"Portugal",capitale:"Lisbonne"}
+  ];
+
+  var nbQuestions=tabPays.length;
+  var cpt=1;
+  var score=0;
+  for(pays of tabPays)
+  {
+    let reponse = prompt(`(Question ${cpt} / ${nbQuestions} ) Quelle est la capitale du pays suivant ? ${pays.nom}`);
+    let capitale = pays.capitale;
+    let message = `Mauvaise réponse, c'etait ${capitale}`;
+    if(reponse.toUpperCase()==capitale.toUpperCase())
+    {
+      score++;
+      message="Bonne réponse !";
+    }
+    alert(message);
+    cpt++;
+  }
+  alert(`Votre score est ${score} / ${nbQuestions}`);
+  console.log(`Votre score est ${score} / ${nbQuestions}`);
+
+</script>
