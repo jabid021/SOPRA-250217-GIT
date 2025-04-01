@@ -1,0 +1,145 @@
+
+
+<script>
+
+var personne1 = new Object();
+personne1.nom="Abid";
+personne1.prenom="Jordan";
+personne1.age=31;
+
+
+
+var personne2 = {nom : "Doe",prenom:"John",age:42};
+console.log(personne2);
+var field = "prenom";
+console.log(personne2.nom);
+console.log(personne2["nom"]);
+
+
+
+var zoom = [personne1,personne2,{nom:"Doe","prenom":"Jane",age:45}];
+
+console.log("Liste des personnes : ");
+
+for(personne of zoom)
+{
+  console.log(personne);
+}
+
+console.log(zoom);
+
+
+if(personne1.age>=18)
+{
+  console.log(`${personne1.prenom} est majeur`);
+}
+
+else {console.log(`${personne1.prenom} est mineur`);}
+
+var bigblue = ["Jordan","John","Jane","Adrien","Alexandre","Julien"];
+var notes = [12,20,5,2,1,18];
+
+1,12,18,2,20,5
+
+
+bigblue[bigblue.length]="Leena";
+bigblue.push("Maxence"); // push ajoute à la fin du tableau
+bigblue.unshift("Jordan"); // Ajouter au debut de la liste un element
+bigblue.shift();//Retire le 1er element
+bigblue.pop(); // Retire le dernier element
+//bigblue[100]="TIOT";
+//bigblue.length=2;
+alert(bigblue.join("---"));
+
+bigblue.sort(compareStringByLength);
+bigblue.reverse();
+
+notes.sort(compareNumber);
+
+console.log("Liste des notes en asc : "+notes);
+
+console.log(bigblue);
+
+function compareStringByLength(a,b)
+{
+  return a.length-b.length;
+}
+
+function compareNumber(a,b)
+{
+  return a-b; //Si a est plus petit que b, retourne un nombre negatif, sort echangera la position de a et b
+}
+
+
+for(index in bigblue)
+{
+  console.log(index + " -"+bigblue[index]);
+}
+
+for(prenom of bigblue)
+{
+  console.log(prenom);
+}
+
+
+  var age = "31";
+  /*console.log(age);
+  age++;
+  console.log(age);
+  */
+
+  console.log(age==31); /* == compare le contenu de la variable, 31 est egal à "31" */
+  console.log(age===31); /* === compare le contenu +le type de la variable, 31 n'est pas egal à "31" */
+
+
+  if(age>=18){console.log("Vous etes majeur");}
+  else{console.log("Vous etes mineur");}
+
+
+  console.log((age>=18)? "Vous etes majeur" : "Vous est mineur");
+
+  switch(age)
+  {
+    case 18 : "Majeur"; break;
+    default : "";break;
+  }
+
+  for(let i = 0;i<10;i++)
+  {
+    console.log(i);
+  }
+
+  try{
+    console.log("Apres la boucle : "+i);
+  }
+  catch(e)
+  {
+    console.log(e);
+  }
+
+  var cpt=0;
+  do{
+    console.log(cpt);
+    cpt++;
+  }while(cpt<=10);
+
+
+
+console.log(Math.PI);
+
+console.log("test");
+
+
+maFonction(10);
+
+//age = prompt("Saisir votre age");
+age = parseInt(age);
+console.log("Dans 10 ans votre age : "+age+10);
+console.log(`Dans 10 ans votre age : ${age+10}`);
+
+function maFonction(x)
+{
+
+  console.log(x * 2);
+}
+</script>
