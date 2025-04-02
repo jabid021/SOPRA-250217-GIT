@@ -10,13 +10,16 @@ var mouvement=30;
 var pokemon="pikachu";
 var direction="Down";
 var pikachu = document.getElementById(pokemon);
+var pikachu2 = document.getElementById(pokemon+"2");
 var themePokemon = document.getElementById("themePokemon");
 var inputName = document.getElementById("inputName");
 var inputStart = document.getElementById("btnStart");
 var divStart = document.getElementById("formStart");
 var grass = document.getElementById("grass");
 var champignon = document.getElementById("champignon");
-var pantoufle = document.getElementById("pantoufle");
+var crown = document.getElementById("crown");
+var diamond = document.getElementById("diamond");
+var clone = document.getElementById("clone");
 var nom;
 imgPikachu.setAttribute("src","assets/img/"+pokemon+direction+".png");
 
@@ -83,16 +86,39 @@ function deplacement(event)
     posY = 0;
     teleporteur.style.display = "none";
   }
-  if((posX==300 && posY==300)&& pantoufle.style.display!="none"){
+  if((posX==300 && posY==300)&& crown.style.display!="none"){
     pokemon = "peach";
-    pantoufle.style.display = "none";
+    imgPikachu.style.width = "30px";
+    imgPikachu2.style.width = "30px";
+    crown.style.display = "none";
+  }
+  if((posX==270 && posY==300)&& diamond.style.display!="none"){
+    pokemon = "princess";
+    imgPikachu.style.width = "30px";
+    imgPikachu2.style.width = "30px";
+    diamond.style.display = "none";
+  }
+  if((posX==240 && posY==300)&& clone.style.display!="none"){
+    imgPikachu2.setAttribute("src","assets/img/"+pokemon+direction+".png");
+    pikachu2.style.top=posY-50+"px";
+    pikachu2.style.left=posX-50+"px";
+    pikachu2.style.display = "block";
+    clone.style.display = "none";
   }
 
   pikachu.style.top=posY+"px";
   pikachu.style.left=posX+"px";
-  imgPikachu.setAttribute("src","assets/img/"+pokemon+direction+".png" && pokemon == "pikachu" );
+  imgPikachu.setAttribute("src","assets/img/"+pokemon+direction+".png");
+  if(pikachu2.style.display != "none"){
+   
+   
+      pikachu2.style.top=posY-50+"px";
+      pikachu2.style.left=posX-50+"px";
+   
+    imgPikachu2.setAttribute("src","assets/img/"+pokemon+direction+".png");
+  }
 
   setTimeout(function(){
     themePokemon.pause();
-  },50000);
+  },30000);
 }
