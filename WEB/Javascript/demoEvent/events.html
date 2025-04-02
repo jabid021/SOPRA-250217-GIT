@@ -1,0 +1,92 @@
+<!--
+
+types d'events :
+Events souris => click,mousedown (on commence le click), mouseup (on lache le click) dblclick, mouseover (on passe sur l'element), mouseout (on sort de l'element), mousemove
+Events clavier => keypress, keydown, keyup
+Events formulaire => change, focus, focusout
+
+chaque evenement va attacher une fonction à un element de dom  => Listner  / Ecouteur
+
+
+Comment attacher un event à un element ?
+
+element.onEvent
+
+<p onClick="maFunction(1,'john','doe')"></p>
+<p onClick="maFunction(2,'john','doe')"></p>
+<p onClick="maFunction(3,'jane','doe')"></p>
+
+-->
+
+
+<style>
+
+
+
+/*
+#paragPrinci:hover
+{
+    font-size:30px;
+    color:red;
+}
+*/
+
+  #loginStatut {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+    margin-left:5px;
+  }
+
+
+#car
+{
+  position:absolute;
+  bottom:0;
+  right:0;
+}
+
+
+</style>
+
+
+
+<script src="tableau.js" defer></script>
+<script src="parags.js" defer></script>
+<script src="car.js" defer></script>
+
+
+<div class="container">
+  <p id="paragPrinci">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+<input type="color" id="couleurText">
+<input type="button" id="resetCouleur" value="Reset Couleur">
+<p id="parag2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+
+
+
+<table  border>
+  <tr><th>Prenom</th></tr>
+  <tbody id="tableau">
+    <tr><td>Jordan</td></tr>
+    <tr><td>John</td></tr>
+    <tr><td>Jane</td></tr>
+  </tbody>
+  <tr><th>Prenom</th></tr>
+</table>
+
+<br>
+<input type="text" placeholder="Saisir prenom" id="inputPrenom">
+<input type="button" disabled value="Ajouter dans le tableau" id="btnAjouter"><div id="loginStatut">
+
+<input type="button"  value="Start voiture" id="btnVoiture">
+</div>
+
+
+
+<br><br><br>
+<div id="car"><img id="typeCar" src="red.gif"></div>
