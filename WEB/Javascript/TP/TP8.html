@@ -21,4 +21,40 @@
 <script>
 
 
+do{
+  var typeElement = prompt("Choisir un type d'element (id / class/ tag)");
+  var nomElement;
+  var prop = "color";
+  var valueCss = prompt(`Quelle value pour la prop : ${prop} ?`);
+
+  if(typeElement=="id")
+  {
+    nomElement="paragPrinci";
+    document.getElementById(nomElement).style.setProperty(prop,valueCss);
+  }
+  else if(typeElement=="class")
+  {
+    nomElement="secondaire";
+    for(b of document.getElementsByClassName(nomElement))
+    {
+      b.style.setProperty(prop,valueCss);
+    }
+  }
+  else if(typeElement=="tag")
+  {
+    nomElement="p";
+    for(b of document.getElementsByTagName(nomElement))
+    {
+      b.style.setProperty(prop,valueCss);
+    }
+  }
+  else
+  {
+    alert("Ce type d'element n'existe pas....");
+  }
+}while(confirm("Faire une autre modif ?"));
+
+
+
+
 </script>

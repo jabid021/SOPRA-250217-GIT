@@ -1,0 +1,71 @@
+<h1 id="message">Ce message s'autodetruira dans 5 secondes....</h1>
+
+
+<p id="sapin">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+
+<input type="button" id="startMsg" value="Amorcer">
+<input type="button" id="disarm" value="Desamorcer">
+
+
+
+
+<script>
+
+  couleur = "red";
+  disarm.onclick=desamorcer;
+  startMsg.onclick=start;
+
+
+  var secondes = 5;
+
+
+  var monInterval;
+  var monTimeout;
+
+
+setInterval(couleurSapin,500);
+
+ function couleurSapin()
+ {
+   couleur = (couleur=="red") ? "green" : "red";
+   sapin.style.color=couleur;
+ }
+
+  function start()
+  {
+    monInterval = setInterval(majText,1000);
+    //le timout lancera la fonction exploser au bout de 5secondes
+    //Pour stop le lancement, il faut clearTimeout ce setTimeout
+    monTimeout = setTimeout(exploser,5000);
+    startMsg.disabled=true;
+  }
+
+  function majText()
+  {
+    secondes--;
+    message.innerHTML=`Ce message s'autodetruira dans ${secondes} secondes....`;
+  }
+
+  function desamorcer()
+  {
+    message.style.color="green";
+    disarm.disabled=true;
+    clearInterval(monInterval);
+    clearTimeout(monTimeout);
+
+  }
+
+
+
+  function exploser()
+  {
+    message.innerHTML="BOUM!";
+    message.style.color="red";
+    disarm.disabled=true;
+    clearInterval(monInterval);
+
+  }
+
+</script>
