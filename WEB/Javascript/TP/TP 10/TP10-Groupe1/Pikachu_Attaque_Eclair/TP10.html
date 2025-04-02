@@ -10,7 +10,6 @@
   }
   #grass
   {
-    display:none;
     width:700px;
     height:700px;
     background-image : url("assets/img/Grass.png");
@@ -24,24 +23,30 @@
     left:0;
   }
 
-  #id
+  #gifEclair
   {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 20px;
+    width:300%;
+    height:300%;
+    position:absolute;
+    top:-100;
+    left:0;
   }
+
+
+
+
 
 </style>
 
-<div id="score" style="">Score : 0</div>
+
 <script defer src="pikachu.js" charset="utf-8"></script>
-  <audio id="themePokemon" src="assets/audio/theme.mp3"></audio>
+
+<audio id="themePokemon" src="assets/audio/theme.mp3"></audio>
 <div id="formStart">
   <input id="inputName" type="text" placeholder="pikachu"><input id="btnStart" disabled type="button" value="Start !">
 </div>
 
 <div id="grass">
-  <div id="pikachu"><img id="imgPikachu" src="assets/img/pikachuDown.png"></div>
+  <div id="pikachu"><img id="imgPikachu" src="assets/img/pikachuDown.png"> <div><img id="gifEclair" src="assets/img/eclair.gif"alt="eclairs" "></div></div>
 
 </div>
