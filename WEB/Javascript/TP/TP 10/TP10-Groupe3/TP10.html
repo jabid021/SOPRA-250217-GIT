@@ -7,7 +7,7 @@
   body
   {
     background-image : url("assets/img/water.png");
-    background-size:100% 100%;
+    background-size:100%;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -28,32 +28,99 @@
     left:0;
   }
 
+  #pikachu2
+  {
+    display: none;
+    position:absolute;
+    top:0;
+    left:0;
+  }
+  #champignon{
+    position: absolute;
+    top: 90px;
+    left: 60px;
+  }
+  #champignonImg{
+    width: 25px;
+  }
+  #crown{
+    position: absolute;
+    top: 360px;
+    left: 60px;
+  }
+  #crownImg{
+    width: 40px;
+  }
+  #diamond{
+    position: absolute;
+    top: 480px;
+    left: 240px;
+  }
+  #diamondImg{
+    width: 30px;
+  }
+  #teleporteur{
+    position: absolute;
+    top: 600px;
+    left: 390px;
+  }
+  #teleporteurImg{
+    width: 50px;
+  }
+  #clone{
+    position: absolute;
+    top: 240px;
+    left: 570px;
+  }
+  #cloneImg{
+    width: 30px;
+  }
+
   #beer {
   position: absolute;
   top: 330;
   left: 330;
-  font-size: 40px;
+  }
+  #biererImg{
+    width: 30px;
   }
 
-  #water {
+  #bottle {
   position: absolute;
   top: 330;
   left: 330;
-  font-size: 40px;
+  }
+  #bouteilleImg{
+    width: 30px;
   }
 
 </style>
 
 
 <script defer src="pikachu.js" charset="utf-8"></script>
-  <audio id="themePokemon" src="assets/audio/theme.mp3"></audio>
+  <audio id="themePokemon" src="assets/audio/theme.mp3"> </audio>
+  <audio id="mushroom" src="assets/audio/mushroom.mp3" preload="auto"></audio>
+  <audio id="pop" src="assets/audio/pop.mp3" preload="auto"></audio>
+  <audio id="princess" src="assets/audio/princess.mp3" preload="auto"></audio>
+  <audio id="magic" src="assets/audio/magic.mp3" preload="auto"></audio>
+  <audio id="teleport" src="assets/audio/teleport.mp3" preload="auto"></audio>
+  <audio id="drinking" src="assets/audio/drinking.mp3" preload="auto"></audio>
 <div id="formStart">
   <input id="inputName" type="text" onkeyup="toogle()" placeholder="pikachu"><input id="btnStart" onclick="run()" disabled type="button" value="Start !">
 </div>
 
 <div id="grass">
   <div id="pikachu"><img id="imgPikachu" src="assets/img/pikachuDown.png"></div>
-  <div id="beer">🍺</div>
-  <div id="water">💧</div>
+  <div id="pikachu2"><img id="imgPikachu2" src="assets/img/pikachuDown.png"></div>
+  <div id="champignon"><img id="champignonImg" src="assets/img/champignon.png" alt=""></div>
+  <div id="crown"><img id="crownImg" src="assets/img/crown.png" alt=""></div>
+  <div id="diamond"><img id="diamondImg" src="assets/img/diamond.png" alt=""></div>
+  <div id="teleporteur"><img id="teleporteurImg" src="assets/img/teleporteur.png" alt=""></div>
+  <div id="clone"><img id="cloneImg" src="assets/img/clone.png" alt=""></div>
+  <div id="beer"><img id="biererImg" src="assets/img/beer.png" alt=""></div>
+  <div id="bottle"><img id="bouteilleImg" src="assets/img/waterbottle.png" alt=""></div>
+
+
+
 
 </div>

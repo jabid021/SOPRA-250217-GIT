@@ -9,113 +9,213 @@ var posY=0;
 var mouvement=30;
 var pokemon="pikachu";
 var direction="Down";
+var pikachu = document.getElementById(pokemon);
+var pikachu2 = document.getElementById(pokemon+"2");
+var themePokemon = document.getElementById("themePokemon");
+var champiAudio= document.getElementById("mushroom");
+var teleportAudio = document.getElementById("teleport");
+var princessAudio = document.getElementById("princess");
+var princessAudio2 = document.getElementById("magic");
+var cloneAudio = document.getElementById("pop");
+var drinkAudio = document.getElementById("drinking");
+var inputName = document.getElementById("inputName");
+var inputStart = document.getElementById("btnStart");
+var divStart = document.getElementById("formStart");
+var grass = document.getElementById("grass");
+var champignon = document.getElementById("champignon");
+var crown = document.getElementById("crown");
+var diamond = document.getElementById("diamond");
+var clone = document.getElementById("clone");
+var biere = document.getElementById("beer");
+var eau = document.getElementById("bottle");
+eau.style.display = "none";
+var nom;
 imgPikachu.setAttribute("src","assets/img/"+pokemon+direction+".png");
 
-inputName.onkeyup=verifInput;
-btnStart.onclick=startGame;
-
-var mode = 0; // 0 = mode normal, 1 = mode inverse
-
-document.onkeydown = getMode; // Écouteur d'événement pour la pression d'une touche
-
-function getMode(event) {
-
-  if (posX == 330 && posY == 330) {
-    mode++;
-  }
 
 
-  if (mode % 2 == 0) {
-    pokemon="pikachu";
-    deplacementNormal(event);
-    document.getElementById('beer').style.display = 'block';
-    document.getElementById('water').style.display = 'none'
-  } else {
-    pokemon="coincoin";
-    deplacementInverse(event);
-    document.getElementById('beer').style.display = 'none';
-    document.getElementById('water').style.display = 'block';
-  }
+function toogle(){
+  inputStart.disabled = false;
+  nom = inputName.value;
+}
+
+function run(){
+  pikachu.setAttribute("title",nom);
+  divStart.style.display = "none";
+  grass.style.display = "flex";
+  themePokemon.play();
 }
 
 
-function verifInput(event) {
-  let content = inputName.value;
-  if(content=="")
+document.addEventListener("keydown",deplacement);
+
+
+  function deplacement(event)
   {
-    btnStart.disabled=true;
-  }
-  else
-  {
-    btnStart.disabled=false;
-  }
-}
-
-function startGame() {
-  formStart.style.display = "none";
-  grass.style.display = "block";
-}
-
-
-function deplacementNormal(event)
-{
-  if (event.key === "ArrowDown" || event.key === "s") {
-    if (posY + mouvement <= 660){
-      posY += mouvement;
+    if(event.key=="ArrowDown" || event.key=="s" )
+    {
       direction = "Down";
-    }
-  }
-  else if (event.key === "ArrowRight" || event.key === "d") {
-    if (posX + mouvement <= 660){
-      posX += mouvement;
-      direction = "Right";
-    }
-  }
-  else if (event.key === "ArrowLeft" || event.key === "q") {
-    if (posX - mouvement >= 0){
-      posX -= mouvement;
-      direction = "Left";
-    }
-  }
-  else if (event.key === "ArrowUp" || event.key === "z") {
-    if (posY - mouvement >= 0) {
-      posY -= mouvement;
-      direction = "Up";
-    }
-  }
-  pikachu.style.top = posY + "px";
-  pikachu.style.left = posX + "px";
-  imgPikachu.setAttribute("src", "assets/img/" + pokemon + direction + ".png");
-};
+      if(posY!=660){
+        posY+=30;
+      }
 
-function deplacementInverse(event)
-{
-  if (event.key === "ArrowUp" || event.key === "s") {
-    if (posY + mouvement <= 660) {
-      posY += mouvement;
-      direction = "Down";
-    }
-  }
-  else if (event.key === "ArrowLeft" || event.key === "d") {
-    if (posX + mouvement <= 660) {
-      posX += mouvement;
-      direction = "Right";
-    }
-  }
-  else if (event.key === "ArrowRight" || event.key === "q") {
-    if (posX - mouvement >= 0) {
-      posX -= mouvement;
-      direction = "Left";
-    }
-  }
-  else if (event.key === "ArrowDown" || event.key === "z") {
-    if (posY - mouvement >= 0) {
-      posY -= mouvement;
-      direction = "Up";
-    }
-  }
 
-  pikachu.style.top = posY + "px";
-  pikachu.style.left = posX + "px";
-  imgPikachu.setAttribute("src", "assets/img/" + pokemon + direction + ".png");
-};
+    }
+    else if(event.key=="ArrowRight" || event.key=="d" )
+    {
+      direction = "Right";
+      if(posX!=660){
+        posX+=30
+      }
+    }
+
+    else if(event.key=="ArrowLeft" || event.key=="q")
+    {
+      direction = "Left";
+      if(posX!=0){
+        posX-=30;
+      }
+    }
+
+    else if(event.key=="ArrowUp" || event.key=="z")
+    {
+      direction = "Up";
+      if(posY!=0){
+        posY-=30;
+      }
+    }
+
+    if((posX==60 && posY==90) && champignon.style.display!="none"){
+      pikachu.style.scale ="2";
+      champignon.style.display ="none";
+      champiAudio.play();
+    }
+    if((posX==390 && posY==600)&& teleporteur.style.display!="none"){
+      posX = 0;
+      posY = 0;
+      teleporteur.style.display = "none";
+      teleportAudio.play();
+    }
+    if((posX==60 && posY==360)&& crown.style.display!="none"){
+      pokemon = "peach";
+      imgPikachu.style.width = "30px";
+      imgPikachu2.style.width = "30px";
+      crown.style.display = "none";
+      princessAudio.play();
+    }
+    if((posX==240 && posY==480)&& diamond.style.display!="none"){
+      pokemon = "princess";
+      imgPikachu.style.width = "30px";
+      imgPikachu2.style.width = "30px";
+      diamond.style.display = "none";
+      princessAudio2.play();
+    }
+    if((posX==570 && posY==240)&& clone.style.display!="none"){
+      imgPikachu2.setAttribute("src","assets/img/"+pokemon+direction+".png");
+      pikachu2.style.top=posY-50+"px";
+      pikachu2.style.left=posX-50+"px";
+      pikachu2.style.display = "block";
+      clone.style.display = "none";
+      cloneAudio.play();
+    }
+    if((posX==330 && posY==330)&& biere.style.display!="none"){
+      biere.style.display = "none";
+      eau.style.display = "block";
+      pokemon = "coincoin";
+      drinkAudio.play();
+      document.removeEventListener("keydown",deplacement);
+      document.addEventListener("keydown",deplacementInverse);
+
+    }
+
+    pikachu.style.top=posY+"px";
+    pikachu.style.left=posX+"px";
+    imgPikachu.setAttribute("src","assets/img/"+pokemon+direction+".png");
+    if(pikachu2.style.display != "none"){
+
+
+      pikachu2.style.top=posY-50+"px";
+      pikachu2.style.left=posX-50+"px";
+
+      imgPikachu2.setAttribute("src","assets/img/"+pokemon+direction+".png");
+    }
+  };
+
+
+
+    function deplacementInverse(event)
+    {
+      if (event.key === "ArrowUp" || event.key === "s") {
+        direction = "Down";
+        if(posY!=660){
+          posY+=30;
+        }
+      }
+      else if (event.key === "ArrowLeft" || event.key === "d") {
+        direction = "Right";
+        if(posX!=660){
+          posX+=30
+        }
+      }
+      else if (event.key === "ArrowRight" || event.key === "q") {
+        direction = "Left";
+        if(posX!=0){
+          posX-=30;
+        }
+      }
+      else if (event.key === "ArrowDown" || event.key === "z") {
+        direction = "Up";
+        if(posY!=0){
+          posY-=30;
+        }
+      }
+
+      if((posX==60 && posY==90) && champignon.style.display!="none"){
+        pikachu.style.scale ="2";
+        champignon.style.display ="none";
+        champiAudio.play();
+      }
+      if((posX==390 && posY==600)&& teleporteur.style.display!="none"){
+        posX = 0;
+        posY = 0;
+        teleporteur.style.display = "none";
+        teleportAudio.play();
+      }
+      if((posX==60 && posY==360)&& crown.style.display!="none"){
+        pokemon = "peach";
+        imgPikachu.style.width = "30px";
+        imgPikachu2.style.width = "30px";
+        crown.style.display = "none";
+        princessAudio.play();
+      }
+      if((posX==240 && posY==480)&& diamond.style.display!="none"){
+        pokemon = "princess";
+        imgPikachu.style.width = "30px";
+        imgPikachu2.style.width = "30px";
+        diamond.style.display = "none";
+        princessAudio2.play();
+      }
+      if((posX==570 && posY==240)&& clone.style.display!="none"){
+        imgPikachu2.setAttribute("src","assets/img/"+pokemon+direction+".png");
+        pikachu2.style.top=posY-50+"px";
+        pikachu2.style.left=posX-50+"px";
+        pikachu2.style.display = "block";
+        clone.style.display = "none";
+        cloneAudio.play();
+      }
+      if((posX==330 && posY==330)&& eau.style.display!="none"){
+        eau.style.display = "none";
+        drinkAudio.play();
+        pokemon = "pikachu";
+        document.removeEventListener("keydown",deplacementInverse);
+        document.addEventListener("keydown",deplacement);
+      }
+
+        pikachu.style.top = posY + "px";
+        pikachu.style.left = posX + "px";
+        imgPikachu.setAttribute("src", "assets/img/" + pokemon + direction + ".png");
+      };
+
+    setTimeout(function(){
+      themePokemon.pause();
+    },50000);
