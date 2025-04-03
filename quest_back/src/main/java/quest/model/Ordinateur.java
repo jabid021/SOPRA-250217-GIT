@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Ordinateur {
@@ -12,8 +13,12 @@ public class Ordinateur {
 	private Integer numero;
 	private String marque;
 	private int ram;
+	@OneToOne
 	private Stagiaire stagiaire; //mappedBy
 
+	
+	public Ordinateur() {}
+	
 	public Ordinateur(Integer numero, String marque, int ram) {
 		this.numero = numero;
 		this.marque = marque;
