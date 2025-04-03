@@ -1,6 +1,7 @@
 package quest.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import quest.context.Singleton;
+import quest.model.Matiere;
 import quest.model.Formateur;
 import quest.model.Genre;
 
@@ -21,7 +23,8 @@ public class MatiereController extends HttpServlet {
 
 		if(request.getParameter("id")==null) 
 		{
-			
+			request.setAttribute("matieres", Singleton.getInstance().getMatiereService().getAll());
+			request.getRequestDispatcher("/matieres.jsp").forward(request, response);
 		}
 		else
 		{
@@ -33,7 +36,8 @@ public class MatiereController extends HttpServlet {
 			}
 			else 
 			{
-				
+				Singleton.getInstance().getMatiereService().deleteById(id);
+				response.sendRedirect("matiere");
 			}
 		}
 
@@ -46,12 +50,16 @@ public class MatiereController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("id")==null) 
 		{
+			String libelle = request.getParameter("libelle");
+		
 			
+			Matiere matiere = new Matiere(libelle);
+			Singleton.getInstance().getMatiereService().create(matiere);
+			response.sendRedirect("matiere");
 		}
 		else 
 		{
-			
+		
 		}
 	}
-
 }

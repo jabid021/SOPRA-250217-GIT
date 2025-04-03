@@ -7,7 +7,7 @@ import javax.servlet.annotation.WebListener;
 import quest.context.Singleton;
 
 @WebListener
-public class TomcatListner implements ServletContextListener {
+public class TomcatListener implements ServletContextListener {
 
 	public void contextInitialized(ServletContextEvent sce)  { 
 		
