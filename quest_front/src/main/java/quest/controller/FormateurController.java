@@ -22,7 +22,7 @@ public class FormateurController extends HttpServlet {
 		{
 			request.setAttribute("formateurs", Singleton.getInstance().getDaoUtilisateur().findAllFormateur());
 			request.setAttribute("genres", Genre.values());
-			request.getRequestDispatcher("/formateurs.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/formateurs.jsp").forward(request, response);
 		}
 		else
 		{
@@ -32,7 +32,7 @@ public class FormateurController extends HttpServlet {
 			{
 				request.setAttribute("formateur", Singleton.getInstance().getDaoUtilisateur().findById(id));
 				request.setAttribute("genres", Genre.values());
-				request.getRequestDispatcher("/updateFormateur.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/updateFormateur.jsp").forward(request, response);
 			}
 			else 
 			{

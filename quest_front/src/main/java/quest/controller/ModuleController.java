@@ -26,7 +26,7 @@ public class ModuleController extends HttpServlet {
 			Filiere filiere = Singleton.getInstance().getDaoFiliere().findByIdWithModules(idFiliere);
 			request.setAttribute("filiere", filiere);
 			request.setAttribute("matieres", Singleton.getInstance().getMatiereService().getAll());
-			request.getRequestDispatcher("/modules.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/modules.jsp").forward(request, response);
 		}
 		else
 		{
@@ -36,7 +36,7 @@ public class ModuleController extends HttpServlet {
 			{
 				request.setAttribute("module", Singleton.getInstance().getDaoModule().findById(id));
 				request.setAttribute("matieres", Singleton.getInstance().getMatiereService().getAll());
-				request.getRequestDispatcher("/updateModule.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/updateModule.jsp").forward(request, response);
 			}
 			else 
 			{

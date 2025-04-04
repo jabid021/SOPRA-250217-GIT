@@ -24,7 +24,7 @@ public class OrdinateurController extends HttpServlet {
 		{
 			request.setAttribute("ordinateurs", Singleton.getInstance().getDaoOrdinateur().findAll());
 			request.setAttribute("stagiaires", Singleton.getInstance().getDaoUtilisateur().findAllStagiaireDisponibles());
-			request.getRequestDispatcher("/ordinateurs.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/ordinateurs.jsp").forward(request, response);
 		}
 		else
 		{
@@ -34,7 +34,7 @@ public class OrdinateurController extends HttpServlet {
 			{
 				request.setAttribute("ordinateur", Singleton.getInstance().getDaoOrdinateur().findById(id));
 				request.setAttribute("stagiaires", Singleton.getInstance().getDaoUtilisateur().findAllStagiaireDisponibles());
-				request.getRequestDispatcher("/updateOrdinateur.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/updateOrdinateur.jsp").forward(request, response);
 			}
 			else 
 			{

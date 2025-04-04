@@ -21,7 +21,7 @@ public class AdminController extends HttpServlet {
 		if(request.getParameter("id")==null) 
 		{
 			request.setAttribute("admins", Singleton.getInstance().getDaoUtilisateur().findAllAdmin());
-			request.getRequestDispatcher("/admins.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/admins.jsp").forward(request, response);
 		}
 		else
 		{
@@ -30,7 +30,7 @@ public class AdminController extends HttpServlet {
 			if(request.getParameter("delete")==null) 
 			{
 				request.setAttribute("admin", Singleton.getInstance().getDaoUtilisateur().findById(id));
-				request.getRequestDispatcher("/updateAdmin.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/updateAdmin.jsp").forward(request, response);
 			}
 			else 
 			{

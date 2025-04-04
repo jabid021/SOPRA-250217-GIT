@@ -21,7 +21,7 @@ public class FiliereController extends HttpServlet {
 		if(request.getParameter("id")==null) 
 		{
 			request.setAttribute("filieres", Singleton.getInstance().getDaoFiliere().findAll());
-			request.getRequestDispatcher("/filieres.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/filieres.jsp").forward(request, response);
 		}
 		else
 		{
@@ -30,7 +30,7 @@ public class FiliereController extends HttpServlet {
 			if(request.getParameter("delete")==null) 
 			{
 				request.setAttribute("filiere", Singleton.getInstance().getDaoFiliere().findById(id));
-				request.getRequestDispatcher("/updateFiliere.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/updateFiliere.jsp").forward(request, response);
 			}
 			else 
 			{
