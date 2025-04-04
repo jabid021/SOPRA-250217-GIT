@@ -9,7 +9,7 @@
 </head>
 <body>
 <br><br><br><br><br><br><br>
-<h1>Error 404....<a href="index.html">Retour à  l'accueil</a></h1>
+<h1>Error 404....<a href="home">Retour à  l'accueil</a></h1>
 
 <img src="assets/images/404.gif" alt="errorGif">
 
