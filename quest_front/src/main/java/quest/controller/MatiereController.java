@@ -32,7 +32,8 @@ public class MatiereController extends HttpServlet {
 
 			if(request.getParameter("delete")==null) 
 			{
-				
+				request.setAttribute("matiere", Singleton.getInstance().getMatiereService().getById(id));
+				request.getRequestDispatcher("/updateMatiere.jsp").forward(request, response);
 			}
 			else 
 			{
@@ -51,15 +52,17 @@ public class MatiereController extends HttpServlet {
 		if(request.getParameter("id")==null) 
 		{
 			String libelle = request.getParameter("libelle");
-		
-			
 			Matiere matiere = new Matiere(libelle);
 			Singleton.getInstance().getMatiereService().create(matiere);
 			response.sendRedirect("matiere");
 		}
 		else 
 		{
-		
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			String libelle = request.getParameter("libelle");
+			Matiere matiere = new Matiere(id,libelle);
+			Singleton.getInstance().getMatiereService().update(matiere);
+			response.sendRedirect("matiere");
 		}
 	}
 }

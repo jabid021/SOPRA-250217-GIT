@@ -36,7 +36,7 @@ public class Stagiaire extends Utilisateur {
 	public Stagiaire() {}
 
 	public Stagiaire(Integer id, String login, String password, String nom, String prenom, Genre genre, String email,
-			String numero,String voie,String ville,String cp, Filiere filiere,Ordinateur ordinateur) {
+			String numero,String voie,String ville,String cp, Filiere filiere) {
 		super(id, login, password);
 		this.nom = nom;
 		this.prenom = prenom;
@@ -44,7 +44,6 @@ public class Stagiaire extends Utilisateur {
 		this.email = email;
 		this.adresse = new Adresse(numero,voie,ville,cp);
 		this.filiere = filiere;
-		this.ordinateur=ordinateur;
 	}
 	
 	public Stagiaire(String login, String password, String nom, String prenom, Genre genre, String email,

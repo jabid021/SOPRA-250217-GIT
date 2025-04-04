@@ -10,7 +10,7 @@ public class MatiereService {
 
 	IDAOMatiere daoMatiere = new DAOMatiere();
 	
-	public Matiere getById(Integer id) throws Exception 
+	public Matiere getById(Integer id)
 	{
 		return daoMatiere.findById(id);
 	}

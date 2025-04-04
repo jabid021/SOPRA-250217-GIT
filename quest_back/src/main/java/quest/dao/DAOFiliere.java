@@ -57,7 +57,7 @@ public class DAOFiliere implements IDAOFiliere {
 	public Filiere findByIdWithModules(Integer idFiliere) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 
-		Filiere  filiere = em.createQuery("SELECT f FROM Filiere f left join fetch f.modules",Filiere.class).getSingleResult();
+		Filiere  filiere = em.createQuery("SELECT f FROM Filiere f left join fetch f.modules where f.id=:id",Filiere.class).setParameter("id", idFiliere).getSingleResult();
 
 		em.close();
 		return filiere;
@@ -67,7 +67,7 @@ public class DAOFiliere implements IDAOFiliere {
 	public Filiere findByIdWithStagiaires(Integer idFiliere) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 
-		Filiere  filiere = em.createQuery("SELECT f FROM Filiere f left join fetch f.stagiaires",Filiere.class).getSingleResult();
+		Filiere  filiere = em.createQuery("SELECT f FROM Filiere f left join fetch f.stagiaires where f.id=:id",Filiere.class).setParameter("id", idFiliere).getSingleResult();
 
 		em.close();
 		return filiere;

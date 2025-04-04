@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import quest.context.Singleton;
+import quest.model.Module;
 
 public class DAOModule implements IDAOModule {
 
@@ -29,15 +30,15 @@ public class DAOModule implements IDAOModule {
 	}
 
 	@Override
-	public Module save(Module patient) {
+	public Module save(Module module) {
 		EntityManager em=Singleton.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
 
-		patient = em.merge(patient);
+		module = em.merge(module);
 
 		em.getTransaction().commit();
 		em.close();
-		return patient;
+		return module;
 	}
 
 	@Override

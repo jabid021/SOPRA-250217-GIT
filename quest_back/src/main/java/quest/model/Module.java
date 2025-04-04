@@ -30,6 +30,14 @@ public class Module {
 	
 	
 	public Module() {}
+	
+	public Module(Integer id,int quest, int duree, Filiere filiere, Matiere matiere) {
+		this.id=id;
+		this.quest = quest;
+		this.duree = duree;
+		this.filiere = filiere;
+		this.matiere = matiere;
+	}
 
 
 	public Module(int quest, int duree, Filiere filiere, Matiere matiere) {

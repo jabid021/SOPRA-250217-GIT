@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,24 +29,17 @@
            </tr>
        </thead>
        <tbody>
-         <tr>
-           <td>1</td>
-           <td>Algo avec Java</td>
-           <td>
-             <a href="matiere?id=1"><input type="button" class ="btn btn-warning" value="Modifier"></a>
-             <a href="matiere?id=1&delete"><input type="button" class ="btn btn-danger" value="Supprimer"></a>
-           </td>
-         </tr>
-
-         <tr>
-           <td>2</td>
-           <td>SQL</td>
-           <td>
-             <a href="matiere?id=2"><input type="button" class ="btn btn-warning" value="Modifier"></a>
-              <a href="matiere?id=2&delete"><input type="button" class ="btn btn-danger" value="Supprimer"></a>
-           </td>
-         </tr>
-       </tbody>
+       <c:forEach items="${matieres}" var="matiere">
+	       <tr>
+	           <td>${matiere.id}</td>
+	           <td>${matiere.libelle}</td>
+	           <td>
+	             <a href="matiere?id=${matiere.id}"><input type="button" class ="btn btn-warning" value="Modifier"></a>
+	             <a href="matiere?id=${matiere.id}&delete"><input type="button" class ="btn btn-danger" value="Supprimer"></a>
+	           </td>
+	        </tr>
+       </c:forEach>
+     </tbody>
      </table>
 
 
