@@ -21,15 +21,17 @@ public class Ordinateur {
 	
 	public Ordinateur() {}
 	
-	public Ordinateur(Integer numero, String marque, int ram) {
+	public Ordinateur(Integer numero, String marque, int ram,Stagiaire stagiaire) {
 		this.numero = numero;
 		this.marque = marque;
 		this.ram = ram;
+		this.stagiaire=stagiaire;
 	}
 	
-	public Ordinateur(String marque, int ram) {
+	public Ordinateur(String marque, int ram,Stagiaire stagiaire) {
 		this.marque = marque;
 		this.ram = ram;
+		this.stagiaire=stagiaire;
 	}
 
 	public Integer getNumero() {

@@ -29,7 +29,8 @@ public class FiliereController extends HttpServlet {
 
 			if(request.getParameter("delete")==null) 
 			{
-				
+				request.setAttribute("filiere", Singleton.getInstance().getDaoFiliere().findById(id));
+				request.getRequestDispatcher("/updateFiliere.jsp").forward(request, response);
 			}
 			else 
 			{
@@ -57,7 +58,14 @@ public class FiliereController extends HttpServlet {
 		}
 		else 
 		{
-		
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			String libelle = request.getParameter("libelle");
+			LocalDate debut = LocalDate.parse(request.getParameter("debut"));
+			LocalDate fin = LocalDate.parse(request.getParameter("fin"));
+			
+			Filiere filiere = new Filiere(id,libelle, debut, fin);
+			Singleton.getInstance().getDaoFiliere().save(filiere);
+			response.sendRedirect("filiere");
 		}
 	}
 

@@ -13,5 +13,6 @@ public interface IDAOUtilisateur extends IDAO<Utilisateur,Integer>{
 	public List<Admin> findAllAdmin();
 	public List<Formateur> findAllFormateur();
 	public List<Stagiaire> findAllStagiaire();
+	public List<Stagiaire> findAllStagiaireDisponibles();
 }
 	

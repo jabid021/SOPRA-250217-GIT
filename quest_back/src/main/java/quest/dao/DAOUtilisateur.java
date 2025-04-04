@@ -98,6 +98,16 @@ public class DAOUtilisateur implements IDAOUtilisateur {
 		em.close();
 		return utilisateurs;
 	}
+
+	@Override
+	public List<Stagiaire> findAllStagiaireDisponibles() {
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+
+		List<Stagiaire>  utilisateurs = em.createQuery("SELECT s FROM Stagiaire s LEFT JOIN s.ordinateur o WHERE o IS NULL").getResultList();
+
+		em.close();
+		return utilisateurs;
+	}
 	
 
 	

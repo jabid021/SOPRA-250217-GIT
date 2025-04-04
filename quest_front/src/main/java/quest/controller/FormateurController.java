@@ -21,6 +21,7 @@ public class FormateurController extends HttpServlet {
 		if(request.getParameter("id")==null) 
 		{
 			request.setAttribute("formateurs", Singleton.getInstance().getDaoUtilisateur().findAllFormateur());
+			request.setAttribute("genres", Genre.values());
 			request.getRequestDispatcher("/formateurs.jsp").forward(request, response);
 		}
 		else
@@ -29,7 +30,9 @@ public class FormateurController extends HttpServlet {
 
 			if(request.getParameter("delete")==null) 
 			{
-				//findById => updateFormateur.jsp
+				request.setAttribute("formateur", Singleton.getInstance().getDaoUtilisateur().findById(id));
+				request.setAttribute("genres", Genre.values());
+				request.getRequestDispatcher("/updateFormateur.jsp").forward(request, response);
 			}
 			else 
 			{
@@ -60,7 +63,17 @@ public class FormateurController extends HttpServlet {
 		}
 		else 
 		{
-			//Faire plus tard
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			String login = request.getParameter("login");
+			String password = request.getParameter("password");
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prenom");
+			Genre civilite = Genre.valueOf(request.getParameter("genre"));
+			
+			Formateur formateur = new Formateur(id,login,password,nom,prenom,civilite);
+			Singleton.getInstance().getDaoUtilisateur().save(formateur);
+		
+			response.sendRedirect("formateur");
 		}
 	}
 

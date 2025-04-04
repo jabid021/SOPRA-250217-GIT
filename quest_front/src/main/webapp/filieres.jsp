@@ -46,11 +46,7 @@
         
        </tbody>
      </table>
-
-
-
-
-
+     
      <div id="addFormFiliere" class="formAjout">
             <h3>Ajouter Filiere</h3>
             <form action="filiere" method="post">
@@ -76,3 +72,19 @@ btnAddFiliere.onclick=function()
 }
 
 </script>
+
+
+
+
+
+
+<!-- 
+en java
+demo for(int i=0,i<=10;i++){}
+avec jstl
+<ul>
+<c:forEach begin="0" end="10" step="1" var="i"> 
+	<li>${i}</li>
+</c:forEach>
+</ul>
+ -->

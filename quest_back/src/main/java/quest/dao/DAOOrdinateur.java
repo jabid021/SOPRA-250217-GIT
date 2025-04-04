@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import quest.context.Singleton;
 import quest.model.Ordinateur;
+import quest.model.Stagiaire;
 
 public class DAOOrdinateur implements IDAOOrdinateur {
 
@@ -52,6 +53,7 @@ public class DAOOrdinateur implements IDAOOrdinateur {
 		em.getTransaction().commit();
 		em.close();
 	}
+
 	
 
 	

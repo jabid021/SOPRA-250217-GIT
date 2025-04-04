@@ -1,6 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gestion des ordinateurs</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css">
 
+</head>
+<body>
 
 <div id="content">
   <h1>Liste des Ordinateurs</h1>
@@ -10,7 +21,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Id</th>
+        <th>Numero</th>
         <th>Marque</th>
         <th>Ram</th>
         <th>Stagiaire</th>
@@ -18,27 +29,18 @@
       </tr>
     </thead>
     <tbody>
+    <c:forEach items="${ordinateurs}" var="ordinateur">
       <tr>
-        <td>1</td>
-        <td>Asus</td>
-        <td>8Go</td>
-        <td>1-Jordan Abid</td>
+        <td>${ordinateur.numero}</td>
+        <td>${ordinateur.marque}</td>
+        <td>${ordinateur.ram}Go</td>
+        <td>${ordinateur.stagiaire.id}-${ordinateur.stagiaire.prenom} ${ordinateur.stagiaire.nom}</td>
         <td>
-          <a href="ordinateur?id=1"><input type="button" class ="btn btn-warning" value="Modifier"></a>
-          <a href="ordinateur?id=1&delete"><input type="button" class ="btn btn-danger" value="Supprimer"></a>
+          <a href="ordinateur?numero=${ordinateur.numero}"><input type="button" class ="btn btn-warning" value="Modifier"></a>
+          <a href="ordinateur?numero=${ordinateur.numero}&delete"><input type="button" class ="btn btn-danger" value="Supprimer"></a>
         </td>
       </tr>
-
-      <tr>
-        <td>2</td>
-        <td>Dell</td>
-        <td>16Go</td>
-        <td>2-John Doe</td>
-        <td>
-          <a href="ordinateur?id=2"><input type="button" class ="btn btn-warning" value="Modifier"></a>
-          <a href="ordinateur?id=2&delete"><input type="button" class ="btn btn-danger" value="Supprimer"></a>
-        </td>
-      </tr>
+	</c:forEach>
     </tbody>
   </table>
 
@@ -52,9 +54,10 @@
       Marque :<input name="marque" type="text" placeholder="Saisir votre marque"><br>
       RAM :<input name="ram" type="number" placeholder="Saisir votre RAM"><br>
       Stagiaire
-      <select name="stagiaire.id">
-        <option value="1" >1 - Jordan Abid</option>
-        <option value="2" >2 - John Doe</option>
+      <select required name="stagiaire.id">
+      <c:forEach items="${stagiaires}" var="stagiaire">
+    	  <option value="${stagiaire.id}" >${stagiaire.id} - ${stagiaire.prenom} ${stagiaire.nom}</option>
+      </c:forEach>
       </select><br>
 
       <input class ="btn btn-success" type="submit" value="Ajouter">
@@ -62,6 +65,9 @@
   </div>
 
 </div>
+
+</body>
+</html>
 
 <script>
 
