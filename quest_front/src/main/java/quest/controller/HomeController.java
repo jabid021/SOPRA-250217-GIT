@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import quest.context.Singleton;
 import quest.model.Admin;
 import quest.model.Formateur;
+import quest.model.Stagiaire;
 import quest.model.Utilisateur;
 
 @WebServlet("/home")
@@ -31,9 +32,18 @@ public class HomeController extends HttpServlet {
 		else
 		{
 			Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("connected");
+			
 			if(utilisateur instanceof Admin) 
 			{
 			request.getRequestDispatcher("/menuAdmin.jsp").forward(request, response);
+			}
+			else if(utilisateur instanceof Stagiaire) 
+			{
+			request.getRequestDispatcher("/menuStagiaire.jsp").forward(request, response);
+			}
+			else if(utilisateur instanceof Formateur) 
+			{
+			request.getRequestDispatcher("/menuFormateur.jsp").forward(request, response);
 			}
 		}
 	}
@@ -50,20 +60,11 @@ public class HomeController extends HttpServlet {
 			request.setAttribute("error", "IDENTIFIANTS INVALIDES");
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}
-		else if(utilisateur instanceof Admin) 
+		else 
 		{
 			request.getSession().setAttribute("connected", utilisateur);
 			response.sendRedirect("home");
-		}
-		else if(utilisateur instanceof Formateur) 
-		{
-			//Pas encore de menu Formateur
-		}
-		else 
-		{
-			//Pas encore de menu Stagiaire
-		}
-		
+		}	
 	}
 
 }

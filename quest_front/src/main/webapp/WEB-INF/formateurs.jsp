@@ -19,7 +19,7 @@
 <div id="content">
   <h1>Liste des Formateursss</h1>
   <input id="btnAddFormateur" type="button" class ="btn btn-success" value="Ajouter">
-  <a href="index.html"><input type="button" class ="btn btn-info" value="Retour"></a>
+  <a href="home"><input type="button" class ="btn btn-info" value="Retour"></a>
 
   <table class="table table-striped">
     <thead>
@@ -87,5 +87,5 @@
   {
     addFormFormateur.style.display="block";
   }
-
+  document.querySelectorAll("ul.navbar-nav li")[3].classList.add("active");
 </script>

@@ -51,3 +51,7 @@
 </div>
 </body>
 </html>
+<script>
+document.querySelectorAll("ul.navbar-nav li")[2].classList.add("active");
+
+</script>

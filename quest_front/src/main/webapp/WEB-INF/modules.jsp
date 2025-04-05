@@ -78,5 +78,5 @@
   {
     addFormModule.style.display="block";
   }
-
+  document.querySelectorAll("ul.navbar-nav li")[5].classList.add("active");
 </script>

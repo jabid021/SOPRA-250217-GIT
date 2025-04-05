@@ -29,3 +29,7 @@
 
 </body>
 </html>
+
+<script>
+document.querySelectorAll("ul.navbar-nav li")[5].classList.add("active");
+</script>

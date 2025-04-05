@@ -14,7 +14,7 @@
 <div id="content">
   <h1>Liste des Stagiaires</h1>
   <input id="btnAddStagiaire" type="button" class ="btn btn-success" value="Ajouter">
-  <a href="index.html"><input type="button" class ="btn btn-info" value="Retour"></a>
+  <a href="home"><input type="button" class ="btn btn-info" value="Retour"></a>
 
   <table class="table table-striped">
     <thead>
@@ -92,5 +92,5 @@
   {
     addFormStagiaire.style.display="block";
   }
-
+  document.querySelectorAll("ul.navbar-nav li")[2].classList.add("active");
 </script>

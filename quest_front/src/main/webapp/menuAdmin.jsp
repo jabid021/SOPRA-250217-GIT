@@ -16,3 +16,8 @@
 
 	</ul>
 </div>
+
+<script>
+	document.querySelectorAll("ul.navbar-nav li")[0].classList.add("active");
+	document.querySelectorAll("ul.navbar-nav li")[1].classList.add("active");
+</script>

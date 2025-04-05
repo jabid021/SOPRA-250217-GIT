@@ -32,25 +32,33 @@ Permet de fixer le debut des tous les url "src"/ "href" sur notre site
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<c:if test="${connected!=null}">
 			<ul class="navbar-nav ml-auto">
-			
 		
-			<li class="nav-item active"><a class="nav-link" href="home">Bonjour ${connected.login}</a>
-				</li>
-				
-				<li class="nav-item active"><a class="nav-link" href="home">Accueil</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="stagiaire">Stagiaires</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="formateur">Formateurs</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="matiere">Matières</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="filiere">Filieres</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="ordinateur">Ordinateurs</a>
-				</li>
+		<c:choose>
+			<c:when test="${connected.getClass().getSimpleName()=='Admin'}">
+					<li class="nav-item"><a class="nav-link" href="home">Bonjour ${connected.login}</a></li>
+					<li class="nav-item"><a class="nav-link" href="home">Accueil</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="stagiaire">Stagiaires</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="formateur">Formateurs</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="matiere">Matières</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="filiere">Filieres</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="ordinateur">Ordinateurs</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="home?deconnecter">Se deconnecter</a>
+					</li>
+			</c:when>
+			<c:otherwise>
+				<li class="nav-item active"><a class="nav-link" href="home">Bonjour ${connected.prenom} ${connected.nom}</a></li>
 				<li class="nav-item"><a class="nav-link" href="home?deconnecter">Se deconnecter</a>
-				</li>
+					</li>
+			</c:otherwise>
+		</c:choose>	
+		
+			
 				
 			</ul>
 			</c:if>

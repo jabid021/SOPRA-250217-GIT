@@ -14,7 +14,7 @@
 <div id="content">
 <h1>Liste des Filieres</h1>
      <input id="btnAddFiliere" type="button" class ="btn btn-success" value="Ajouter">
-     <a href="index.html"><input type="button" class ="btn btn-info" value="Retour"></a>
+     <a href="home"><input type="button" class ="btn btn-info" value="Retour"></a>
 
      <table class="table table-striped">
        <thead>
@@ -67,7 +67,7 @@ btnAddFiliere.onclick=function()
 {
   addFormFiliere.style.display="block";
 }
-
+document.querySelectorAll("ul.navbar-nav li")[5].classList.add("active");
 </script>
 
 

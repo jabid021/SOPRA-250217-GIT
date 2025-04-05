@@ -12,7 +12,7 @@
 <div id="content">
   <h1>Liste des Admins</h1>
   <input id="btnAddAdmin" type="button" class ="btn btn-success" value="Ajouter">
-  <a href="index.html"><input type="button" class ="btn btn-info" value="Retour"></a>
+  <a href="home"><input type="button" class ="btn btn-info" value="Retour"></a>
 
   <table class="table table-striped">
     <thead>

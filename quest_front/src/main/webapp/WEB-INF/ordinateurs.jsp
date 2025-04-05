@@ -14,7 +14,7 @@
 <div id="content">
   <h1>Liste des Ordinateurs</h1>
   <input id="btnAddOrdi" type="button" class ="btn btn-success" value="Ajouter">
-  <a href="index.html"><input type="button" class ="btn btn-info" value="Retour"></a>
+  <a href="home"><input type="button" class ="btn btn-info" value="Retour"></a>
 
   <table class="table table-striped">
     <thead>
@@ -74,4 +74,5 @@
     addFormOrdi.style.display="block";
   }
 
+  document.querySelectorAll("ul.navbar-nav li")[6].classList.add("active");
 </script>

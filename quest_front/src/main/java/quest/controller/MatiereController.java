@@ -24,7 +24,7 @@ public class MatiereController extends HttpServlet {
 		if(request.getParameter("id")==null) 
 		{
 			request.setAttribute("matieres", Singleton.getInstance().getMatiereService().getAll());
-			request.getRequestDispatcher("/matieres.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/matieres.jsp").forward(request, response);
 		}
 		else
 		{
@@ -33,7 +33,7 @@ public class MatiereController extends HttpServlet {
 			if(request.getParameter("delete")==null) 
 			{
 				request.setAttribute("matiere", Singleton.getInstance().getMatiereService().getById(id));
-				request.getRequestDispatcher("/updateMatiere.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/updateMatiere.jsp").forward(request, response);
 			}
 			else 
 			{
