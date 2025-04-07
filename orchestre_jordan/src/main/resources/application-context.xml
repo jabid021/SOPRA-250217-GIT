@@ -13,9 +13,9 @@
         http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-<context:component-scan base-package="orchestre.model"/>
+
 	<!-- 
-	
+	<context:component-scan base-package="orchestre.model"/>
 	<bean id="guitare" class="orchestre.model.Guitare" />
 	<bean id="piano" class="orchestre.model.Piano" />
 	<bean id="flute" class="orchestre.model.Flute" />

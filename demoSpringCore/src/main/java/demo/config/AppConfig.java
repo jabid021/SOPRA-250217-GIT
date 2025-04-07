@@ -3,11 +3,8 @@ package demo.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 
 import demo.composant.Audio;
-import demo.composant.Game;
-import demo.composant.Graphisme;
 
 @Configuration
 @ComponentScan("demo.composant")

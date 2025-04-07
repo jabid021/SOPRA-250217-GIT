@@ -8,6 +8,7 @@ public class Graphisme implements IConfig{
 	private boolean fenetre;
 	
 	public Graphisme() {
+		System.out.println("Creation du composant Graphisme");
 		fenetre=true;
 	}
 

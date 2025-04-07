@@ -14,7 +14,11 @@ public class Game {
 	@Qualifier("audio")
 	private IConfig configAudio;
 	
-	public Game() {}
+	public Game(Graphisme graphisme) 
+	{
+		System.out.println("Creation du GAME");
+		System.out.println("On est dans le constructeur GAME "+ graphisme);
+	}
 	
 	
 	public Graphisme getGraphisme() {

@@ -10,6 +10,7 @@ public class Audio implements IConfig {
 
 	
 	public Audio() {
+		System.out.println("Creation du composant Audio");
 		this.typeSortie = "mono";
 	}
 
