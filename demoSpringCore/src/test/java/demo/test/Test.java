@@ -40,6 +40,17 @@ public class Test {
 		
 		Game g1 = (Game) ctx.getBean("game");*/
 		System.out.println(game);
+		
+		
+		
+		game.quitterPartie();
+		
+		
+		
+		
+		System.out.println("---------");
+		
+		game.gameValid("Test");
 
 	}
 

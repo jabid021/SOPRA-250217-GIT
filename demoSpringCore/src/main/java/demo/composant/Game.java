@@ -1,5 +1,7 @@
 package demo.composant;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -38,6 +40,20 @@ public class Game {
 	}
 
 
+	
+	public void quitterPartie() 
+	{
+		System.out.println("L''utilisateur veut quitter la partie");
+	}
+	
+	
+	public boolean gameValid(String paramString) 
+	{
+		Random r = new Random();
+		if(r.nextInt(2)==0) {return false;}
+		else {return true;}
+	}
+	
 	@Override
 	public String toString() {
 		return "Game [graphisme=" + graphisme + ", configAudio=" + configAudio + "]";
