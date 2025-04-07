@@ -37,7 +37,7 @@ public class Flutiste implements IMusicien {
 
 
 	public void jouer() {
-		System.out.println("Le pianiste "+prenom+" joue ! "+flute.son());
+		System.out.println("Le flutiste "+prenom+" joue ! "+flute.son());
 	}
 
 

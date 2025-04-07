@@ -13,27 +13,31 @@
         http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-<context:component-scan base-package="demo.composant"/>
 
-<!-- 
-	<bean id="beanAudio" class="demo.composant.Audio">
-		<property name="volume" value="50" />
-		<property name="typeSortie" value="stereo" />
+	<!-- 
+	
+	<bean id="guitare" class="orchestre.model.Guitare" />
+	<bean id="piano" class="orchestre.model.Piano" />
+	<bean id="flute" class="orchestre.model.Flute" />
+
+
+
+	<bean id="guitariste" class="orchestre.model.Guitariste">
+		<property name="prenom" value="Jordan" />
+		<property name="instrument" ref="guitare" />
 	</bean>
 
-	<bean id="beanAudio2" class="demo.composant.Audio">
-		<property name="volume" value="50" />
+
+	<bean id="pianiste" class="orchestre.model.Pianiste">
+		<property name="instrument" ref="piano" />
 	</bean>
-
-	<bean id="graph" class="demo.composant.Graphisme"/>
-
-
-	<bean id="game" class="demo.composant.Game">
-		<property name="graphisme" ref="graph"/>
-		<property name="configAudio" ref="beanAudio"/>
+	
+	<bean id="flutiste" class="orchestre.model.Flutiste">
+		<property name="flute" ref="flute" />
 	</bean>
 
  -->
+
 </beans>
 
 

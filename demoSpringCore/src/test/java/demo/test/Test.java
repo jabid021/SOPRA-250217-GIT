@@ -15,11 +15,14 @@ public class Test {
 		
 		 
 		
-		Audio settingAudio=(Audio) ctx.getBean("beanAudio");
-		Audio settingAudio2=(Audio) ctx.getBean("beanAudio2");
+		Audio settingAudio=(Audio) ctx.getBean("audio");
+
+		System.out.println(settingAudio);
+		
 		
 		System.out.println(ctx.getBean(Graphisme.class));
-		System.out.println(settingAudio2);
+		
+		
 		Game g1 = (Game) ctx.getBean("game");
 		System.out.println(g1);
 		
