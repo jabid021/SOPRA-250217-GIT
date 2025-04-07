@@ -54,7 +54,6 @@ public class HomeController extends HttpServlet {
 		String login=request.getParameter("login");
 		String password = request.getParameter("password");
 		Utilisateur utilisateur = Singleton.getInstance().getDaoUtilisateur().findByLoginAndPassword(login, password);
-		System.out.println(utilisateur);
 		if(utilisateur == null) 
 		{
 			request.setAttribute("error", "IDENTIFIANTS INVALIDES");
@@ -65,6 +64,12 @@ public class HomeController extends HttpServlet {
 			request.getSession().setAttribute("connected", utilisateur);
 			response.sendRedirect("home");
 		}	
+	}
+	
+	
+	protected void doPut() 
+	{
+		
 	}
 
 }

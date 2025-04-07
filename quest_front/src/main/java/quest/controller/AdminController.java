@@ -38,10 +38,6 @@ public class AdminController extends HttpServlet {
 				response.sendRedirect("admin");
 			}
 		}
-
-
-
-
 	}
 
 
