@@ -43,7 +43,7 @@ public class Game {
 	
 	public void quitterPartie() 
 	{
-		System.out.println("L''utilisateur veut quitter la partie");
+		System.out.println("L'utilisateur veut quitter la partie");
 	}
 	
 	

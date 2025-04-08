@@ -37,6 +37,10 @@ public class Test {
 		flutiste.jouer();
 		
 		
+		System.out.println(guitariste);
+		System.out.println("---------------");
+		guitariste.toString();
+		
 		
 		
 	}

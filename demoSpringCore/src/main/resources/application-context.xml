@@ -13,25 +13,29 @@
         http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-
-
-
 	<bean name="beanAspect" class="demo.aspect.DemoAspect" />
 
 
 	<aop:config>
 
 		<aop:aspect id="monAspect" ref="beanAspect">
-
+			<aop:pointcut id="monPointCutQuitPartie"
+				expression="execution(public void demo.composant.Game.quitterPartie())" />
+				
 			<aop:before method="saveBeforeQuit"
-				pointcut="execution(public void demo.composant.Game.quitterPartie())" />
+				pointcut-ref="monPointCutQuitPartie" />
+				
 			<aop:after method="logAfterQuit"
-				pointcut="execution(public void demo.composant.Game.quitterPartie())" />
-			<aop:after-returning method="afterGameValid" returning="resultatBoolean" pointcut="execution(public boolean demo.composant.Game.*(String))"/>
+				pointcut-ref="monPointCutQuitPartie" />
+				
 
+			<aop:after-returning method="afterGameValid"
+				returning="resultatBoolean"
+				pointcut="execution(public boolean demo.composant.Game.gameValid(String)) &amp;&amp; args(paramString)" />
+				
+			<aop:around method="fonctionAutourQuit"
+				pointcut-ref="monPointCutQuitPartie" />
 		</aop:aspect>
-
-
 
 	</aop:config>
 

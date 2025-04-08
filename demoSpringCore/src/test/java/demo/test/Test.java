@@ -50,7 +50,7 @@ public class Test {
 		
 		System.out.println("---------");
 		
-		game.gameValid("Test");
+		game.gameValid("Test depuis le main envoyé à gameValid");
 
 	}
 
