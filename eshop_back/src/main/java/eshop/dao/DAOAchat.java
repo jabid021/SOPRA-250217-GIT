@@ -3,54 +3,39 @@ package eshop.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import eshop.context.Singleton;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import eshop.model.Achat;
 
-public class DAOAchat implements IDAO<Achat,Integer> {
+@Repository
+@Transactional
+public class DAOAchat implements IDAOAchat {
+
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
 	public List<Achat> findAll() {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-
-		List<Achat>  achats = em.createQuery("FROM Achat").getResultList();
-
-		em.close();
-		return achats;
+		return em.createQuery("FROM Achat").getResultList();
 	}
 
 	@Override
 	public Achat findById(Integer id) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-
-		Achat achat = em.find(Achat.class, id);
-
-		em.close();
-		return achat;
+		return em.find(Achat.class, id);
 	}
 
 	@Override
 	public Achat save(Achat achat) {
-		EntityManager em=Singleton.getInstance().getEmf().createEntityManager();
-		em.getTransaction().begin();
-
-		achat = em.merge(achat);
-
-		em.getTransaction().commit();
-		em.close();
-		return achat;
+		return em.merge(achat);
 	}
 
 	@Override
 	public void delete(Integer id) {
-		EntityManager em=Singleton.getInstance().getEmf().createEntityManager();
 		Achat achat = em.find(Achat.class,id);
-		em.getTransaction().begin();
-
 		em.remove(achat);
-
-		em.getTransaction().commit();
-		em.close();
 	}
 
 }

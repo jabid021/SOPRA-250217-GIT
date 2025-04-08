@@ -1,23 +1,10 @@
 package eshop.test;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import eshop.context.Singleton;
-import eshop.dao.DAOAchat;
-import eshop.dao.DAOPersonne;
-import eshop.dao.DAOProduit;
-import eshop.model.Achat;
-import eshop.model.Adresse;
-import eshop.model.Client;
-import eshop.model.Fournisseur;
-import eshop.model.Produit;
-
 public class TestJoinFetch {
 
 	public static void main(String[] args) {
 		
-		DAOProduit daoProduit = Singleton.getInstance().getDaoProduit();
+		/*DAOProduit daoProduit = Singleton.getInstance().getDaoProduit();
 		DAOAchat daoAchat = Singleton.getInstance().getDaoAchat();
 		DAOPersonne daoPersonne = Singleton.getInstance().getDaoPersonne();
 		
@@ -130,7 +117,7 @@ public class TestJoinFetch {
 		else 
 		{
 			System.out.println("ERROR, le client 2 n'a RIEN ACHETE POURTANT !");
-		}
+		}*/
 		
 	}
 

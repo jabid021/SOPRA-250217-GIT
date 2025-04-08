@@ -3,84 +3,54 @@ package eshop.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import eshop.context.Singleton;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import eshop.model.Produit;
 
-public class DAOProduit implements IDAO<Produit,Integer> {
+@Repository
+@Transactional
+public class DAOProduit implements IDAOProduit {
 
+	@PersistenceContext
+	private EntityManager em;
+	
 	@Override
 	public List<Produit> findAll() {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-
-		List<Produit>  produits = em.createQuery("FROM Produit").getResultList();
-
-		em.close();
-		return produits;
+		return em.createQuery("FROM Produit").getResultList();
 	}
 
 	@Override
 	public Produit findById(Integer id) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-
-		Produit produit = em.find(Produit.class, id);
-
-		em.close();
-		return produit;
+		return em.find(Produit.class, id);
 	}
 
 	@Override
 	public Produit save(Produit produit) {
-		EntityManager em=Singleton.getInstance().getEmf().createEntityManager();
-		em.getTransaction().begin();
-
-		produit = em.merge(produit);
-
-		em.getTransaction().commit();
-		em.close();
-		return produit;
+		return em.merge(produit);
 	}
 
 	@Override
 	public void delete(Integer id) {
-		EntityManager em=Singleton.getInstance().getEmf().createEntityManager();
 		Produit produit = em.find(Produit.class,id);
-		em.getTransaction().begin();
-
 		em.remove(produit);
-
-		em.getTransaction().commit();
-		em.close();
 	}
 	
 	
 	public List<Produit> findByLib(String libelle) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-
-		List<Produit>  produits = em.createQuery("SELECT p FROM Produit p where p.libelle = :lib").setParameter("lib", libelle).getResultList();
-
-		em.close();
-		return produits;
+		return em.createQuery("SELECT p FROM Produit p where p.libelle = :lib").setParameter("lib", libelle).getResultList();
 	}
 	
 
 	public List<Produit> findByLibelleContaining(String recherche) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-
-		List<Produit>  produits = em.createQuery("SELECT p FROM Produit p where p.libelle like :lib").setParameter("lib", "%"+recherche+"%").getResultList();
-
-		em.close();
-		return produits;
+		return em.createQuery("SELECT p FROM Produit p where p.libelle like :lib").setParameter("lib", "%"+recherche+"%").getResultList();
 	}
 
 	
 	public Produit findByIdWithVentes(Integer idProduit) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-
-		Produit  produit = em.createQuery("SELECT p FROM Produit p JOIN FETCH p.ventes where p.id=:id ",Produit.class).setParameter("id", idProduit).getSingleResult();
-
-		em.close();
-		return produit;
+		return em.createQuery("SELECT p FROM Produit p JOIN FETCH p.ventes where p.id=:id ",Produit.class).setParameter("id", idProduit).getSingleResult();
 	}
 	
 	

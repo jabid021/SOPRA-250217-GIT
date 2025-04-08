@@ -29,6 +29,6 @@ public class TestSpring {
 		for(Matiere m : matiereSrv.getAll()) {System.out.println(m);}
 		
 		
-		System.out.println(matiereSrv.getByLibelle("TOTO"));
+		//System.out.println(matiereSrv.getByLibelle("TOTO"));
 	}
 }
