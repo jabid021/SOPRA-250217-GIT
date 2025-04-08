@@ -3,14 +3,15 @@ package demo.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import demo.composant.Audio;
 
 @Configuration
-@ComponentScan("demo.composant")
+@ComponentScan({"demo.composant","demo.aspect"})
+@EnableAspectJAutoProxy
 //Notre config Principale Java a besoin de config supp dans le fichier xml
-@ImportResource("classpath:application-context.xml") 
+//@ImportResource("classpath:application-context.xml") 
 
 public class AppConfig {
 

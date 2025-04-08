@@ -1,13 +1,9 @@
 package orchestre.test;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import orchestre.config.AppConfig;
-import orchestre.model.Flutiste;
 import orchestre.model.Guitariste;
 import orchestre.model.IMusicien;
-import orchestre.model.Pianiste;
 
 public class Test {
 
@@ -32,17 +28,14 @@ public class Test {
 		
 		
 		
-		pianiste.jouer();
-		guitariste.jouer();
+	/*	pianiste.jouer();
+		
 		flutiste.jouer();
+		*/
+		guitariste.jouer();
+		//guitariste.toString();
 		
-		
-		System.out.println(guitariste);
-		System.out.println("---------------");
-		guitariste.toString();
-		
-		
-		
+	
 	}
 
 }
