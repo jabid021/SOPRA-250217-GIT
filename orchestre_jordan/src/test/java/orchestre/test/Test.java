@@ -35,7 +35,7 @@ public class Test {
 		guitariste.jouer();
 		//guitariste.toString();
 		
-	
+
 	}
 
 }

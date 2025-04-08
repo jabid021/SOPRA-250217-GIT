@@ -15,7 +15,6 @@ import quest.model.Genre;
 @WebServlet("/admin")
 public class AdminController extends HttpServlet {
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		if(request.getParameter("id")==null) 

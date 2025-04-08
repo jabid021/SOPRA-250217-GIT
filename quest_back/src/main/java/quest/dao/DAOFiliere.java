@@ -3,79 +3,54 @@ package quest.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import quest.context.Singleton;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import quest.model.Filiere;
 
+@Repository
+@Transactional
 public class DAOFiliere implements IDAOFiliere {
+
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
 	public List<Filiere> findAll() {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-
-		List<Filiere>  filieres = em.createQuery("FROM Filiere").getResultList();
-
-		em.close();
-		return filieres;
+		return em.createQuery("FROM Filiere").getResultList();
 	}
 
 	@Override
 	public Filiere findById(Integer id) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-
-		Filiere filiere = em.find(Filiere.class, id);
-
-		em.close();
-		return filiere;
+		return em.find(Filiere.class, id);
 	}
 
 	@Override
 	public Filiere save(Filiere filiere) {
-		EntityManager em=Singleton.getInstance().getEmf().createEntityManager();
-		em.getTransaction().begin();
-
-		filiere = em.merge(filiere);
-
-		em.getTransaction().commit();
-		em.close();
-		return filiere;
+		return em.merge(filiere);
 	}
 
 	@Override
 	public void delete(Integer id) {
-		EntityManager em=Singleton.getInstance().getEmf().createEntityManager();
 		Filiere filiere = em.find(Filiere.class,id);
-		em.getTransaction().begin();
-
 		em.remove(filiere);
-
-		em.getTransaction().commit();
-		em.close();
 	}
 
 	@Override
 	public Filiere findByIdWithModules(Integer idFiliere) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-
-		Filiere  filiere = em.createQuery("SELECT f FROM Filiere f left join fetch f.modules where f.id=:id",Filiere.class).setParameter("id", idFiliere).getSingleResult();
-
-		em.close();
-		return filiere;
+		return em.createQuery("SELECT f FROM Filiere f left join fetch f.modules where f.id=:id",Filiere.class).setParameter("id", idFiliere).getSingleResult();
 	}
 
 	@Override
 	public Filiere findByIdWithStagiaires(Integer idFiliere) {
-		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-
-		Filiere  filiere = em.createQuery("SELECT f FROM Filiere f left join fetch f.stagiaires where f.id=:id",Filiere.class).setParameter("id", idFiliere).getSingleResult();
-
-		em.close();
-		return filiere;
+		return em.createQuery("SELECT f FROM Filiere f left join fetch f.stagiaires where f.id=:id",Filiere.class).setParameter("id", idFiliere).getSingleResult();
 	}
-	
 
-	
 
-	
+
+
+
 
 }
