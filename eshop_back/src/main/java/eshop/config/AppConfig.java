@@ -23,7 +23,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @PropertySource("classpath:infos.properties")
 public class AppConfig {
-
 	
 	 @Autowired
 	 private Environment env;
@@ -49,6 +48,7 @@ public class AppConfig {
 		emf.setJpaProperties(this.hibernateProperties());
 		return emf;
 	}
+	
 	private Properties hibernateProperties() {
 		Properties properties = new Properties();
 	
