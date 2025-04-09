@@ -1,29 +1,36 @@
 package quest.controller;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import quest.context.Singleton;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
+import quest.config.AppConfig;
 import quest.model.Matiere;
-import quest.model.Formateur;
-import quest.model.Genre;
+import quest.service.MatiereService;
 
 @WebServlet("/matiere")
 public class MatiereController extends HttpServlet {
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void init(ServletConfig config) throws ServletException
+	 {
+	 super.init(config);
+	 SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+	 }
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+		MatiereService matiereService = ctx.getBean(MatiereService.class);
 		if(request.getParameter("id")==null) 
 		{
-			request.setAttribute("matieres", Singleton.getInstance().getMatiereService().getAll());
+			request.setAttribute("matieres", matiereService.getAll());
 			request.getRequestDispatcher("/WEB-INF/matieres.jsp").forward(request, response);
 		}
 		else
@@ -32,12 +39,12 @@ public class MatiereController extends HttpServlet {
 
 			if(request.getParameter("delete")==null) 
 			{
-				request.setAttribute("matiere", Singleton.getInstance().getMatiereService().getById(id));
+				request.setAttribute("matiere", matiereService.getById(id));
 				request.getRequestDispatcher("/WEB-INF/updateMatiere.jsp").forward(request, response);
 			}
 			else 
 			{
-				Singleton.getInstance().getMatiereService().deleteById(id);
+				matiereService.deleteById(id);
 				response.sendRedirect("matiere");
 			}
 		}
@@ -49,11 +56,13 @@ public class MatiereController extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+		MatiereService matiereService = ctx.getBean(MatiereService.class);
 		if(request.getParameter("id")==null) 
 		{
 			String libelle = request.getParameter("libelle");
 			Matiere matiere = new Matiere(libelle);
-			Singleton.getInstance().getMatiereService().create(matiere);
+			matiereService.create(matiere);
 			response.sendRedirect("matiere");
 		}
 		else 
@@ -61,7 +70,7 @@ public class MatiereController extends HttpServlet {
 			Integer id = Integer.parseInt(request.getParameter("id"));
 			String libelle = request.getParameter("libelle");
 			Matiere matiere = new Matiere(id,libelle);
-			Singleton.getInstance().getMatiereService().update(matiere);
+			matiereService.update(matiere);
 			response.sendRedirect("matiere");
 		}
 	}

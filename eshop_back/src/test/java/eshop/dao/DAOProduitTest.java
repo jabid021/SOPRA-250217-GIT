@@ -41,7 +41,6 @@ public class DAOProduitTest {
 		//Assert
 		assertNotNull(daoProduit);
 	}
-	/*
 	
 	@Test
 	public void findbyIdProduit() 
@@ -52,7 +51,6 @@ public class DAOProduitTest {
 		Produit produit = new Produit("libelle",2000.50,fournisseur);
 		produit =  daoProduit.save(produit);
 		Integer idProduit = produit.getId();
-		Produit produitBdd=null;
 		//Act
 		Optional<Produit> opt = daoProduit.findById(idProduit);
 		//Assert
@@ -107,14 +105,13 @@ public class DAOProduitTest {
 		Produit produit = new Produit("libelle",2000.50,fournisseur);
 		produit =  daoProduit.save(produit);
 		Integer idProduit = produit.getId();
-		Produit produitBdd;
 		//Act
-		daoProduit.delete(idProduit);
+		daoProduit.deleteById(idProduit);
 		//Assert
 		assertTrue(daoProduit.findById(idProduit).isEmpty());
 		
 	}
 	
-	*/
+	
 	
 }
