@@ -1,6 +1,7 @@
 package eshop.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,13 +20,14 @@ public class HomeController {
 
 //	@RequestMapping(path = "/accueil", method = RequestMethod.GET)
 	@GetMapping("/accueil")
-	public String home(@RequestParam String nom, @RequestParam(required = false) String prenom, @RequestParam(required = false, defaultValue = "0") int age) {
+	public String home(@RequestParam String nom, @RequestParam(required = false) String prenom, @RequestParam(required = false, defaultValue = "0") int age, Model model) {
 
-		System.out.println("nom=" + nom);
-		System.out.println("prenom=" + prenom);
-		System.out.println("age=" + age);
+		model.addAttribute("nom", nom);
+		model.addAttribute("prenom", prenom);
+		model.addAttribute("age", age);
 
 		return "index";
 	}
 
 }
+
