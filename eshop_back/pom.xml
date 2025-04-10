@@ -2,75 +2,98 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>formation-sopra</groupId>
   <artifactId>eshop_back</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
+  
+  
+  <properties>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	
+		<dbcp2.version>2.12.0</dbcp2.version>
+		<hibernate.version>6.5.2.Final</hibernate.version>
+		<mysql.version>8.0.26</mysql.version>
+		<junit.version>4.13.2</junit.version>
+		<spring.version>6.1.7</spring.version>
+		<spring-data.version>3.2.6</spring-data.version>
+		<transaction-api.version>2.0.1</transaction-api.version>
+		
+	</properties>
   
   
  <dependencies>
+		<!-- Jakarta Transaction API -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.26</version>
+			<groupId>jakarta.transaction</groupId>
+			<artifactId>jakarta.transaction-api</artifactId>
+			<version>${transaction-api.version}</version>
 		</dependency>
-
+		
+		<!-- Commons DBCP 2 (Connection Pooling) -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>${dbcp2.version}</version>
+		</dependency>
+	
+		<!-- JPA / Hibernate -->
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.5.7.Final</version>
+			<version>${hibernate.version}</version>
 		</dependency>
-
-
+		
+		<!-- Spring Framework -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-dbcp2</artifactId>
-			<version>2.9.0</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		
-		
+		<!-- Spring Data Jpa -->
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-			<version>2.7.2</version>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-jpa</artifactId>
+		    <version>${spring-data.version}</version>
 		</dependency>
+		
+		<!-- Connecteur MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<!-- JUnit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
 		
 	</dependencies>
   
  
-	<properties>
-		<spring.version>5.3.21</spring.version>
-		<maven.compiler.target>17</maven.compiler.target>
-		<maven.compiler.source>17</maven.compiler.source>
-	</properties>
+	
   
   
 </project>

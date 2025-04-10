@@ -4,13 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("customer")
@@ -18,21 +16,21 @@ public class Client extends Personne {
 
 	@Column(columnDefinition = "INT(3)")
 	private int age;
-	@Column(name="date_naissance")
+	@Column(name = "date_naissance")
 	private LocalDate dateNaissance;
-	
+
 	@Embedded
 	private Adresse adresse;
-	
+
 	@OneToMany(mappedBy = "client")
-	/*@JoinTable(
-			name="achats",
-			joinColumns = @JoinColumn(name="acheteur",nullable = false),
-			inverseJoinColumns = @JoinColumn(name="produit",nullable = false)
-	)*/
-	private List<Achat> achats = new ArrayList();
-	
-	public Client() {}
+	/*
+	 * @JoinTable( name="achats", joinColumns = @JoinColumn(name="acheteur",nullable
+	 * = false), inverseJoinColumns = @JoinColumn(name="produit",nullable = false) )
+	 */
+	private List<Achat> achats = new ArrayList<>();
+
+	public Client() {
+	}
 
 	public Client(String nom, String prenom, int age, LocalDate naissance, Adresse adresse) {
 		super(nom, prenom);
@@ -64,7 +62,6 @@ public class Client extends Personne {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
-	
 
 	public List<Achat> getAchats() {
 		return achats;
@@ -80,7 +77,4 @@ public class Client extends Personne {
 				+ dateNaissance + ", adresse=" + adresse + "]";
 	}
 
-	
-
-	
 }
