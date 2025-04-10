@@ -13,6 +13,8 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 @EnableWebMvc
 @ComponentScan("eshop.controller")
 public class WebConfig implements WebMvcConfigurer {
+	
+	// Exclure les urls commençant par /css et /js pour les rediriger vers leur répertoire respectif
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/");

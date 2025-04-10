@@ -9,7 +9,7 @@
 <link rel="stylesheet"
 	href="<c:url value="/css/bootstrap.min.css"/>">
 <link rel="stylesheet"
-	href="<c:url value="/css/bootstrap-icons.min.css"/>">
+	href="<c:url value="/css/bootstrap-icons.css"/>">
 </head>
 <body>
 
@@ -24,6 +24,6 @@
 
 
 
-	<script src="<c:url value="/js/bootstrap.bundle.min.js"/>"></script>
+	<script src="<c:url value="/js/bootstrap.bundle.js"/>"></script>
 </body>
 </html>

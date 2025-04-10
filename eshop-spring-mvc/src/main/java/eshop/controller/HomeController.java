@@ -1,13 +1,29 @@
 package eshop.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
+
+
 	
-	@RequestMapping("/accueil")
+	@GetMapping("/")
+	public String defaut() {
+		return "redirect:accueil";
+	}
+	
+	@GetMapping("/forward")
+	public String forward() {
+		return "forward:/accueil";
+	}
+
+	
+//	@RequestMapping(path = "/accueil", method = RequestMethod.GET)
+	@GetMapping("/accueil")
 	public String home() {
+		
 		return "index";
 	}
 
