@@ -29,7 +29,7 @@ public class Produit {
 	
 	
 	@ManyToOne
-	@JoinColumn(name="vendeur",nullable = false)
+	@JoinColumn(name="vendeur")
 	private Fournisseur vendeur;
 	
 	@OneToMany(mappedBy = "produit")
