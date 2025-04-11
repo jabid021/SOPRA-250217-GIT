@@ -1,11 +1,11 @@
 package eshop.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import eshop.dao.IDAOProduit;
 import eshop.model.Produit;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/produit")
@@ -78,7 +79,11 @@ public class ProduitController {
 	
 //	@RequestMapping(path = "/save", method = { RequestMethod.POST })
 	@PostMapping("/save") // Récupérer les données du formulaire dans Produit, de sauvegarder le Produit en BDD et de rafraichir la liste 
-	public String save(@ModelAttribute Produit produit, Model model) {
+	public String save(@ModelAttribute @Valid Produit produit, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			return "produit/form";
+		}
+		
 		daoProduit.save(produit);
 		
 		return "redirect:list";

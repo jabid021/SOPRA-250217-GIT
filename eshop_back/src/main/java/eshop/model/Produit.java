@@ -14,32 +14,39 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="product")
+@Table(name = "product")
 public class Produit {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(name="label",length = 30,nullable = false)
+
+	@Column(name = "label", length = 30, nullable = false)
 	private String libelle;
-	
-	@Column(name="price",columnDefinition = "DECIMAL(6,2)")
+
+	@Column(name = "price", columnDefinition = "DECIMAL(6,2)")
 	private double prix;
-	
-	
+
 	@ManyToOne
-	@JoinColumn(name="vendeur")
+	@JoinColumn(name = "vendeur")
 	private Fournisseur vendeur;
-	
+
 	@OneToMany(mappedBy = "produit")
 	private List<Achat> ventes = new ArrayList<>();
-	
-	public Produit() {}
+
+	public Produit() {
+	}
 
 	public Produit(String libelle, double prix) {
 		this.libelle = libelle;
 		this.prix = prix;
+	}
+
+	public Produit(String libelle, double prix, Fournisseur vendeur) {
+		super();
+		this.libelle = libelle;
+		this.prix = prix;
+		this.vendeur = vendeur;
 	}
 
 	public Integer getId() {
@@ -65,8 +72,6 @@ public class Produit {
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
-	
-	
 
 	public Fournisseur getVendeur() {
 		return vendeur;
@@ -75,7 +80,6 @@ public class Produit {
 	public void setVendeur(Fournisseur vendeur) {
 		this.vendeur = vendeur;
 	}
-	
 
 	public List<Achat> getVentes() {
 		return ventes;
@@ -90,7 +94,4 @@ public class Produit {
 		return "Produit [id=" + id + ", libelle=" + libelle + ", prix=" + prix + ", vendeur=" + vendeur + "]";
 	}
 
-	
-	
-	
 }
