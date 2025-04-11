@@ -13,7 +13,7 @@
 <body>
 
 
-	<div class="container-fluid">
+	<div class="container">
 		<div class="card mt-3">
 			<div class="card-header bg-primary text-white display-6">Liste
 				des produits</div>

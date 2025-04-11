@@ -1,16 +1,16 @@
 package eshop.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import eshop.dao.IDAOProduit;
@@ -28,7 +28,7 @@ public class ProduitController {
 		this.daoProduit = daoProduit;
 	}
 	
-	@GetMapping("/list") // ETAPE 1 : Réception de la Request
+	@GetMapping({"", "/", "/list"}) // ETAPE 1 : Réception de la Request
 	public String list(Model model) {
 		// ETAPE 2 : Récupération des données
 		List<Produit> produits = daoProduit.findAll();
@@ -40,36 +40,54 @@ public class ProduitController {
 		return "produit/list";
 	}
 	
-	@GetMapping("/add") // Renvoyer vers la page de formulaire avec Produit vierge
-	public String add() {
+	@GetMapping("/add") 
+	public String add(Model model) {
+		model.addAttribute("produit", new Produit());		
 		
 		return "produit/form";
 	}
 	
 	@GetMapping("/edit") // Récupérer l'id, rechercher le produit et le renvoyer à la page de formulaire
-	public String edit() {
+	public String edit(@RequestParam Integer id, Model model) {
+		Produit produit = daoProduit.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produit non trouvé"));
+	
+		
+//		Optional<Produit> optProduit = daoProduit.findById(id);
+//		
+//		if(optProduit.isEmpty()) {
+//			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produit non trouvé");
+//		}
+//		
+//		Produit produit = optProduit.get();
+		
+		model.addAttribute("produit", produit);
 		
 		return "produit/form";
 	}
 	
 	@GetMapping("/remove") // Récupérer l'id, supprimer le produit et rafficher la liste mise à jour avec une redirection
-	public String remove() {
+	public String remove(@RequestParam Integer id) {
+		if(!daoProduit.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produit non trouvé");
+		}
 		
-		return "";
+		daoProduit.deleteById(id);
+		
+		return "redirect:list";
 	}
 	
 //	@RequestMapping(path = "/save", method = { RequestMethod.POST })
 	@PostMapping("/save") // Récupérer les données du formulaire dans Produit, de sauvegarder le Produit en BDD et de rafraichir la liste 
 	public String save(@ModelAttribute Produit produit, Model model) {
+		daoProduit.save(produit);
 		
-		
-		return "produit";
+		return "redirect:list";
 	}
 	
 	@GetMapping("/cancel") // Forward vers le controlleur list
 	public String cancel() {
 		
-		return "";
+		return "forward:list";
 	}
 
 //	@RequestMapping(path = "/produit", method = { RequestMethod.GET, RequestMethod.POST })

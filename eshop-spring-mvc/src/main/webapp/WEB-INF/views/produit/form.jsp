@@ -19,7 +19,7 @@
 				<div class="card-body">
 					<div class="form-group">
 						<label for="id">Identifiant:</label> <input type="number"
-							class="form-control" id="id" name="id" value="${produit.id}" />
+							class="form-control" id="id" name="id" value="${produit.id}" readonly />
 					</div>
 					<div class="form-group">
 						<label for="libelle">Libellé:</label> <input type="text"

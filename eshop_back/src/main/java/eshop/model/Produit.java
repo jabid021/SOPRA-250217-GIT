@@ -37,10 +37,9 @@ public class Produit {
 	
 	public Produit() {}
 
-	public Produit(String libelle, double prix,Fournisseur vendeur) {
+	public Produit(String libelle, double prix) {
 		this.libelle = libelle;
 		this.prix = prix;
-		this.vendeur=vendeur;
 	}
 
 	public Integer getId() {
