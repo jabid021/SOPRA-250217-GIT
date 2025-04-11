@@ -31,6 +31,15 @@
 							th:value="${produit.prix}" />
 						<span class="text-danger" th:errors="${produit.prix}"></span>
 					</div>
+					<div class="form-group">
+						<label for="idVendeur">Vendeur:</label>
+						<select class="form-control" id="idVendeur" name="idVendeur">
+							<option value=""></option>
+							<option th:each="fournisseur : ${fournisseurs}" th:value="${fournisseur.id}" th:selected="${fournisseur.id == produit.vendeur?.id}">[[${fournisseur.id}]] - [[${fournisseur.nom}]]</option>
+						</select>
+
+<!-- 						<span class="text-danger" th:errors="${vendeur.id}"></span> -->
+					</div>
 				</div>
 				<div class="card-footer">
 					<div class="btn-group btn-group-lg float-right">

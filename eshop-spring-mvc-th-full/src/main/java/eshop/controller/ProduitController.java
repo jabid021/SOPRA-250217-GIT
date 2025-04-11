@@ -11,48 +11,54 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.server.ResponseStatusException;
 
+import eshop.dao.IDAOPersonne;
 import eshop.dao.IDAOProduit;
+import eshop.model.Fournisseur;
 import eshop.model.Produit;
 import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/produit")
 public class ProduitController {
-	
-	
-	private IDAOProduit daoProduit;
 
-	public ProduitController(IDAOProduit daoProduit) {
+	private IDAOProduit daoProduit;
+	private IDAOPersonne daoPersonne;
+
+	public ProduitController(IDAOProduit daoProduit, IDAOPersonne daoPersonne) {
 		super();
 		this.daoProduit = daoProduit;
+		this.daoPersonne = daoPersonne;
 	}
-	
-	@GetMapping({"", "/", "/list"}) // ETAPE 1 : Réception de la Request
+
+	@GetMapping({ "", "/", "/list" }) // ETAPE 1 : Réception de la Request
 	public String list(Model model) {
 		// ETAPE 2 : Récupération des données
 		List<Produit> produits = daoProduit.findAll();
-		
-		//ETAPE 3 : Renseigne le Model
+
+		// ETAPE 3 : Renseigne le Model
 		model.addAttribute("mesProduits", produits);
-		
+
 		// ETAPE 4 : Appel de la View
 		return "produit/list";
 	}
-	
-	@GetMapping("/add") 
+
+	@GetMapping("/add")
 	public String add(Model model) {
-		model.addAttribute("produit", new Produit());		
+		model.addAttribute("produit", new Produit());
 		
+		model.addAttribute("fournisseurs", daoPersonne.findAllFournisseur());
+
 		return "produit/form";
 	}
-	
+
 	@GetMapping("/edit") // Récupérer l'id, rechercher le produit et le renvoyer à la page de formulaire
 	public String edit(@RequestParam Integer id, Model model) {
-		Produit produit = daoProduit.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produit non trouvé"));
-	
-		
+		Produit produit = daoProduit.findById(id)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produit non trouvé"));
+
 //		Optional<Produit> optProduit = daoProduit.findById(id);
 //		
 //		if(optProduit.isEmpty()) {
@@ -60,38 +66,49 @@ public class ProduitController {
 //		}
 //		
 //		Produit produit = optProduit.get();
-		
+
 		model.addAttribute("produit", produit);
 		
+		model.addAttribute("fournisseurs", daoPersonne.findAllFournisseur());
+
 		return "produit/form";
 	}
-	
-	@GetMapping("/remove") // Récupérer l'id, supprimer le produit et rafficher la liste mise à jour avec une redirection
+
+	@GetMapping("/remove") // Récupérer l'id, supprimer le produit et rafficher la liste mise à jour avec
+							// une redirection
 	public String remove(@RequestParam Integer id) {
-		if(!daoProduit.existsById(id)) {
+		if (!daoProduit.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produit non trouvé");
 		}
-		
+
 		daoProduit.deleteById(id);
-		
+
 		return "redirect:list";
 	}
-	
+
 //	@RequestMapping(path = "/save", method = { RequestMethod.POST })
-	@PostMapping("/save") // Récupérer les données du formulaire dans Produit, de sauvegarder le Produit en BDD et de rafraichir la liste 
-	public String save(@ModelAttribute @Valid Produit produit, BindingResult result, Model model) {
-		if(result.hasErrors()) {
+	@PostMapping("/save") // Récupérer les données du formulaire dans Produit, de sauvegarder le Produit
+							// en BDD et de rafraichir la liste
+	public String save(@ModelAttribute @Valid Produit produit, BindingResult result, @RequestParam(required = false) Integer idVendeur, Model model) {
+		if (result.hasErrors()) {
 			return "produit/form";
 		}
 		
+		if(idVendeur != null) {
+			Fournisseur vendeur = new Fournisseur();
+			vendeur.setId(idVendeur);
+			
+			produit.setVendeur(vendeur);
+		}
+
 		daoProduit.save(produit);
-		
+
 		return "redirect:list";
 	}
-	
+
 	@GetMapping("/cancel") // Forward vers le controlleur list
 	public String cancel() {
-		
+
 		return "forward:list";
 	}
 
@@ -109,13 +126,5 @@ public class ProduitController {
 //
 //		return "produit";
 //	}
-	
-
-
-	
-
-
-
-	
 
 }

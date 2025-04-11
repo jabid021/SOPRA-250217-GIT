@@ -12,7 +12,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name="product")
@@ -24,9 +27,12 @@ public class Produit {
 	
 	@Column(name="label",length = 30,nullable = false)
 	@NotBlank(message = "Le libellé est obligatoire")
+	@Pattern(regexp = "^[A-Z][A-Za-z0-9]*$", message = "Le libellé doit commencer par une majuscule")
 	private String libelle;
 	
-	@Column(name="price",columnDefinition = "DECIMAL(6,2)")
+	@Column(name="price")
+	@DecimalMin(value="5.0", message = "Le prix doit être supérieure à 5€")
+	@DecimalMax(value="9999.0", message = "Le prix doit être inférieure à 9999€")
 	private double prix;
 	
 	
