@@ -6,10 +6,8 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Past;
 
 @Entity
@@ -22,10 +20,6 @@ public class Client extends Personne {
 	@Past(message = "La date de naissance est invalide")
 	private LocalDate dateNaissance;
 
-	@Embedded
-	@Valid
-	private Adresse adresse;
-
 	@OneToMany(mappedBy = "client")
 	/*
 	 * @JoinTable( name="achats", joinColumns = @JoinColumn(name="acheteur",nullable
@@ -37,10 +31,9 @@ public class Client extends Personne {
 	}
 
 	public Client(String nom, String prenom, int age, LocalDate naissance, Adresse adresse) {
-		super(nom, prenom);
+		super(nom, prenom, adresse);
 		this.age = age;
 		this.dateNaissance = naissance;
-		this.adresse = adresse;
 	}
 
 	public int getAge() {
@@ -59,14 +52,6 @@ public class Client extends Personne {
 		this.dateNaissance = naissance;
 	}
 
-	public Adresse getAdresse() {
-		return adresse;
-	}
-
-	public void setAdresse(Adresse adresse) {
-		this.adresse = adresse;
-	}
-
 	public List<Achat> getAchats() {
 		return achats;
 	}
@@ -78,7 +63,7 @@ public class Client extends Personne {
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", dateNaissance="
-				+ dateNaissance + ", adresse=" + adresse + "]";
+				+ dateNaissance + ", adresse=" + getAdresse() + "]";
 	}
 
 }

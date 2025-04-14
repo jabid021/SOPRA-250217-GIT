@@ -26,6 +26,11 @@ public class Fournisseur extends Personne {
 		this.societe = societe;
 	}
 
+	public Fournisseur(String nom, String prenom, String societe, Adresse adresse) {
+		super(nom, prenom, adresse);
+		this.societe = societe;
+	}
+
 	public String getSociete() {
 		return societe;
 	}

@@ -1,6 +1,7 @@
 package eshop.model;
 
 import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -23,12 +25,23 @@ public abstract class Personne {
 	protected String nom;
 	protected String prenom;
 
+	@Embedded
+	@Valid
+	private Adresse adresse;
+
 	public Personne() {
 	}
 
 	public Personne(String nom, String prenom) {
 		this.nom = nom;
 		this.prenom = prenom;
+	}
+
+	public Personne(@NotBlank(message = "Le nom est obligatoire") String nom, String prenom, @Valid Adresse adresse) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
 	}
 
 	public Integer getId() {
@@ -53,6 +66,14 @@ public abstract class Personne {
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
+	}
+
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
 	}
 
 	@Override
