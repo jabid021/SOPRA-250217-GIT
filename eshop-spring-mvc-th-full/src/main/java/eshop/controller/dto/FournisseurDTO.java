@@ -1,12 +1,19 @@
 package eshop.controller.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
 public class FournisseurDTO {
 	private Integer id;
+	@Pattern(regexp = "^[A-Z][A-Za-z]+$", message = "Au moins 2 caractères et 1 majuscule")
 	private String nom;
 	private String prenom;
 	private String societe;
+	@NotBlank(message = "Rue obligatoire")
 	private String rue;
+	@NotBlank(message = "Code postal obligatoire")
 	private String codePostal;
+	@NotBlank(message = "Ville obligatoire")
 	private String ville;
 
 	public FournisseurDTO() {

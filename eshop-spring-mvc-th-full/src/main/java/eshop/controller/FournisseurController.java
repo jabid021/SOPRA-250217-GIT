@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import eshop.controller.dto.FournisseurDTO;
 import eshop.dao.IDAOPersonne;
+import eshop.model.Adresse;
 import eshop.model.Fournisseur;
 import jakarta.validation.Valid;
 
@@ -40,33 +41,47 @@ public class FournisseurController {
 		for (Fournisseur fournisseur : fournisseurs) {
 			FournisseurDTO fournisseurDTO = new FournisseurDTO();
 
-			BeanUtils.copyProperties(fournisseur, fournisseursDTO);
+			BeanUtils.copyProperties(fournisseur, fournisseurDTO);
 
 			if (fournisseur.getAdresse() != null) {
-				BeanUtils.copyProperties(fournisseur.getAdresse(), fournisseursDTO);
+				BeanUtils.copyProperties(fournisseur.getAdresse(), fournisseurDTO);
 
-				fournisseurDTO.setRue(fournisseur.getAdresse().getNumero() + " " + fournisseur.getAdresse().getVoie());
+				fournisseurDTO.setRue((fournisseur.getAdresse().getNumero()!=null?fournisseur.getAdresse().getNumero():"") + " " + fournisseur.getAdresse().getVoie());
 				fournisseurDTO.setCodePostal(fournisseur.getAdresse().getCp());
 			}
-			
+
 			fournisseursDTO.add(fournisseurDTO);
 		}
-		
+
 		model.addAttribute("fournisseurs", fournisseursDTO);
 
 		return "fournisseur/list";
 	}
-	
+
 	@GetMapping("/add")
 	public String add(Model model) {
-		
+		model.addAttribute("fournisseur", new FournisseurDTO());
 
 		return "fournisseur/form";
 	}
 
 	@GetMapping("/edit")
 	public String edit(@RequestParam Integer id, Model model) {
-		
+		Fournisseur fournisseur = daoPersonne.findFournisseurById(id)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Fournisseur non trouvé"));
+
+		FournisseurDTO fournisseurDTO = new FournisseurDTO();
+
+		BeanUtils.copyProperties(fournisseur, fournisseurDTO);
+
+		if (fournisseur.getAdresse() != null) {
+			BeanUtils.copyProperties(fournisseur.getAdresse(), fournisseurDTO);
+
+			fournisseurDTO.setRue((fournisseur.getAdresse().getNumero()!=null?fournisseur.getAdresse().getNumero():"") + " " + fournisseur.getAdresse().getVoie());
+			fournisseurDTO.setCodePostal(fournisseur.getAdresse().getCp());
+		}
+
+		model.addAttribute("fournisseur", fournisseurDTO);
 
 		return "fournisseur/form";
 	}
@@ -83,10 +98,23 @@ public class FournisseurController {
 	}
 
 	@PostMapping("/save")
-	public String save(@ModelAttribute @Valid FournisseurDTO fournisseurDTO, BindingResult result, Model model) {
+	public String save(@ModelAttribute("fournisseur") @Valid FournisseurDTO fournisseurDTO, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "fournisseur/form";
 		}
+
+		Fournisseur fournisseur = new Fournisseur();
+		BeanUtils.copyProperties(fournisseurDTO, fournisseur);
+
+		Adresse adresse = new Adresse();
+		BeanUtils.copyProperties(fournisseurDTO, adresse);
+
+		adresse.setVoie(fournisseurDTO.getRue());
+		adresse.setCp(fournisseurDTO.getCodePostal());
+
+		fournisseur.setAdresse(adresse);
+
+		daoPersonne.save(fournisseur);
 
 		return "redirect:list";
 	}
