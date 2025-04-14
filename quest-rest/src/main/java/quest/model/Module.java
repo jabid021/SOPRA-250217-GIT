@@ -1,5 +1,7 @@
 package quest.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,17 +17,22 @@ public class Module {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewFiliere.class)
 	private Integer id;
 	@Column(columnDefinition = "INTEGER(4)")
+	@JsonView(Views.ViewBasic.class)
 	private int quest;
 	@Column(columnDefinition = "int(2)")
+	@JsonView(Views.ViewBasic.class)
 	private int duree;
 
 	@ManyToOne
 	@JoinColumn(name = "filiere", nullable = false)
+	@JsonView(Views.ViewModule.class)
 	private Filiere filiere;
 	@ManyToOne
 	@JoinColumn(name = "matiere", nullable = false)
+	@JsonView(Views.ViewModule.class)
 	private Matiere matiere;
 
 	public Module() {

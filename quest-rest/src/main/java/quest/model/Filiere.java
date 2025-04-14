@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,12 +21,18 @@ public class Filiere {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBasic.class)
 	private Integer id;
 	@Column(length = 25, nullable = false)
+	@JsonView(Views.ViewBasic.class)
 	private String libelle;
 	@Column(nullable = false)
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonView(Views.ViewBasic.class)
 	private LocalDate debut;
 	@Column(nullable = false) // "fin":"2025-05-08"
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonView(Views.ViewBasic.class)
 	private LocalDate fin;
 
 	/*
@@ -37,11 +44,10 @@ public class Filiere {
 	 */
 
 	@OneToMany(mappedBy = "filiere")
-	@JsonIgnore
+	@JsonView(Views.ViewFiliereDetail.class)
 	private List<Module> modules = new ArrayList<>();
 
 	@OneToMany(mappedBy = "filiere")
-	@JsonIgnore
 	private List<Stagiaire> eleves = new ArrayList<>();
 
 	public Filiere() {

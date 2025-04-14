@@ -15,55 +15,55 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import quest.model.Matiere;
+import quest.dao.IDAOFiliere;
+import quest.model.Filiere;
 import quest.model.Views;
-import quest.service.MatiereService;
 
 @RestController
-@RequestMapping("/matiere")
-public class MatiereRestController {
+@RequestMapping("/filiere")
+public class FiliereRestController {
 
-	private MatiereService matiereService;
+	private IDAOFiliere daoFiliere;
 
-	public MatiereRestController(MatiereService matiereService) {
+	public FiliereRestController(IDAOFiliere daoFiliere) {
 		super();
-		this.matiereService = matiereService;
+		this.daoFiliere = daoFiliere;
 	}
 
 	@GetMapping("")
-	@JsonView(Views.ViewMatiere.class)
-	public List<Matiere> getAll() {
-		return this.matiereService.getAll();
-	}
-	
-	@GetMapping("/{id}")
-	@JsonView(Views.ViewMatiere.class)
-	public Matiere getById(@PathVariable Integer id) {
-		return this.matiereService.getById(id);
+	@JsonView(Views.ViewFiliere.class)
+	public List<Filiere> getAll() {
+		return this.daoFiliere.findAll();
 	}
 
-	@PostMapping("")
-	@JsonView(Views.ViewMatiere.class)
-	public Matiere create(@RequestBody Matiere matiere) {
-		return this.matiereService.create(matiere);
+	@GetMapping("/{id}")
+	@JsonView(Views.ViewFiliereDetail.class)
+	public Filiere getById(@PathVariable Integer id) {
+		return this.daoFiliere.findByIdWithModules(id);
 	}
 	
+	@PostMapping("")
+	@JsonView(Views.ViewFiliere.class)
+	public Filiere create(@RequestBody Filiere filiere) {
+		return this.daoFiliere.save(filiere);
+	}
+
 	@PutMapping("/{id}")
-	@JsonView(Views.ViewMatiere.class)
-	public Matiere update(@RequestBody Matiere matiere, @PathVariable Integer id) {
-		if(id != matiere.getId() || !this.matiereService.existById(id)) {
+	@JsonView(Views.ViewFiliere.class)
+	public Filiere update(@RequestBody Filiere filiere, @PathVariable Integer id) {
+		if (id != filiere.getId() || !this.daoFiliere.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
 		}
-		
-		return this.matiereService.update(matiere);
+
+		return this.daoFiliere.save(filiere);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
-		if(!this.matiereService.existById(id)) {
+		if (!this.daoFiliere.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Non trouvé");
 		}
-		
-		this.matiereService.deleteById(id);
+
+		this.daoFiliere.deleteById(id);
 	}
 }
