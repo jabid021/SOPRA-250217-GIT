@@ -9,6 +9,8 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Past;
 
 @Entity
 @DiscriminatorValue("customer")
@@ -17,9 +19,11 @@ public class Client extends Personne {
 	@Column(columnDefinition = "INT(3)")
 	private int age;
 	@Column(name = "date_naissance")
+	@Past(message = "La date de naissance est invalide")
 	private LocalDate dateNaissance;
 
 	@Embedded
+	@Valid
 	private Adresse adresse;
 
 	@OneToMany(mappedBy = "client")
