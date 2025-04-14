@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Edition d'un client</title>
+</head>
+<body>
+
+	<section layout:fragment="monContenu">
+		<div class="container">
+		<div class="card mt-3">
+			<form th:action="@{/client/save}" method="post">
+				<div class="card-header bg-primary text-white display-6">Edition
+					d'un client</div>
+				<div class="card-body">
+					<div class="form-group">
+						<label for="id">Identifiant:</label> <input type="number"
+							class="form-control" id="id" name="id" th:value="${client.id}" readonly />
+					</div>
+					<div class="form-group">
+						<label for="nom">Nom:</label> <input type="text"
+							class="form-control" id="nom" name="nom"
+							th:value="${client.nom}" />
+						<span class="text-danger" th:errors="${client.nom}"></span>
+					</div>
+					<div class="form-group">
+						<label for="prenom">Prénom:</label> <input type="text"
+							class="form-control" id="prenom" name="prenom"
+							th:value="${client.prenom}" />
+						<span class="text-danger" th:errors="${client.prenom}"></span>
+					</div>
+					<div class="form-group">
+						<label for="dateNaissance">Date de naissance:</label> <input type="date"
+							class="form-control" id="dateNaissance" name="dateNaissance"
+							th:value="${#temporals.format(client.dateNaissance, 'yyyy-MM-dd')}" />
+						<span class="text-danger" th:errors="${client.dateNaissance}"></span>
+					</div>
+					<div class="form-group">
+						<label for="numero">Numéro:</label> <input type="text"
+							class="form-control" id="numero" name="adresse.numero"
+							th:value="${client.adresse.numero}" />
+						<span class="text-danger" th:errors="${client.adresse.numero}"></span>
+					</div>
+					<div class="form-group">
+						<label for="voie">Voie:</label> <input type="text"
+							class="form-control" id="voie" name="adresse.voie"
+							th:value="${client.adresse.voie}" />
+						<span class="text-danger" th:errors="${client.adresse.voie}"></span>
+					</div>
+					<div class="form-group">
+						<label for="cp">Code postal:</label> <input type="text"
+							class="form-control" id="cp" name="adresse.cp"
+							th:value="${client.adresse.cp}" />
+						<span class="text-danger" th:errors="${client.adresse.cp}"></span>
+					</div>
+					<div class="form-group">
+						<label for="ville">Ville:</label> <input type="text"
+							class="form-control" id="ville" name="adresse.ville"
+							th:value="${client.adresse.ville}" />
+						<span class="text-danger" th:errors="${client.adresse.ville}"></span>
+					</div>
+				</div>
+				<div class="card-footer">
+					<div class="btn-group btn-group-lg float-right">
+						<button type="submit" class="btn btn-success">
+							<i class="bi bi-check-square-fill"></i>
+						</button>
+
+						<a class="btn btn-warning" th:href="@{/client/cancel}"><i
+							class="bi bi-backspace-fill"></i></a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="card mt-3">
+			<div class="card-header bg-primary text-white display-6">Achats du client</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Identifiant</th>
+							<th>Date d'achat</th>
+							<th>Quantité</th>
+							<th>Produit</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr th:each="achat : ${client.achats}">
+							<td th:text="${achat.id}"></td>
+							<td>[[${#temporals.format(achat.dateAchat, 'dd/MM/yyyy')}]]</td>
+							<td>[[${achat.quantite}]] an(s)</td>
+							<td>[[${achat.produit?.libelle}]] : [[${achat.produit?.prix}]]</td>
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+	</section>
+
+</body>
+</html>
