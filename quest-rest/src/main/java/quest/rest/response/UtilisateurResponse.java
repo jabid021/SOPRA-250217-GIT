@@ -155,6 +155,9 @@ public class UtilisateurResponse {
 			Stagiaire stagiaire = (Stagiaire) utilisateur;
 			BeanUtils.copyProperties(stagiaire, utilisateurResponse);
 			BeanUtils.copyProperties(stagiaire.getAdresse(), utilisateurResponse);
+			if(stagiaire.getGenre() != null) {
+				utilisateurResponse.setGenre(stagiaire.getGenre().name());
+			}
 			if(stagiaire.getFiliere() != null) {
 				utilisateurResponse.setIdFiliere(stagiaire.getFiliere().getId());
 			}
@@ -165,6 +168,10 @@ public class UtilisateurResponse {
 			utilisateurResponse.setUtilisateurType(UtilisateurType.FORMATEUR);
 			Formateur formateur = (Formateur) utilisateur;
 			BeanUtils.copyProperties(formateur, utilisateurResponse);
+			
+			if(formateur.getGenre() != null) {
+				utilisateurResponse.setGenre(formateur.getGenre().name());
+			}
 		} else if(utilisateur instanceof Admin) {
 			utilisateurResponse.setUtilisateurType(UtilisateurType.ADMIN);
 		}

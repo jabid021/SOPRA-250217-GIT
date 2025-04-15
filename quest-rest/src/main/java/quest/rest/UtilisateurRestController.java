@@ -3,6 +3,7 @@ package quest.rest;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import jakarta.validation.Valid;
 import quest.dao.IDAOUtilisateur;
+import quest.model.Stagiaire;
 import quest.model.Utilisateur;
+import quest.rest.request.InscriptionStagiaireRequest;
 import quest.rest.request.UtilisateurRequest;
 import quest.rest.response.UtilisateurResponse;
 
@@ -68,5 +72,17 @@ public class UtilisateurRestController {
 		}
 
 		this.daoUtilisateur.deleteById(id);
+	}
+	
+	@PostMapping("/inscriptionStagiaire")
+	public Stagiaire create(@RequestBody @Valid InscriptionStagiaireRequest inscriptionStagiaireRequest, BindingResult result) {
+		if(result.hasErrors()) {
+			String errors = result.getAllErrors().toString(); // Récupération propre des messages d'erreurs à effectuer
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, errors);
+		}
+		
+		Stagiaire stagiaire = InscriptionStagiaireRequest.convert(inscriptionStagiaireRequest);
+
+		return daoUtilisateur.save(stagiaire);
 	}
 }
