@@ -1,5 +1,12 @@
 package quest.rest.request;
 
+import org.springframework.beans.BeanUtils;
+
+import quest.model.Admin;
+import quest.model.Formateur;
+import quest.model.Stagiaire;
+import quest.model.Utilisateur;
+
 public class UtilisateurRequest {
 	private Integer id;
 	private String identifiant;
@@ -42,6 +49,23 @@ public class UtilisateurRequest {
 		this.utilisateurType = utilisateurType;
 	}
 
+	public static Utilisateur convert(UtilisateurRequest utilisateurRequest) {
+		Utilisateur utilisateur = null;
+		if(utilisateurRequest.getUtilisateurType() == UtilisateurType.ADMIN) {
+			utilisateur = new Admin();
+		} else if(utilisateurRequest.getUtilisateurType() == UtilisateurType.FORMATEUR) {
+			utilisateur = new Formateur();
+		} else if(utilisateurRequest.getUtilisateurType() == UtilisateurType.STAGIAIRE) {
+			utilisateur = new Stagiaire();
+		}
+		
+		BeanUtils.copyProperties(utilisateurRequest, utilisateur);
+		utilisateur.setLogin(utilisateurRequest.getIdentifiant());
+		utilisateur.setPassword(utilisateurRequest.getMotDePasse());
+		
+		return utilisateur;
+	}
+	
 	public enum UtilisateurType {
 		ADMIN, FORMATEUR, STAGIAIRE;
 	}

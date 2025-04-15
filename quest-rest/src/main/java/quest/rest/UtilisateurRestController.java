@@ -31,29 +31,34 @@ public class UtilisateurRestController {
 
 	@GetMapping("")
 	public List<UtilisateurResponse> getAll() {
-//		return this.daoUtilisateur.findAll();
-		return null;
+		List<Utilisateur> utilisateurs = this.daoUtilisateur.findAll();
+
+//		return utilisateurs.stream().map(u -> UtilisateurResponse.convert(u)).toList();
+		return utilisateurs.stream().map(UtilisateurResponse::convert).toList();
 	}
 
 	@GetMapping("/{id}")
 	public UtilisateurResponse getById(@PathVariable Integer id) {
-//		return this.daoUtilisateur.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-		return null;
+		return this.daoUtilisateur.findById(id).map(UtilisateurResponse::convert)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
 
 	@PostMapping("")
 	public Utilisateur create(@RequestBody UtilisateurRequest utilisateurRequest) {
+		Utilisateur utilisateur = UtilisateurRequest.convert(utilisateurRequest);
 
-		return null;
+		return daoUtilisateur.save(utilisateur);
 	}
 
 	@PutMapping("/{id}")
 	public Utilisateur update(@RequestBody UtilisateurRequest utilisateurRequest, @PathVariable Integer id) {
-//		if (id != utilisateur.getId() || !this.daoUtilisateur.existsById(id)) {
-//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
-//		}
+		if (id != utilisateurRequest.getId() || !this.daoUtilisateur.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
+		}
 
-		return null;
+		Utilisateur utilisateur = UtilisateurRequest.convert(utilisateurRequest);
+
+		return daoUtilisateur.save(utilisateur);
 	}
 
 	@DeleteMapping("/{id}")

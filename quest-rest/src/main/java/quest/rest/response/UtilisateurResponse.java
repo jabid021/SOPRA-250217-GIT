@@ -1,5 +1,12 @@
 package quest.rest.response;
 
+import org.springframework.beans.BeanUtils;
+
+import quest.model.Admin;
+import quest.model.Formateur;
+import quest.model.Stagiaire;
+import quest.model.Utilisateur;
+
 public class UtilisateurResponse {
 	private Integer id;
 	private String identifiant;
@@ -8,6 +15,7 @@ public class UtilisateurResponse {
 	// formateur ou stagiaire
 	private String nom;
 	private String prenom;
+	private String email;
 	private String genre;
 	// #####################
 	// stagiaire
@@ -72,6 +80,14 @@ public class UtilisateurResponse {
 		this.prenom = prenom;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getGenre() {
 		return genre;
 	}
@@ -126,6 +142,34 @@ public class UtilisateurResponse {
 
 	public void setIdOrdinateur(Integer idOrdinateur) {
 		this.idOrdinateur = idOrdinateur;
+	}
+	
+	public static UtilisateurResponse convert(Utilisateur utilisateur) {
+		UtilisateurResponse utilisateurResponse = new UtilisateurResponse();
+		BeanUtils.copyProperties(utilisateur, utilisateurResponse);
+		utilisateurResponse.setIdentifiant(utilisateur.getLogin());
+		utilisateurResponse.setMotDePasse(utilisateur.getPassword());
+		
+		if(utilisateur instanceof Stagiaire) {
+			utilisateurResponse.setUtilisateurType(UtilisateurType.STAGIAIRE);
+			Stagiaire stagiaire = (Stagiaire) utilisateur;
+			BeanUtils.copyProperties(stagiaire, utilisateurResponse);
+			BeanUtils.copyProperties(stagiaire.getAdresse(), utilisateurResponse);
+			if(stagiaire.getFiliere() != null) {
+				utilisateurResponse.setIdFiliere(stagiaire.getFiliere().getId());
+			}
+			if(stagiaire.getOrdinateur() != null) {
+				utilisateurResponse.setIdOrdinateur(stagiaire.getOrdinateur().getNumero());
+			}
+		} else if(utilisateur instanceof Formateur) {
+			utilisateurResponse.setUtilisateurType(UtilisateurType.FORMATEUR);
+			Formateur formateur = (Formateur) utilisateur;
+			BeanUtils.copyProperties(formateur, utilisateurResponse);
+		} else if(utilisateur instanceof Admin) {
+			utilisateurResponse.setUtilisateurType(UtilisateurType.ADMIN);
+		}
+		
+		return utilisateurResponse; 
 	}
 
 	public enum UtilisateurType {
