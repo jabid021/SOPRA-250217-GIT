@@ -16,7 +16,10 @@ import quest.dao.IDAOModule;
 import quest.dao.IDAOOrdinateur;
 import quest.dao.IDAOUtilisateur;
 import quest.model.Filiere;
+import quest.model.Genre;
 import quest.model.Matiere;
+import quest.model.Ordinateur;
+import quest.model.Stagiaire;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AppConfig.class)
@@ -58,5 +61,23 @@ public class TestPopulate {
 		
 		quest.model.Module filiereJavaSpringCore = new quest.model.Module(6668, 3, filiereJava, springCore);
 		filiereJavaSpringCore = daoModule.save(filiereJavaSpringCore);
+		
+		Stagiaire guillaume = new Stagiaire("gbaillot", "123456", "BAILLOT", "Guillaume", Genre.homme, "gbaillot@gmail.com", "8", "rue de la Paix", "Paris", "75008", filiereJava);
+		guillaume = daoUtilisateur.save(guillaume);
+		
+		Stagiaire marina = new Stagiaire("maubry", "123456", "AUBRY", "Marina", Genre.femme, "maubry@gmail.com", "8", "rue de la Paix", "Paris", "75008", filiereJava);
+		marina = daoUtilisateur.save(marina);
+		
+		Stagiaire maxence = new Stagiaire("mpalkowski", "123456", "PALKOWSKI", "Maxence", Genre.homme, "mpalkowski@gmail.com", "8", "rue de la Paix", "Paris", "75008", filiereJava);
+		maxence = daoUtilisateur.save(maxence);
+		
+		
+		Ordinateur ordiGuillaume = new Ordinateur("ASUS", 16, guillaume);
+		ordiGuillaume = daoOrdinateur.save(ordiGuillaume);
+		
+		Ordinateur ordiMarina = new Ordinateur("HP", 32, marina);
+		ordiMarina = daoOrdinateur.save(ordiMarina);
+		
+		
 	}
 }

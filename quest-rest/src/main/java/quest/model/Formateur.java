@@ -1,5 +1,7 @@
 package quest.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -8,12 +10,15 @@ import jakarta.persistence.Enumerated;
 @Entity
 public class Formateur extends Utilisateur {
 	@Column(length = 25)
+	@JsonView(Views.ViewBasic.class)
 	private String nom;
 	@Column(length = 25)
+	@JsonView(Views.ViewBasic.class)
 	private String prenom;
 
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('homme','femme','nb')")
+	@JsonView(Views.ViewBasic.class)
 	private Genre genre;
 
 	public Formateur() {

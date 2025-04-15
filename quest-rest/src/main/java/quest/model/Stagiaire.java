@@ -1,5 +1,7 @@
 package quest.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -13,15 +15,19 @@ import jakarta.persistence.OneToOne;
 public class Stagiaire extends Utilisateur {
 
 	@Column(length = 25)
+	@JsonView(Views.ViewBasic.class)
 	private String nom;
 	@Column(length = 25)
+	@JsonView(Views.ViewBasic.class)
 	private String prenom;
 
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('homme','femme','nb')")
+	@JsonView(Views.ViewBasic.class)
 	private Genre genre;
 
 	@Column(length = 30)
+	@JsonView(Views.ViewBasic.class)
 	private String email;
 	@Embedded
 	private Adresse adresse;

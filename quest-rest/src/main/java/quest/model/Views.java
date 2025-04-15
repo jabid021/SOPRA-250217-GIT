@@ -15,4 +15,10 @@ public interface Views {
 	
 	public static interface ViewModule extends ViewBasic {
 	}
+	
+	public static interface ViewOrdinateur extends ViewBasic {
+	}
+	
+	public static interface ViewOrdinateurDetail extends ViewOrdinateur {
+	}
 }
