@@ -35,7 +35,7 @@ public class MatiereRestController {
 	public List<Matiere> getAll() {
 		return this.matiereService.getAll();
 	}
-	
+
 	@GetMapping("/{id}")
 	@JsonView(Views.ViewMatiere.class)
 	public Matiere getById(@PathVariable Integer id) {
@@ -47,23 +47,23 @@ public class MatiereRestController {
 	public Matiere create(@RequestBody Matiere matiere) {
 		return this.matiereService.create(matiere);
 	}
-	
+
 	@PutMapping("/{id}")
 	@JsonView(Views.ViewMatiere.class)
 	public Matiere update(@RequestBody Matiere matiere, @PathVariable Integer id) {
-		if(id != matiere.getId() || !this.matiereService.existById(id)) {
+		if (id != matiere.getId() || !this.matiereService.existById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
 		}
-		
+
 		return this.matiereService.update(matiere);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
-		if(!this.matiereService.existById(id)) {
+		if (!this.matiereService.existById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Non trouvé");
 		}
-		
+
 		this.matiereService.deleteById(id);
 	}
 }
