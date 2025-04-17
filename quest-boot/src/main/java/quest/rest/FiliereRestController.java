@@ -3,6 +3,7 @@ package quest.rest;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,15 +42,17 @@ public class FiliereRestController {
 	public Filiere getById(@PathVariable Integer id) {
 		return this.daoFiliere.findByIdWithModules(id);
 	}
-	
+
 	@PostMapping("")
 	@JsonView(Views.ViewFiliere.class)
+	@PreAuthorize("hasRole('ADMIN')")
 	public Filiere create(@RequestBody Filiere filiere) {
 		return this.daoFiliere.save(filiere);
 	}
 
 	@PutMapping("/{id}")
 	@JsonView(Views.ViewFiliere.class)
+	@PreAuthorize("hasAnyRole('ADMIN', 'FORMATEUR')")
 	public Filiere update(@RequestBody Filiere filiere, @PathVariable Integer id) {
 		if (id != filiere.getId() || !this.daoFiliere.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Incohérence de l'appel");
