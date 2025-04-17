@@ -20,7 +20,7 @@ import quest.model.Filiere;
 import quest.model.Views;
 
 @RestController
-@RequestMapping("/filiere")
+@RequestMapping("/api/filiere")
 public class FiliereRestController {
 
 	private IDAOFiliere daoFiliere;

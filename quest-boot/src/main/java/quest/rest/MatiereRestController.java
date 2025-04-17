@@ -20,7 +20,7 @@ import quest.model.Views;
 import quest.service.MatiereService;
 
 @RestController
-@RequestMapping("/matiere")
+@RequestMapping("/api/matiere")
 public class MatiereRestController {
 
 	private MatiereService matiereService;

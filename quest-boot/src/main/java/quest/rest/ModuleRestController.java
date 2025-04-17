@@ -20,7 +20,7 @@ import quest.model.Module;
 import quest.model.Views;
 
 @RestController
-@RequestMapping("/module")
+@RequestMapping("/api/module")
 public class ModuleRestController {
 
 	private IDAOModule daoModule;

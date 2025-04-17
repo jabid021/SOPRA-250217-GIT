@@ -23,7 +23,7 @@ import quest.rest.request.UtilisateurRequest;
 import quest.rest.response.UtilisateurResponse;
 
 @RestController
-@RequestMapping("/utilisateur")
+@RequestMapping("/api/utilisateur")
 public class UtilisateurRestController {
 
 	private IDAOUtilisateur daoUtilisateur;

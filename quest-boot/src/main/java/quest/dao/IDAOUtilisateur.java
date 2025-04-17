@@ -1,6 +1,7 @@
 package quest.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,6 +13,7 @@ import quest.model.Utilisateur;
 
 public interface IDAOUtilisateur extends JpaRepository<Utilisateur,Integer>{
 
+	public Optional<Utilisateur> findByLogin(String login);
 	public Utilisateur findByLoginAndPassword(String login,String password);
 	@Query("from Admin")
 	public List<Admin> findAllAdmin();

@@ -12,7 +12,9 @@ import quest.dao.IDAOMatiere;
 import quest.dao.IDAOModule;
 import quest.dao.IDAOOrdinateur;
 import quest.dao.IDAOUtilisateur;
+import quest.model.Admin;
 import quest.model.Filiere;
+import quest.model.Formateur;
 import quest.model.Genre;
 import quest.model.Matiere;
 import quest.model.Ordinateur;
@@ -68,6 +70,14 @@ class QuestBootApplicationTests {
 		Stagiaire maxence = new Stagiaire("mpalkowski", "123456", "PALKOWSKI", "Maxence", Genre.homme, "mpalkowski@gmail.com", "8", "rue de la Paix", "Paris", "75008", filiereJava);
 		maxence = daoUtilisateur.save(maxence);
 		
+		Formateur jordan = new Formateur("jabid", "123456", "ABID", "Jordan", Genre.homme);
+		jordan = daoUtilisateur.save(jordan);
+		
+		Formateur eric = new Formateur("eric", "123456", "SULTAN", "Eric", Genre.homme);
+		eric = daoUtilisateur.save(eric);
+		
+		Admin admin = new Admin("admin", "123456");
+		admin = daoUtilisateur.save(admin);
 		
 		Ordinateur ordiGuillaume = new Ordinateur("ASUS", 16, guillaume);
 		ordiGuillaume = daoOrdinateur.save(ordiGuillaume);

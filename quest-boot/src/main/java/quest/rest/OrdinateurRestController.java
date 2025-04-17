@@ -20,7 +20,7 @@ import quest.model.Ordinateur;
 import quest.model.Views;
 
 @RestController
-@RequestMapping("/ordinateur")
+@RequestMapping("/api/ordinateur")
 public class OrdinateurRestController {
 
 	private IDAOOrdinateur daoOrdinateur;
