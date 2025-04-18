@@ -8,6 +8,12 @@ public class ConnexionRequest {
 		super();
 	}
 
+	public ConnexionRequest(String login, String password) {
+		super();
+		this.login = login;
+		this.password = password;
+	}
+
 	public String getLogin() {
 		return login;
 	}
