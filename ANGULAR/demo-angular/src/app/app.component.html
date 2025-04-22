@@ -16,3 +16,20 @@
 
 <button (click)="changeTitle()">Changer titre</button>
 
+<hr />
+
+<h1>Exercice couleur</h1>
+
+<select [(ngModel)]="couleur">
+    <option value="black">Noir</option>
+    <option value="green">Vert</option>
+    <option value="yellow">Jaune</option>
+    <option value="blue">Bleu</option>
+</select>
+
+<input type="color" [(ngModel)]="couleur" />
+
+<p [style.color]="couleur">La couleur sélectionnée est {{ couleur }}</p>
+
+
+

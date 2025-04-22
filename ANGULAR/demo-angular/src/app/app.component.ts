@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   private _title: string = 'demo-angular QUE JAI CHANGE';
+  private _couleur: string = "black";
 
   public demo: any = {
     nom: "Toto"
@@ -19,6 +20,14 @@ export class AppComponent {
 
   public set title(value: string) {
     this._title = value;
+  }
+
+  public get couleur(): string {
+    return this._couleur;
+  }
+
+  public set couleur(value: string) {
+    this._couleur = value;
   }
 
   public changeTitle() {
