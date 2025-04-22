@@ -1,0 +1,18 @@
+
+
+<h1>title</h1>
+
+<p>{{ title }}</p>
+<p>{{ demo.nom }}</p>
+
+<p>{{ 5 + 4 }}</p>
+
+<input type="text" value="{{ title }}" />
+<input type="text" [value]="title" (input)="inputTitle($event)" />
+
+<p>Commentaire : la directive ngModel est disponible dans le module FormsModule, et permet de maintenir à jour la valeur de "title"</p>
+
+<input type="text" [(ngModel)]="title" />
+
+<button (click)="changeTitle()">Changer titre</button>
+
