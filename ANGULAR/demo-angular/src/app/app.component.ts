@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Todo } from './todo';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   private _title: string = 'demo-angular QUE JAI CHANGE';
   private _couleur: string = "black";
+  private _todo: Todo = new Todo(1, "Test", false, 42);
 
   public demo: any = {
     nom: "Toto"
