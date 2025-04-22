@@ -1,0 +1,7 @@
+p {
+    transition: background-color ease-in-out 0.25s;
+}
+
+.not-completed {
+    background-color: red;
+}

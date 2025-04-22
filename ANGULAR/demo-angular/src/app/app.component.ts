@@ -32,6 +32,10 @@ export class AppComponent {
     this._couleur = value;
   }
 
+  public get todo(): Todo {
+    return this._todo;
+  }
+
   public changeTitle() {
     this._title = "Nouveau titre";
   }

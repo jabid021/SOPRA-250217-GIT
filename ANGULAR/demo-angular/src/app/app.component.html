@@ -31,5 +31,21 @@
 
 <p [style.color]="couleur">La couleur sélectionnée est {{ couleur }}</p>
 
+<hr />
 
+<h1>Exercice Todo solo</h1>
 
+<input type="number" [(ngModel)]="todo.id" />
+<input type="text" [(ngModel)]="todo.title" />
+
+<select [(ngModel)]="todo.completed">
+    <option value="false">Non</option>
+    <option value="true">Oui</option>
+</select>
+
+<input type="checkbox" [(ngModel)]="todo.completed" />
+
+<p *ngIf="todo.id != 0 && todo.title" [class.not-completed]="!todo.completed">
+    L'id du todo est {{ todo.id }}<br />
+    Le title est {{ todo.title }}
+</p>
