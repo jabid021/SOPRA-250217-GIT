@@ -10,8 +10,10 @@ export class AscTextFieldComponent {
   @Input() label: string = "";
   @Input() value: string = "";
   @Output() clicked = new EventEmitter<string>();
+  @Output() valueChange = new EventEmitter<string>();
 
   public onOutputClicked() {
     this.clicked.emit(this.value);
+    this.valueChange.emit(this.value);
   }
 }

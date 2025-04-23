@@ -119,4 +119,6 @@
 
 <h1>Deuxième composant</h1>
 
-<asc-text-field label="Saisir le titre" [value]="title" (clicked)="onButtonClicked($event)" />
+<!-- <asc-text-field label="Saisir le titre" [value]="title" (clicked)="onButtonClicked($event)" /> -->
+<!-- <asc-text-field label="Saisir le titre" [value]="title" (valueChange)="title = $event" /> -->
+<asc-text-field label="Saisir le titre" [(value)]="title" />
