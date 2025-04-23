@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { TodoCompletPipe } from './todo-complet.pipe';
 import { AscBoldComponent } from './asc-bold/asc-bold.component';
+import { AscTextFieldComponent } from './asc-text-field/asc-text-field.component';
 
 @NgModule({
   declarations: [ // Déclaration dans notre module de tout ce qui est utilisé dans notre module principal
     AppComponent,
     TodoCompletPipe,
-    AscBoldComponent
+    AscBoldComponent,
+    AscTextFieldComponent
   ],
   
   imports: [ // Tous les modules dont on a besoin dans notre module à nous
