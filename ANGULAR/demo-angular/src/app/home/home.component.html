@@ -5,6 +5,8 @@
 
 <p>{{ 5 + 4 }}</p>
 
+<button (click)="navToTodos()">Aller voir les todos</button>
+
 <input type="text" value="{{ title }}" />
 <input type="text" [value]="title" (input)="inputTitle($event)" />
 
