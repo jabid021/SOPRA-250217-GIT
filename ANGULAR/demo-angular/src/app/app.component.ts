@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Todo } from './todo';
 
 @Component({
@@ -7,7 +7,7 @@ import { Todo } from './todo';
   styleUrl: './app.component.css',
   standalone: false
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private _title: string = 'demo-angular QUE JAI CHANGE';
   private _couleur: string = "black";
   private _todo: Todo = new Todo(1, "Test", false, 42);
@@ -15,6 +15,10 @@ export class AppComponent {
   private _formTodo: Todo = new Todo(0, "", false, 0);
   private todoId: number = 0;
   public laDate: Date = new Date();
+
+  ngOnInit(): void {
+    this.todos.push(new Todo(0, "Exemple", true, 0));
+  }
 
   public demo: any = {
     nom: "Toto"
