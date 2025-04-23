@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: false
 })
 export class TodoCompletPipe implements PipeTransform {
-  transform(value: unknown, ...args: unknown[]): unknown {
+  transform(value: unknown, ...args: unknown[]): string {
     console.log("valeur ici", value);
     console.log("args ici", args);
 

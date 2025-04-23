@@ -91,7 +91,7 @@
                     <span>Non terminé</span>
                 }
             </td>
-            <td [style.background]="t.completed | todoComplet:'couleur'">{{ t.completed | todoComplet }}</td>
+            <td [style.background]="t.completed | todoComplet:'couleur'">{{ t.completed | todoComplet | uppercase }}</td>
         </tr>
     </tbody>
 </table>
