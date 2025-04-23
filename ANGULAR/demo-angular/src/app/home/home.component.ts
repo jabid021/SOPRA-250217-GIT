@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   private _couleur: string = "black";
   public laDate: Date = new Date();
   private route2: ActivatedRoute = inject(ActivatedRoute);
+  private id: number = 0;
 
   // Injection de dépendance de Angular
   // > Angular nous donnera l'instance de Router
@@ -28,6 +29,8 @@ export class HomeComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       console.log("query params", params);
       console.log("query param id", params['id']);
+
+      this.id = params['id'];
     });
   }
 
