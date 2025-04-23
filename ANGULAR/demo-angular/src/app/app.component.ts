@@ -63,4 +63,8 @@ export class AppComponent {
 
     this._formTodo = new Todo(0, "", false, 0);
   }
+
+  public onButtonClicked(value: string) {
+    alert(value);
+  }
 }
