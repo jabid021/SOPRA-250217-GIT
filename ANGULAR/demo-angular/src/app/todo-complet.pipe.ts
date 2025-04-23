@@ -17,6 +17,13 @@ export class TodoCompletPipe implements PipeTransform {
 
     // Avec la couleur, modifier le style couleur de la ligne ou la colonne
 
+    if (args.length > 0 && args[0] === "couleur") {
+      if (value) {
+        return "hsl(153 48% 49%)";
+      }
+
+      return "hsl(341 79% 53%)";
+    }
 
     if (value) {
       return "Terminé !";
