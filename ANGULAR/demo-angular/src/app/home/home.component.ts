@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   private _title: string = 'demo-angular QUE JAI CHANGE';
   private _couleur: string = "black";
   public laDate: Date = new Date();
+  private route2: ActivatedRoute = inject(ActivatedRoute);
 
   // Injection de dépendance de Angular
   // > Angular nous donnera l'instance de Router
