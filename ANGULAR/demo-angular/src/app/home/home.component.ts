@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-home',
@@ -17,10 +16,7 @@ export class HomeComponent implements OnInit {
 
   // Injection de dépendance de Angular
   // > Angular nous donnera l'instance de Router
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private todoService: TodoService) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     // Pour les paramètres de chemin (les variables de chemin)
@@ -71,7 +67,6 @@ export class HomeComponent implements OnInit {
   }
 
   public navToTodos() {
-    // this.router.navigate([ '/todo' ]);
-    this.todoService.demo();
+    this.router.navigate([ '/todo' ]);
   }
 }

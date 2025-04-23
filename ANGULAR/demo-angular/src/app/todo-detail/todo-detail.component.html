@@ -1,1 +1,4 @@
-<h1>TODO #{{ id }}</h1>
+<h1 [style.background-color]="todo.completed | todoComplet:'couleur'">TODO #{{ todo.id }}</h1>
+
+<p>{{ todo.title }}</p>
+<p>{{ todo.completed | todoComplet }}</p>

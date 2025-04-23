@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../todo';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -7,33 +8,33 @@ import { Todo } from '../todo';
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.css'
 })
-export class TodoComponent implements OnInit {
-  private _todo: Todo = new Todo(1, "Test", false, 42);
-  private _todos: Array<Todo> = new Array<Todo>();
+export class TodoComponent {
   private _formTodo: Todo = new Todo(0, "", false, 0);
-  private todoId: number = 0;
 
-  ngOnInit(): void {
-    this.todos.push(new Todo(0, "Exemple", true, 0));
-  }
-
-  public get todo(): Todo {
-    return this._todo;
-  }
+  constructor(private service: TodoService) { }
 
   public get todos(): Array<Todo> {
-    return this._todos;
+    return this.service.findAll();
   }
 
   public get formTodo(): Todo {
     return this._formTodo;
   }
 
-  public addTodo() {
-    this._formTodo.id = ++this.todoId;
-    
-    this._todos.push(this._formTodo);
-
+  public addOrEditTodo() {
+    this.service.save(this._formTodo);
     this._formTodo = new Todo(0, "", false, 0);
+  }
+
+  public editTodo(todo: Todo) {
+    this._formTodo = new Todo(todo.id, todo.title, todo.completed, todo.userId);
+  }
+
+  public cancelEditTodo() {
+    this._formTodo = new Todo(0, "", false, 0);
+  }
+
+  public deleteTodo(todo: Todo) {
+    this.service.deleteById(todo.id);
   }
 }
