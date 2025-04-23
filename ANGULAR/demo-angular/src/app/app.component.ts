@@ -14,6 +14,7 @@ export class AppComponent {
   private _todos: Array<Todo> = new Array<Todo>();
   private _formTodo: Todo = new Todo(0, "", false, 0);
   private todoId: number = 0;
+  public laDate: Date = new Date();
 
   public demo: any = {
     nom: "Toto"
