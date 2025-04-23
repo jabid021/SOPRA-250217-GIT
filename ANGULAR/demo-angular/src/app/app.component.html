@@ -127,9 +127,20 @@
 
 <h1>Troisième composant</h1>
 
-<asc-list>
-    <ng-template #demonstration let-cle="cle" let-a="autre">
-        ET A L'INTERIEUR : {{ cle.nom }}, {{ a }}
+<asc-list [todos]="todos">
+    <ng-template #todotpl let-t="todo">
+        Titre = {{ t.title }}, {{ t.completed | todoComplet }}
     </ng-template>
 </asc-list>
 
+<asc-list [todos]="todos">
+    <ng-template #todotpl let-t="todo">
+        <div>
+            {{ t.title }}
+        </div>
+
+        <div>
+            {{ t.completed | todoComplet }}
+        </div>
+    </ng-template>
+</asc-list>

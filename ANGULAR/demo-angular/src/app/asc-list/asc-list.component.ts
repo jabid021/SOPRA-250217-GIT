@@ -1,4 +1,5 @@
-import { Component, ContentChild, TemplateRef } from '@angular/core';
+import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { Todo } from '../todo';
 
 @Component({
   selector: 'asc-list',
@@ -7,7 +8,8 @@ import { Component, ContentChild, TemplateRef } from '@angular/core';
   styleUrl: './asc-list.component.css'
 })
 export class AscListComponent {
-  @ContentChild('demonstration') demonstration!: TemplateRef<unknown>;
+  @Input() todos: Array<Todo> = new Array<Todo>();
+  @ContentChild('todotpl') todotpl!: TemplateRef<unknown>;
 
   leContext: any = {
     cle: {
