@@ -6,7 +6,7 @@
 </div>
 
 @if (formTodo.title) {
-    @if (formTodo.id >= 0) {
+    @if (formTodo.id > 0) {
         <div class="btn-group">
             <button class="btn btn-warning" (click)="addOrEditTodo()">Modifier</button>
             <button class="btn btn-danger" (click)="cancelEditTodo()">Annuler</button>
