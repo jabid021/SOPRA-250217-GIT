@@ -1,0 +1,86 @@
+
+
+<h1>Exercice Todo solo</h1>
+
+<input type="number" [(ngModel)]="todo.id" />
+<input type="text" [(ngModel)]="todo.title" />
+
+<select [(ngModel)]="todo.completed">
+    <option value="false">Non</option>
+    <option value="true">Oui</option>
+</select>
+
+<input type="checkbox" [(ngModel)]="todo.completed" />
+
+<p *ngIf="todo.id != 0 && todo.title" [class.not-completed]="!todo.completed">
+    L'id du todo est {{ todo.id }}<br />
+    Le title est {{ todo.title }}
+</p>
+
+<hr />
+
+<h1>Exercices Todo List</h1>
+
+<div class="input-group mb-3">
+    <span class="input-group-text">Title</span>
+    <input type="text" class="form-control" [(ngModel)]="formTodo.title" />
+</div>
+
+<button class="btn btn-success" (click)="addTodo()">Ajouter</button>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Complet</th>
+            <th>Complet Pipe</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let t of todos">
+            <td>{{ t.id }}</td>
+            <td>{{ t.title }}</td>
+            <td>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="todoCompleted" [(ngModel)]="t.completed" />
+                </div>
+
+                <span *ngIf="t.completed">Terminé !</span>
+                <span *ngIf="!t.completed">Non terminé</span>
+
+                @if (t.completed) {
+                    <span>Terminé !</span>
+                }
+                
+                @else {
+                    <span>Non terminé</span>
+                }
+            </td>
+            <td [style.background]="t.completed | todoComplet:'couleur'">{{ t.completed | todoComplet | uppercase }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+
+<h1>Troisième composant</h1>
+
+<asc-list [todos]="todos">
+    <ng-template #todotpl let-t="todo">
+        Titre = {{ t.title }}, {{ t.completed | todoComplet }}
+    </ng-template>
+</asc-list>
+
+<asc-list [todos]="todos">
+    <ng-template #todotpl let-t="todo">
+        <div>
+            {{ t.title }}
+        </div>
+
+        <div>
+            {{ t.completed | todoComplet }}
+        </div>
+    </ng-template>
+</asc-list>

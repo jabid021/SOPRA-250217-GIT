@@ -1,1 +1,55 @@
-<p>home works!</p>
+<h1>title</h1>
+
+<p>{{ title }}</p>
+<p>{{ demo.nom }}</p>
+
+<p>{{ 5 + 4 }}</p>
+
+<input type="text" value="{{ title }}" />
+<input type="text" [value]="title" (input)="inputTitle($event)" />
+
+<p>Commentaire : la directive ngModel est disponible dans le module FormsModule, et permet de maintenir à jour la valeur de "title"</p>
+
+<input type="text" [(ngModel)]="title" />
+
+<button (click)="changeTitle()">Changer titre</button>
+
+<hr />
+
+<h1>Exercice couleur</h1>
+
+<select [(ngModel)]="couleur">
+    <option value="black">Noir</option>
+    <option value="green">Vert</option>
+    <option value="yellow">Jaune</option>
+    <option value="blue">Bleu</option>
+</select>
+
+<input type="color" [(ngModel)]="couleur" />
+
+<p [style.color]="couleur">La couleur sélectionnée est {{ couleur }}</p>
+
+<hr />
+
+<h1>Pipe</h1>
+
+<p>Une date ici : {{ laDate | date:"dd/MM/YYYY" }}</p>
+
+<hr />
+
+<h1>Premier composant</h1>
+
+<asc-bold>Coucou</asc-bold>
+
+<asc-bold>
+    <p class="gras">Par exemple</p>
+    <p class="pasgras">Ici c'est pas en gras</p>
+</asc-bold>
+
+<hr />
+
+<h1>Deuxième composant</h1>
+
+<!-- <asc-text-field label="Saisir le titre" [value]="title" (clicked)="onButtonClicked($event)" /> -->
+<!-- <asc-text-field label="Saisir le titre" [value]="title" (valueChange)="title = $event" /> -->
+<asc-text-field label="Saisir le titre" [(value)]="title" />
