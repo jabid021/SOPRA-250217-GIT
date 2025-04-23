@@ -128,8 +128,8 @@
 <h1>Troisième composant</h1>
 
 <asc-list>
-    <ng-template #demonstration let-ctx="cle">
-        ET A L'INTERIEUR : {{ ctx.nom }}
+    <ng-template #demonstration let-cle="cle" let-a="autre">
+        ET A L'INTERIEUR : {{ cle.nom }}, {{ a }}
     </ng-template>
 </asc-list>
 

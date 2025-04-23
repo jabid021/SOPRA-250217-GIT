@@ -12,6 +12,8 @@ export class AscListComponent {
   leContext: any = {
     cle: {
       nom: "Un nom"
-    }
+    },
+
+    autre: "Toto"
   };
 }
