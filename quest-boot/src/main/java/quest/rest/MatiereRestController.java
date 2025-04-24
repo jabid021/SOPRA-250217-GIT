@@ -22,6 +22,7 @@ import quest.service.MatiereService;
 
 @RestController
 @RequestMapping("/api/matiere")
+// @CrossOrigin("*")
 public class MatiereRestController {
 
 	private MatiereService matiereService;

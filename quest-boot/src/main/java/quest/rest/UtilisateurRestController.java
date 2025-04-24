@@ -3,6 +3,7 @@ package quest.rest;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,10 +28,12 @@ import quest.rest.response.UtilisateurResponse;
 public class UtilisateurRestController {
 
 	private IDAOUtilisateur daoUtilisateur;
+	private PasswordEncoder passwordEncoder;
 
-	public UtilisateurRestController(IDAOUtilisateur daoUtilisateur) {
+	public UtilisateurRestController(IDAOUtilisateur daoUtilisateur, PasswordEncoder passwordEncoder) {
 		super();
 		this.daoUtilisateur = daoUtilisateur;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@GetMapping("")
@@ -82,6 +85,9 @@ public class UtilisateurRestController {
 		}
 		
 		Stagiaire stagiaire = InscriptionStagiaireRequest.convert(inscriptionStagiaireRequest);
+
+		// Pour hasher le mot de passe en base, utiliser ça :
+		stagiaire.setPassword(this.passwordEncoder.encode(stagiaire.getPassword()));
 
 		return daoUtilisateur.save(stagiaire);
 	}
