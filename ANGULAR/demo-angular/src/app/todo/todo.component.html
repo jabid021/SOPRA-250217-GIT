@@ -1,12 +1,5 @@
 <h1>Todo List</h1>
 
-<ul>
-    <li *ngFor="let t of todos$ | async">
-        {{ t.title }}
-    </li>
-</ul>
-
-
 <div class="input-group mb-3">
     <span class="input-group-text">Title</span>
     <input type="text" class="form-control" [(ngModel)]="formTodo.title" />
@@ -37,7 +30,7 @@
     </thead>
 
     <tbody>
-        <tr *ngFor="let t of todos">
+        <tr *ngFor="let t of todos$ | async">
             <td>
                 <a [routerLink]="[ '/todo', t.id ]">{{ t.id }}</a></td>
             <td>{{ t.title }}</td>
