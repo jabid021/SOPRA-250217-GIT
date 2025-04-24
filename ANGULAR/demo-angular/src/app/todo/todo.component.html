@@ -1,5 +1,12 @@
 <h1>Todo List</h1>
 
+<ul>
+    <li *ngFor="let t of obs$ | async">
+        {{ t.title }}
+    </li>
+</ul>
+
+
 <div class="input-group mb-3">
     <span class="input-group-text">Title</span>
     <input type="text" class="form-control" [(ngModel)]="formTodo.title" />
