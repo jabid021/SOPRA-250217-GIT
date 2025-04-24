@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './todo';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +10,12 @@ export class TodoService {
   private _todos: Array<Todo> = new Array<Todo>();
   private todoId: number = 0;
 
-  public findAll(): Array<Todo> {
-    return this._todos;
+  constructor(private http: HttpClient) { }
+
+  public findAll(): Observable<Array<Todo>> {
+    return this.http.get<Todo[]>("https://jsonplaceholder.typicode.com/todos");
+
+    // return this._todos;
   }
 
   public findById(id: number): Todo | undefined {

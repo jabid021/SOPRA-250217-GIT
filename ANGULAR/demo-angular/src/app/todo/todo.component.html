@@ -1,7 +1,7 @@
 <h1>Todo List</h1>
 
 <ul>
-    <li *ngFor="let t of obs$ | async">
+    <li *ngFor="let t of todos$ | async">
         {{ t.title }}
     </li>
 </ul>

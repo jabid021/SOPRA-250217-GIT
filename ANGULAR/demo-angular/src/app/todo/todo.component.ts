@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Todo } from '../todo';
 import { TodoService } from '../todo.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-todo',
@@ -12,20 +11,15 @@ import { Observable } from 'rxjs';
 })
 export class TodoComponent {
   private _formTodo: Todo = new Todo(0, "", false, 0);
-  public obs$!: Observable<Todo[]>;
+  public todos$!: Observable<Array<Todo>>;
 
-  constructor(private service: TodoService, private http: HttpClient) {
-    this.obs$ = this.http.get<Todo[]>("https://jsonplaceholder.typicode.com/todos");
-
-    // obs$.subscribe(todos => {
-    //   console.log("LISTE = ", todos);
-    // });
-
-    console.log("ARRIVE ICI");
+  constructor(private service: TodoService) {
+    this.todos$ = this.service.findAll();
   }
 
   public get todos(): Array<Todo> {
-    return this.service.findAll();
+    return [];
+    // return this.service.findAll();
   }
 
   public get formTodo(): Todo {
