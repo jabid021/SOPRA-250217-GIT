@@ -71,7 +71,13 @@
     <ng-template #todotpl let-t="todo">
         Titre = {{ t.title }}, {{ t.completed | todoComplet }}
     </ng-template>
+
+    <ng-template #autretpl let-c="cle">
+        ICI J'AI QUELQUE CHOSE DE MON PARENT : {{ c }}
+    </ng-template>
 </asc-list>
+
+<hr />
 
 <asc-list [todos]="todos">
     <ng-template #todotpl let-t="todo">

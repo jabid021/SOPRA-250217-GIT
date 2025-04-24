@@ -10,6 +10,7 @@ import { Todo } from '../todo';
 export class AscListComponent {
   @Input() todos: Array<Todo> = new Array<Todo>();
   @ContentChild('todotpl') todotpl!: TemplateRef<unknown>;
+  @ContentChild('autretpl') autretpl!: TemplateRef<unknown>;
 
   leContext: any = {
     cle: {
