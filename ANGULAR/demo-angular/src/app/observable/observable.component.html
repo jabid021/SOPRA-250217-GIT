@@ -3,3 +3,12 @@
         {{ c }}
     </li>
 </ul>
+
+<hr />
+
+<h3>Le pipe async qui permettra de s'abonner au flux et qui s'en désabonnera tout seul</h3>
+<ul>
+    <li *ngFor="let c of arrayCounterObs$ | async">
+        {{ c }}
+    </li>
+</ul>
