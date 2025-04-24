@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AscBoldComponent } from './asc-bold/asc-bold.component';
@@ -38,6 +38,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    ReactiveFormsModule
     // HttpClientModule
   ],
 
