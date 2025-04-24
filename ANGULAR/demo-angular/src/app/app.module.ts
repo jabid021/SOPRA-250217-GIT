@@ -16,6 +16,7 @@ import { TodoDetailComponent } from './todo-detail/todo-detail.component';
 import { TodoComponent } from './todo/todo.component';
 import { MatiereComponent } from './matiere/matiere.component';
 import { jwtHeaderInterceptor } from './jwt-header.interceptor';
+import { ConnexionComponent } from './connexion/connexion.component';
 
 @NgModule({
   declarations: [ // Déclaration dans notre module de tout ce qui est utilisé dans notre module principal
@@ -29,7 +30,8 @@ import { jwtHeaderInterceptor } from './jwt-header.interceptor';
     TodoComponent,
     TodoDetailComponent,
     ObservableComponent,
-    MatiereComponent
+    MatiereComponent,
+    ConnexionComponent
   ],
   
   imports: [ // Tous les modules dont on a besoin dans notre module à nous

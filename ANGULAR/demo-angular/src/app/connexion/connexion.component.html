@@ -1,0 +1,14 @@
+
+<div>
+    <label>Nom d'utilisateur</label>
+    <input type="text" [(ngModel)]="authRequest.login">
+</div>
+
+<div>
+    <label>Mot de passe</label>
+    <input type="password" [(ngModel)]="authRequest.password">
+</div>
+
+<div>
+    <button class="btn btn-success" (click)="authenticate()">Se connecter</button>
+</div>
