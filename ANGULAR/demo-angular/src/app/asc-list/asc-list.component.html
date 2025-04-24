@@ -1,10 +1,12 @@
 <div>Nombre de totos = {{ todos.length }}</div>
 
-<ng-container *ngFor="let todo of todos"
-    [ngTemplateOutlet]="todotpl"
-    [ngTemplateOutletContext]="{
-        todo: todo
-    }" />
+<div *ngFor="let todo of todos">
+    <ng-container *ngFor="let todo of todos"
+        [ngTemplateOutlet]="todotpl"
+        [ngTemplateOutletContext]="{
+            todo: todo
+        }" />
+</div>
 
 <ng-container
     [ngTemplateOutlet]="autretpl"
