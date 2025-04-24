@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './todo';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, startWith, Subject, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,26 @@ import { Observable } from 'rxjs';
 export class TodoService {
   private _todos: Array<Todo> = new Array<Todo>();
   private todoId: number = 0;
+  private refresh$: Subject<void> = new Subject<void>();
 
   constructor(private http: HttpClient) { }
 
+  public refresh() {
+    this.refresh$.next();
+  }
+
   public findAll(): Observable<Array<Todo>> {
-    return this.http.get<Todo[]>("https://jsonplaceholder.typicode.com/todos");
+    return this.refresh$.pipe(
+      // Pour forcer une première initialisation de la liste
+      startWith(null),
+      
+      // Transformer le "void" en Array<Todo> en allant chercher les infos
+      switchMap(() => {
+        return this.http.get<Todo[]>("https://jsonplaceholder.typicode.com/todos")
+      })
+    );
+
+    // return this.http.get<Todo[]>("https://jsonplaceholder.typicode.com/todos");
 
     // return this._todos;
   }

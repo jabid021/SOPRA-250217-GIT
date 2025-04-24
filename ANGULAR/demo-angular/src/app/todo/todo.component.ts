@@ -26,6 +26,11 @@ export class TodoComponent {
     return this._formTodo;
   }
 
+  public refreshTodos() {
+    // this.todos$ = this.service.findAll();
+    this.service.refresh();
+  }
+
   public addOrEditTodo() {
     this.service.save(this._formTodo);
     this._formTodo = new Todo(0, "", false, 0);
