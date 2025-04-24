@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { TodoCompletPipe } from './todo-complet.pipe';
 import { TodoDetailComponent } from './todo-detail/todo-detail.component';
 import { TodoComponent } from './todo/todo.component';
 import { MatiereComponent } from './matiere/matiere.component';
+import { jwtHeaderInterceptor } from './jwt-header.interceptor';
 
 @NgModule({
   declarations: [ // Déclaration dans notre module de tout ce qui est utilisé dans notre module principal
@@ -39,7 +40,7 @@ import { MatiereComponent } from './matiere/matiere.component';
   ],
 
   providers: [ // Tous les services injectables
-    provideHttpClient(withFetch()) // Remplace l'import de HttpClientModule
+    provideHttpClient(withFetch(), withInterceptors([ jwtHeaderInterceptor ])) // Remplace l'import de HttpClientModule
   ],
 
   bootstrap: [ // Le composant principal de notre module, si besoin
