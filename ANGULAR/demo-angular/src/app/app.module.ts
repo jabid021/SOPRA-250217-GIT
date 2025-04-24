@@ -14,6 +14,7 @@ import { ObservableComponent } from './observable/observable.component';
 import { TodoCompletPipe } from './todo-complet.pipe';
 import { TodoDetailComponent } from './todo-detail/todo-detail.component';
 import { TodoComponent } from './todo/todo.component';
+import { MatiereComponent } from './matiere/matiere.component';
 
 @NgModule({
   declarations: [ // Déclaration dans notre module de tout ce qui est utilisé dans notre module principal
@@ -26,7 +27,8 @@ import { TodoComponent } from './todo/todo.component';
     HomeComponent,
     TodoComponent,
     TodoDetailComponent,
-    ObservableComponent
+    ObservableComponent,
+    MatiereComponent
   ],
   
   imports: [ // Tous les modules dont on a besoin dans notre module à nous
