@@ -12,6 +12,7 @@ import { AscNavigationComponent } from './asc-navigation/asc-navigation.componen
 import { HomeComponent } from './home/home.component';
 import { TodoComponent } from './todo/todo.component';
 import { TodoDetailComponent } from './todo-detail/todo-detail.component';
+import { ObservableComponent } from './observable/observable.component';
 
 @NgModule({
   declarations: [ // Déclaration dans notre module de tout ce qui est utilisé dans notre module principal
@@ -23,7 +24,8 @@ import { TodoDetailComponent } from './todo-detail/todo-detail.component';
     AscNavigationComponent,
     HomeComponent,
     TodoComponent,
-    TodoDetailComponent
+    TodoDetailComponent,
+    ObservableComponent
   ],
   
   imports: [ // Tous les modules dont on a besoin dans notre module à nous
