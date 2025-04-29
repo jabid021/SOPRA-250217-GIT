@@ -5,14 +5,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import quest.dao.IDAOMatiere;
 import quest.model.Matiere;
 
-@Service
+@Service("matiereServiceV1")
 public class MatiereService {
-
 	@Autowired
 	IDAOMatiere daoMatiere;
 	
@@ -32,6 +30,12 @@ public class MatiereService {
 		if(opt.isEmpty()) {return null;}
 		else {return opt.get();}
 	}
+
+	// Principe Open / Close
+
+	// Créer une nouvelle classe MatiereServiceV2 qui intègre la modif
+	// Controler -> MatiereServiceV2 -> MatiereService
+	// > SAUF dans le getByLibelle qui utilisera la nouvelle version : findByLibelle Optional
 
 	public Matiere getByLibelle(String libelle) 
 	{

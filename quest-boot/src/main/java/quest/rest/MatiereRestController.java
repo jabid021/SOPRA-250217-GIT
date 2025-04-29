@@ -44,6 +44,12 @@ public class MatiereRestController {
 		return this.matiereService.getById(id);
 	}
 
+	@GetMapping("/by-libelle/{libelle}")
+	@JsonView(Views.ViewMatiere.class)
+	public Matiere getByLibelle(@PathVariable String libelle) {
+		return this.matiereService.getByLibelle(libelle);
+	}
+
 	@PostMapping("")
 	@JsonView(Views.ViewMatiere.class)
 	@PreAuthorize("hasRole('ADMIN')")
