@@ -6,6 +6,7 @@ import java.time.Month;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import quest.dao.IDAOFiliere;
 import quest.dao.IDAOMatiere;
@@ -20,7 +21,8 @@ import quest.model.Matiere;
 import quest.model.Ordinateur;
 import quest.model.Stagiaire;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+// @DataJpaTest
 class QuestBootApplicationTests {
 	
 	@Autowired
@@ -78,7 +80,7 @@ class QuestBootApplicationTests {
 		Formateur eric = new Formateur("eric", "123456", "SULTAN", "Eric", Genre.homme);
 		eric = daoUtilisateur.save(eric);
 		
-		Admin admin = new Admin("admin", "123456");
+		Admin admin = new Admin("admintest", "123456");
 		admin = daoUtilisateur.save(admin);
 		
 		Ordinateur ordiGuillaume = new Ordinateur("ASUS", 16, guillaume);
