@@ -39,6 +39,8 @@ class QuestBootApplicationTests {
 	private IDAOUtilisateur daoUtilisateur;
 
 	@Test
+	// @Transactional
+	// @Rollback
 	void contextLoads() {
 		Matiere html = new Matiere("HTML");
 		html = daoMatiere.save(html);

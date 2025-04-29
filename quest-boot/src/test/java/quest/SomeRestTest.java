@@ -41,6 +41,7 @@ public class SomeRestTest {
     }
 
 	@Test
+	// @Sql(value = "INSERT INTO utilisateur blablabla", executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 	public void connectionOk() throws Exception {
 		// ARRANGE
 		StringBuilder connection = new StringBuilder();

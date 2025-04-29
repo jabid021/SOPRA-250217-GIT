@@ -19,10 +19,12 @@ public class Module {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonView(Views.ViewFiliere.class)
 	private Integer id;
-	@Column(columnDefinition = "INTEGER(4)")
+
+	// @Column(columnDefinition = "INTEGER(4)")
 	@JsonView(Views.ViewBasic.class)
 	private int quest;
-	@Column(columnDefinition = "int(2)")
+	
+	// @Column(columnDefinition = "int(2)")
 	@JsonView(Views.ViewBasic.class)
 	private int duree;
 
