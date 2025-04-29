@@ -1,0 +1,1 @@
+INSERT INTO utilisateur (login, password, type_utilisateur) VALUES ('admin', '123456', 'Admin');

@@ -24,6 +24,8 @@ import quest.rest.request.ConnexionRequest;
 import quest.rest.response.ConnexionResponse;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+// @Sql(statements = "INSERT INTO utilisateur (login, password, type_utilisateur) VALUES ('admin', '123456', 'Admin')", executionPhase = ExecutionPhase.BEFORE_TEST_CLASS)
+// @Sql(statements = "DELETE FROM utilisateur", executionPhase = ExecutionPhase.AFTER_TEST_CLASS)
 public class SomeRestTest {
 	
 	@Autowired
@@ -41,7 +43,8 @@ public class SomeRestTest {
     }
 
 	@Test
-	// @Sql(value = "INSERT INTO utilisateur blablabla", executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+	// @Sql(statements = "INSERT INTO utilisateur (login, password, type_utilisateur) VALUES ('admin', '123456', 'Admin')", executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+	// @Sql(statements = "DELETE FROM utilisateur", executionPhase = ExecutionPhase.AFTER_TEST_METHOD)
 	public void connectionOk() throws Exception {
 		// ARRANGE
 		StringBuilder connection = new StringBuilder();
@@ -59,6 +62,8 @@ public class SomeRestTest {
 	}
 	
 	@Test
+	// @Sql(statements = "INSERT INTO utilisateur (login, password, type_utilisateur) VALUES ('admin', '123456', 'Admin')", executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+	// @Sql(statements = "DELETE FROM utilisateur", executionPhase = ExecutionPhase.AFTER_TEST_METHOD)
 	public void connectionOkWithRestTemplate() throws Exception {
 		// ARRANGE
 		ConnexionRequest connexionRequest = new ConnexionRequest("admin", "123456");
