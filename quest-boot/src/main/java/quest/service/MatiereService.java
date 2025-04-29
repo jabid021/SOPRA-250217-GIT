@@ -17,7 +17,13 @@ public class MatiereService {
 	IDAOMatiere daoMatiere;
 	
 	public boolean existById(Integer id) {
-		return daoMatiere.existsById(id);
+		try {
+			return daoMatiere.existsById(id);
+		}
+
+		catch (RuntimeException demo) {
+			return false;
+		}
 	}
 
 	public Matiere getById(Integer id)
