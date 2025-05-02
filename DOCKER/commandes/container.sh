@@ -1,3 +1,6 @@
+# Récupérer l'image du Docker Hub en local
+docker pull image:tag
+
 # Exécuter un nouveau container à partir d'une image
 docker run --name nom_container image:tag
 
