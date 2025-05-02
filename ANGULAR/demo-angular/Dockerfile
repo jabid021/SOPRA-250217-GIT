@@ -2,7 +2,7 @@
 # Des étapes intermédiaires qui ne se retrouveront pas dans l'image Docker finale
 # > On peut faire des images SANS les dépendances, les code-source, etc...
 
-# Le "AS" permet ne nommer le container intermédiaire du build, pour y faire référence plus tard dans le Dockerfile
+# Le "AS" permet de nommer le container intermédiaire du build, pour y faire référence plus tard dans le Dockerfile
 FROM node:lts-bullseye AS build
 
 WORKDIR /app
