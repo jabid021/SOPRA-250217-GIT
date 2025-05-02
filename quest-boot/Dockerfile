@@ -1,4 +1,7 @@
-FROM openjdk:25-jdk-bullseye
+FROM maven:3.9.9-amazoncorretto-21-debian-bookworm
+
+# RUN apt update
+# RUN apt install maven -y
 
 ENV ENV_DB_URL=mysql://quest-mysql:3306/quest_boot
 ENV ENV_DB_USER=root
@@ -6,12 +9,12 @@ ENV ENV_DB_PASSWORD=root
 
 WORKDIR /app
 
-# COPY application.properties ./ 
+COPY . .
 
-# COPY target/quest-boot-0.0.1-SNAPSHOT.jar ./quest-boot.jar
-COPY target/*.jar ./quest-boot.jar
+RUN mvn package
 
-# ENTRYPOINT [ "java", "-jar", "quest-boot.jar", "--spring.config.location=application.properties" ]
+RUN cp target/*.jar ./quest-boot.jar 
+
 ENTRYPOINT [ "java", "-jar", "quest-boot.jar" ]
 
 EXPOSE 8080
