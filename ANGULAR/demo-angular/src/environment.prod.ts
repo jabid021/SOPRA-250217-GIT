@@ -1,3 +1,3 @@
 export const environment = {
-    API_URL: 'https://monapplication.fr/api'
+    API_URL: 'http://localhost:8090/api'
 }
