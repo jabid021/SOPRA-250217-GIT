@@ -2,7 +2,13 @@ FROM maven:3.9.9-amazoncorretto-21-debian-bookworm AS build
 
 WORKDIR /app
 
-COPY . .
+# Copier le fichier pom.xml
+COPY pom.xml .
+
+# Télécharger les dépendances MAVEN
+RUN mvn dependency:go-offline -B
+
+COPY ./src/ ./src/
 
 RUN mvn package
 
