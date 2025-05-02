@@ -1,9 +1,9 @@
-FROM nginx:latest
+# Dockerfile "multi-staging"
+# Des étapes intermédiaires qui ne se retrouveront pas dans l'image Docker finale
+# > On peut faire des images SANS les dépendances, les code-source, etc...
 
-# COPY ./dist/demo-angular/browser/ /usr/share/nginx/html/
-
-RUN apt update
-RUN apt install npm -y
+# Le "AS" permet ne nommer le container intermédiaire du build, pour y faire référence plus tard dans le Dockerfile
+FROM node:lts-bullseye AS build
 
 WORKDIR /app
 
@@ -19,6 +19,13 @@ COPY . .
 # Builder l'application
 RUN ./node_modules/.bin/ng build
 
-RUN cp ./dist/demo-angular/browser/* /usr/share/nginx/html/
+
+# Passer au container final, qui contiendra nginx ET les fichiers HTML, CSS et JS de l'application ANGULAR
+FROM nginx:latest
+
+WORKDIR /app
+
+# Copier du container de fabrication "build" les fichiers dans la destination NGINX
+COPY --from=build /app/dist/demo-angular/browser/* /usr/share/nginx/html/
 
 EXPOSE 80
