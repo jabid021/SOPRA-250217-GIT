@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type_utilisateur", columnDefinition = "ENUM('Admin','Formateur','Stagiaire')")
+@DiscriminatorColumn(name = "type_utilisateur")
 @Table(name = "utilisateur")
 //@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 //@JsonSubTypes({ 

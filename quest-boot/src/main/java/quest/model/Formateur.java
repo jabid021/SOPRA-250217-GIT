@@ -17,7 +17,7 @@ public class Formateur extends Utilisateur {
 	private String prenom;
 
 	@Enumerated(EnumType.STRING)
-	@Column(columnDefinition = "ENUM('homme','femme','nb')")
+	// @Column(columnDefinition = "ENUM('homme','femme','nb')")
 	@JsonView(Views.ViewBasic.class)
 	private Genre genre;
 
