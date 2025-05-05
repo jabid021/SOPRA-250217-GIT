@@ -3,6 +3,11 @@ name: quest-compose
 services:
   java:
     image: quest-java:latest
+    
+    # Pour utiliser un Dockerfile (Docker fera un Docker Build)
+    # build:
+    #   content: quest-boot # Le nom du répertoire dans lequel se trouve le fichier Dockerfile
+
     container_name: quest-boot
     ports:
       - 8090:8080
