@@ -31,5 +31,14 @@ pipeline {
                 sh 'mvn -v'
             }
         }
+        
+        stage('Maven Package') {
+            steps {
+                dir('quest-boot') {
+                    sh 'mvn -v'
+                    sh 'mvn clean package'
+                }
+            }
+        }
     }
 }
