@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    
+    tools {
+        maven 'maven-3.9.9'
+    }
+    
+    stages {
+        stage('Git Checkout') {
+            steps {
+                script {
+                    git credentialsId: 'github',
+                        url: 'git@github.com:jabid021/SOPRA-250217-GIT.git',
+                        branch: 'main'
+                }
+            }
+        }
+        
+        stage('Maven Version') {
+            steps {
+                sh 'mvn -v'
+            }
+        }
+    }
+}
