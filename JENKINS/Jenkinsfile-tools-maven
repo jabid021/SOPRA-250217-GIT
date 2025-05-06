@@ -21,5 +21,15 @@ pipeline {
                 sh 'mvn -v'
             }
         }
+        
+        stage ('Maven Version Autre') {
+            tools {
+                maven 'maven-3.5'
+            }
+            
+            steps {
+                sh 'mvn -v'
+            }
+        }
     }
 }
