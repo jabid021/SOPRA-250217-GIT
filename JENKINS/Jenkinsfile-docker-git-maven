@@ -1,0 +1,23 @@
+pipeline {
+    agent {
+        docker {
+            image 'maven:3.9.9-amazoncorretto-21'
+        }
+    }
+    
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git credentialsId: 'github',
+                    url: 'git@github.com:jabid021/SOPRA-250217-GIT.git',
+                    branch: 'main'
+            }
+        }
+        
+        stage('Maven Package') {
+            steps {
+                sh 'mvn -v'
+            }
+        }
+    }
+}
