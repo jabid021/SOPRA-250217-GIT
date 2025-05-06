@@ -5,8 +5,7 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 script {
-                    git
-                        credentialsId: 'github',
+                    git credentialsId: 'github',
                         url: 'git@github.com:jabid021/SOPRA-250217-GIT.git',
                         branch: 'main'
                 }
