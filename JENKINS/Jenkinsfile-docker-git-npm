@@ -1,0 +1,33 @@
+pipeline {
+    agent {
+        docker {
+            image 'node:lts-bullseye'
+        }
+    }
+    
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git credentialsId: 'github',
+                    url: 'git@github.com:jabid021/SOPRA-250217-GIT.git',
+                    branch: 'main'
+            }
+        }
+        
+        stage('Dependencies installation') {
+            steps {
+                dir('ANGULAR/demo-angular') {
+                    sh 'npm install'
+                }
+            }
+        }
+        
+        stage('Angular Build') {
+            steps {
+                dir('ANGULAR/demo-angular') {
+                    sh './node_modules/.bin/ng build'
+                }
+            }
+        }
+    }
+}
