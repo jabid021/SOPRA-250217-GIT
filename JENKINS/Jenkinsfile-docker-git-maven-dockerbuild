@@ -2,7 +2,18 @@ pipeline {
     agent any
 
     stages {
-        stage('In Docker Execution') {
+        stage('Git Checkout') {
+            steps {
+                git credentialsId: 'github',
+                    url: 'git@github.com:jabid021/SOPRA-250217-GIT.git',
+                    branch: 'main'
+                
+                // Permet de stocker les fichiers récupérés via git dans "source-code", qu'on pourra manipuler dans un autre environnement d'exécution
+                stash name: 'source-code', includes: '**/*'
+            }
+        }
+
+        stage('Maven Package') {
             agent {
                 docker {
                     image 'maven:3.9.9-amazoncorretto-21'
@@ -13,21 +24,12 @@ pipeline {
                 }
             }
             
-            stages {
-                stage('Git Checkout') {
-                    steps {
-                        git credentialsId: 'github',
-                            url: 'git@github.com:jabid021/SOPRA-250217-GIT.git',
-                            branch: 'main'
-                    }
-                }
+            steps {
+                // Permet de recopier le "source-code" récupéré via git dans l'autre environnement
+                unstash 'source-code'
                 
-                stage('Maven Package') {
-                    steps {
-                        dir('quest-boot') {
-                            sh 'mvn package'
-                        }
-                    }
+                dir('quest-boot') {
+                    sh 'mvn package'
                 }
             }
         }

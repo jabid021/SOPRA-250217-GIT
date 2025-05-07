@@ -2,7 +2,18 @@ pipeline {
     agent any
     
     stages {
-        stage('In Docker Excecution') {
+        stage('Git checkout') {
+            steps {
+                git credentialsId: 'github',
+                    url: 'git@github.com:jabid021/SOPRA-250217-GIT.git',
+                    branch: 'main'
+                
+                // Permet de stocker les fichiers récupérés via git dans "source-code", qu'on pourra manipuler dans un autre environnement d'exécution
+                stash name: 'source-code', includes: '**/*'
+            }
+        }
+        
+        stage('In Docker Execution') {
             agent {
                 docker {
                     image 'node:lts-bullseye'
@@ -10,16 +21,11 @@ pipeline {
             }
             
             stages {
-                stage('Git checkout') {
-                    steps {
-                        git credentialsId: 'github',
-                            url: 'git@github.com:jabid021/SOPRA-250217-GIT.git',
-                            branch: 'main'
-                    }
-                }
-            
                 stage('Dependencies installation') {
                     steps {
+                        // Permet de recopier le "source-code" récupéré via git dans l'autre environnement
+                        unstash 'source-code'
+
                         dir('ANGULAR/demo-angular') {
                             sh 'npm install'
                         }
