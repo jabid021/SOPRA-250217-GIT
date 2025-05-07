@@ -8,13 +8,13 @@ FROM node:lts-bullseye AS build
 WORKDIR /app
 
 # Copier les fichiers package.json & package-lock.json
-COPY package*.json .
+COPY package*.json ./
 
 # Avec ces fichiers, on peut lancer l'installation des dépendances
 RUN npm install
 
 # On copie la suite : les sources et la config etc.
-COPY . .
+COPY ./ ./
 
 # Builder l'application
 RUN ./node_modules/.bin/ng build
