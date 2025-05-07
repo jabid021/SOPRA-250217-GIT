@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git credentialsId: 'github',
+                    url: 'git@github.com:jabid021/SOPRA-250217-GIT.git',
+                    branch: 'main'
+                
+                // Permet de stocker les fichiers récupérés via git dans "source-code", qu'on pourra manipuler dans un autre environnement d'exécution
+                stash name: 'source-code', includes: '**/*'
+            }
+        }
+
+        stage('Maven Package & SonarQube Analysis') {
+            agent {
+                docker {
+                    image 'maven:3.9.9-amazoncorretto-21'
+                    args '''
+                        -u root
+                        -v $HOME/.m2:/root/.m2
+                        --network devops
+                    '''
+                }
+            }
+
+            steps {
+                // Permet de recopier le "source-code" récupéré via git dans l'autre environnement
+                unstash 'source-code'
+                
+                dir('quest-boot') {
+                    withSonarQubeEnv('sonar') {
+                        sh "mvn clean verify sonar:sonar -Dsonar.projectKey=quest-boot -Dsonar.projectName='quest-boot'"
+                    }
+                }
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                dir('quest-boot') {
+                    sh 'docker build -t ascadis/ajc-quest:quest-boot-jenkins .'
+                }
+            }
+        }
+        
+        stage('Docker Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    sh 'docker push ascadis/ajc-quest:quest-boot-jenkins'
+                }
+            }
+        }
+    }
+}
