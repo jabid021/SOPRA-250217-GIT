@@ -45,7 +45,16 @@ pipeline {
         stage('Docker Build') {
             steps {
                 dir('ANGULAR/demo-angular') {
-                    sh 'docker build -t quest-angular-jenkins .'
+                    sh 'docker build -t ascadis/ajc-quest:quest-angular-jenkins .'
+                }
+            }
+        }
+        
+        stage('Docker Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    sh 'docker push ascadis/ajc-quest:quest-angular-jenkins'
                 }
             }
         }

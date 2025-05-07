@@ -23,7 +23,7 @@ pipeline {
                     '''
                 }
             }
-            
+
             steps {
                 // Permet de recopier le "source-code" récupéré via git dans l'autre environnement
                 unstash 'source-code'
@@ -37,7 +37,16 @@ pipeline {
         stage('Docker Build') {
             steps {
                 dir('quest-boot') {
-                    sh 'docker build -t quest-boot-jenkins .'
+                    sh 'docker build -t ascadis/ajc-quest:quest-boot-jenkins .'
+                }
+            }
+        }
+        
+        stage('Docker Push') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-login', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    sh 'docker push ascadis/ajc-quest:quest-boot-jenkins'
                 }
             }
         }
