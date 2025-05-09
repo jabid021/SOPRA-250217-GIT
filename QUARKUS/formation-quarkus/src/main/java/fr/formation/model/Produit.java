@@ -1,9 +1,20 @@
-package fr.formation.response;
+package fr.formation.model;
 
 import java.math.BigDecimal;
 
-public class ProduitResponse {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "produit")
+public class Produit {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String libelle;
     private BigDecimal prix;
 
@@ -28,12 +39,6 @@ public class ProduitResponse {
     }
 
     public void setPrix(BigDecimal prix) {
-        this.prix = prix;
-    }
-
-    public ProduitResponse(int id, String libelle, BigDecimal prix) {
-        this.id = id;
-        this.libelle = libelle;
         this.prix = prix;
     }
 }

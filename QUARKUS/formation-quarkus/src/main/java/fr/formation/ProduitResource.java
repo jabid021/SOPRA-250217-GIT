@@ -1,13 +1,15 @@
 package fr.formation;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.formation.model.Produit;
+import fr.formation.repo.ProduitRepository;
 import fr.formation.request.ProduitRequest;
 import fr.formation.response.ProduitResponse;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -20,6 +22,12 @@ import jakarta.ws.rs.core.Response;
 public class ProduitResource {
     private static final Logger log = LoggerFactory.getLogger(ProduitResource.class);
 
+    private final ProduitRepository repository;
+
+    public ProduitResource(ProduitRepository repository) {
+        this.repository = repository;
+    }
+
     // @GET
     // public String findById(@QueryParam("id") int id) {
     //     return "Produit " + id;
@@ -27,12 +35,12 @@ public class ProduitResource {
 
     @GET
     public List<ProduitResponse> findAll() {
-        log.trace("Liste des produits");
+        log.debug("Liste des produits");
 
-        return List.of(
-            new ProduitResponse("Parachute de France", new BigDecimal("6999")),
-            new ProduitResponse("Casque", new BigDecimal("499.5"))
-        );
+        return this.repository.findAll().stream()
+            .map(p ->  new ProduitResponse(p.getId(), p.getLibelle(), p.getPrix()))
+            .toList()
+        ;
     }
 
     @Path("/{id}")
@@ -42,32 +50,44 @@ public class ProduitResource {
     }
 
     @POST
+    @Transactional
     public Response create(ProduitRequest request) {
         log.debug("Création d'un produit");
 
-        System.out.println("Libellé = " + request.getLibelle());
-        System.out.println("Prix = " + request.getPrix());
+        Produit produit = new Produit();
 
-        return Response.ok().build();
+        produit.setLibelle(request.getLibelle());
+        produit.setPrix(request.getPrix());
+
+        this.repository.persist(produit);
+
+        return Response.ok(produit).build();
     }
-
     
     @Path("/{id}")
     @PUT
-    public Response edit(@PathParam("id") int id, ProduitRequest request) {
+    @Transactional
+    public Response edit(@PathParam("id") long id, ProduitRequest request) {
         log.debug("Modification du produit {}", id);
 
-        System.out.println("Libellé = " + request.getLibelle());
-        System.out.println("Prix = " + request.getPrix());
+        Produit produit = this.repository.findById(id);
 
-        return Response.ok().build();
+        produit.setLibelle(request.getLibelle());
+        produit.setPrix(request.getPrix());
+
+        this.repository.persist(produit);
+
+        return Response.ok(produit).build();
     }
 
     @Path("/{id}")
     @DELETE
-    public Response deleteById(@PathParam("id") int id) {
+    @Transactional
+    public Response deleteById(@PathParam("id") long id) {
         log.debug("Suppression du produit {}", id);
 
-        return Response.ok().build();
+        this.repository.deleteById(id);
+
+        return Response.ok(id).build();
     }
 }
