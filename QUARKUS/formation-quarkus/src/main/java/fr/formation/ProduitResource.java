@@ -27,7 +27,7 @@ public class ProduitResource {
 
     @GET
     public List<ProduitResponse> findAll() {
-        log.debug("Liste des produits");
+        log.trace("Liste des produits");
 
         return List.of(
             new ProduitResponse("Parachute de France", new BigDecimal("6999")),
