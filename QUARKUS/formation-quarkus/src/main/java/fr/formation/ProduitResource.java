@@ -3,6 +3,9 @@ package fr.formation;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.formation.request.ProduitRequest;
 import fr.formation.response.ProduitResponse;
 import jakarta.ws.rs.DELETE;
@@ -15,6 +18,8 @@ import jakarta.ws.rs.core.Response;
 
 @Path("/produit")
 public class ProduitResource {
+    private static final Logger log = LoggerFactory.getLogger(ProduitResource.class);
+
     // @GET
     // public String findById(@QueryParam("id") int id) {
     //     return "Produit " + id;
@@ -22,7 +27,7 @@ public class ProduitResource {
 
     @GET
     public List<ProduitResponse> findAll() {
-        System.out.println("Liste des produits");
+        log.debug("Liste des produits");
 
         return List.of(
             new ProduitResponse("Parachute de France", new BigDecimal("6999")),
@@ -38,7 +43,7 @@ public class ProduitResource {
 
     @POST
     public Response create(ProduitRequest request) {
-        System.out.println("Création d'un produit");
+        log.debug("Création d'un produit");
 
         System.out.println("Libellé = " + request.getLibelle());
         System.out.println("Prix = " + request.getPrix());
@@ -50,7 +55,7 @@ public class ProduitResource {
     @Path("/{id}")
     @PUT
     public Response edit(@PathParam("id") int id, ProduitRequest request) {
-        System.out.println("Modification du produit " + id);
+        log.debug("Modification du produit {}", id);
 
         System.out.println("Libellé = " + request.getLibelle());
         System.out.println("Prix = " + request.getPrix());
@@ -61,7 +66,7 @@ public class ProduitResource {
     @Path("/{id}")
     @DELETE
     public Response deleteById(@PathParam("id") int id) {
-        System.out.println("Suppression du produit " + id);
+        log.debug("Suppression du produit {}", id);
 
         return Response.ok().build();
     }
