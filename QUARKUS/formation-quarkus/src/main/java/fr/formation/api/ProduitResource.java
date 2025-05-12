@@ -45,7 +45,7 @@ public class ProduitResource {
         log.debug("Liste des produits");
 
         return this.repository.findAll().stream()
-            .map(p ->  new ProduitWithFournisseurResponse(p.getId(), p.getLibelle(), p.getPrix(), p.getFournisseur()))
+            .map(p -> new ProduitWithFournisseurResponse(p.getId(), p.getLibelle(), p.getPrix(), p.getFournisseur()))
             .toList()
         ;
     }
@@ -54,6 +54,17 @@ public class ProduitResource {
     @GET
     public String findByIdPath(@PathParam("id") int id) {
         return "Produit " + id;
+    }
+
+    @Path("/by-fournisseur-id/{id}")
+    @GET
+    public List<ProduitWithFournisseurResponse> findAllByFournisseurId(@PathParam("id") String id) {
+        log.debug("Liste des produits pour le fournisseur {}", id);
+
+        return this.repository.findAllByFournisseurId(id).stream()
+            .map(p -> new ProduitWithFournisseurResponse(p.getId(), p.getLibelle(), p.getPrix(), p.getFournisseur()))
+            .toList()
+        ;
     }
 
     @POST
