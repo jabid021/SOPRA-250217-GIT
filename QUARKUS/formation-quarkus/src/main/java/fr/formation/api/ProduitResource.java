@@ -12,6 +12,8 @@ import fr.formation.model.Fournisseur;
 import fr.formation.model.Produit;
 import fr.formation.repo.FournisseurRepository;
 import fr.formation.repo.ProduitRepository;
+import jakarta.annotation.security.PermitAll;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.DELETE;
@@ -41,6 +43,7 @@ public class ProduitResource {
     // }
 
     @GET
+    @PermitAll
     public List<ProduitWithFournisseurResponse> findAll() {
         log.debug("Liste des produits");
 
@@ -52,12 +55,14 @@ public class ProduitResource {
 
     @Path("/{id}")
     @GET
+    @RolesAllowed("user")
     public String findByIdPath(@PathParam("id") int id) {
         return "Produit " + id;
     }
 
     @Path("/by-fournisseur-id/{id}")
     @GET
+    @RolesAllowed({ "user", "admin" })
     public List<ProduitWithFournisseurResponse> findAllByFournisseurId(@PathParam("id") String id) {
         log.debug("Liste des produits pour le fournisseur {}", id);
 
@@ -69,6 +74,7 @@ public class ProduitResource {
 
     @POST
     @Transactional
+    @RolesAllowed("admin")
     public Response create(@Valid ProduitRequest request) {
         log.debug("Création d'un produit");
 
@@ -92,6 +98,7 @@ public class ProduitResource {
     @Path("/{id}")
     @PUT
     @Transactional
+    @RolesAllowed("admin")
     public Response edit(@PathParam("id") long id, @Valid ProduitRequest request) {
         log.debug("Modification du produit {}", id);
 
@@ -114,6 +121,7 @@ public class ProduitResource {
     @Path("/{id}")
     @DELETE
     @Transactional
+    @RolesAllowed("admin")
     public Response deleteById(@PathParam("id") long id) {
         log.debug("Suppression du produit {}", id);
 
