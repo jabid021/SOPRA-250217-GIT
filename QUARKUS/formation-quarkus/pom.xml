@@ -62,9 +62,14 @@
         </dependency>
 
         <!-- Quarkus Security -->
-        <dependency>
+        <!-- <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-elytron-security-properties-file</artifactId>
+        </dependency> -->
+
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-security-jpa</artifactId>
         </dependency>
 
         <!-- TESTS -->
