@@ -10,6 +10,7 @@ import fr.formation.repo.ProduitRepository;
 import fr.formation.request.ProduitRequest;
 import fr.formation.response.ProduitResponse;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -51,7 +52,7 @@ public class ProduitResource {
 
     @POST
     @Transactional
-    public Response create(ProduitRequest request) {
+    public Response create(@Valid ProduitRequest request) {
         log.debug("Création d'un produit");
 
         Produit produit = new Produit();
@@ -67,7 +68,7 @@ public class ProduitResource {
     @Path("/{id}")
     @PUT
     @Transactional
-    public Response edit(@PathParam("id") long id, ProduitRequest request) {
+    public Response edit(@PathParam("id") long id, @Valid ProduitRequest request) {
         log.debug("Modification du produit {}", id);
 
         Produit produit = this.repository.findById(id);
