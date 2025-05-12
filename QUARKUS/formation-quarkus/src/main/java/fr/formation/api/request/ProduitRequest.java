@@ -1,4 +1,4 @@
-package fr.formation.request;
+package fr.formation.api.request;
 
 import java.math.BigDecimal;
 
@@ -11,6 +11,9 @@ public class ProduitRequest {
 
     @Positive
     private BigDecimal prix;
+
+    @NotBlank
+    private String fournisseurId;
 
     public String getLibelle() {
         return libelle;
@@ -26,5 +29,13 @@ public class ProduitRequest {
 
     public void setPrix(BigDecimal prix) {
         this.prix = prix;
+    }
+
+    public String getFournisseurId() {
+        return fournisseurId;
+    }
+
+    public void setFournisseurId(String fournisseurId) {
+        this.fournisseurId = fournisseurId;
     }
 }

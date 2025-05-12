@@ -1,4 +1,4 @@
-package fr.formation.response;
+package fr.formation.api.response;
 
 public class HelloResponse {
     private String content;

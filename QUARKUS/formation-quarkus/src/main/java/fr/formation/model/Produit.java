@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +18,9 @@ public class Produit {
 
     private String libelle;
     private BigDecimal prix;
+
+    @ManyToOne
+    private Fournisseur fournisseur;
 
     public int getId() {
         return id;
@@ -40,5 +44,13 @@ public class Produit {
 
     public void setPrix(BigDecimal prix) {
         this.prix = prix;
+    }
+
+    public Fournisseur getFournisseur() {
+        return fournisseur;
+    }
+
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
     }
 }

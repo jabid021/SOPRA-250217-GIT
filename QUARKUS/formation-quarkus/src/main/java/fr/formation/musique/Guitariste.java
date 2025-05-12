@@ -1,4 +1,4 @@
-package fr.formation;
+package fr.formation.musique;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;

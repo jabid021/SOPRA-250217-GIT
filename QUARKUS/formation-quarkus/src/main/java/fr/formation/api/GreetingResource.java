@@ -1,6 +1,7 @@
-package fr.formation;
+package fr.formation.api;
 
-import fr.formation.response.HelloResponse;
+import fr.formation.api.response.HelloResponse;
+import fr.formation.musique.Guitariste;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
