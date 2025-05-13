@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import quest.config.jwt.JwtService;
 import quest.config.jwt.JwtUtil;
 import quest.dao.IDAOUtilisateur;
 import quest.rest.request.ConnexionRequest;
@@ -17,9 +18,11 @@ import quest.rest.response.ConnexionResponse;
 @RestController
 @RequestMapping("/api")
 public class CommonRestController {
-
 	@Autowired
 	private IDAOUtilisateur daoUtilisateur;
+
+	@Autowired
+	private JwtService jwtService;
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -39,13 +42,14 @@ public class CommonRestController {
 				connexionRequest.getPassword());
 
 		// On demande à SPRING SECURITY de vérifier ces informations de connexion
-		this.authenticationManager.authenticate(authentication);
+		authentication = this.authenticationManager.authenticate(authentication);
 		
 		// Si on arrive ici, c'est que la connexion a fonctionné
 		ConnexionResponse connexionResponse = new ConnexionResponse();
 
 		// On génère un jeton pour l'utilisateur connecté
-		String token = JwtUtil.generate(authentication);
+		// String token = JwtUtil.generate(authentication);
+		String token = this.jwtService.generate(authentication);
 		
 		connexionResponse.setSuccess(true);
 		connexionResponse.setToken(token);

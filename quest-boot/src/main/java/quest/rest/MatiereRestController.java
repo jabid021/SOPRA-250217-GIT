@@ -34,6 +34,7 @@ public class MatiereRestController {
 
 	@GetMapping("")
 	@JsonView(Views.ViewMatiere.class)
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<Matiere> getAll() {
 		return this.matiereService.getAll();
 	}

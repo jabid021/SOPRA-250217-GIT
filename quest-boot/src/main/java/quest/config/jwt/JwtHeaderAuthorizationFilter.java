@@ -24,7 +24,7 @@ import quest.model.Formateur;
 import quest.model.Stagiaire;
 import quest.model.Utilisateur;
 
-@Component
+// @Component
 public class JwtHeaderAuthorizationFilter extends OncePerRequestFilter {
 	@Autowired
 	private IDAOUtilisateur daoUtilisateur;
