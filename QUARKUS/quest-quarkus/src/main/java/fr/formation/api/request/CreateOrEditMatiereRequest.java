@@ -2,7 +2,7 @@ package fr.formation.api.request;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class CreateOrEdtiMatiereRequest {
+public class CreateOrEditMatiereRequest {
     @NotBlank
     private String libelle;
 

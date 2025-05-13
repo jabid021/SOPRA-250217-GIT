@@ -2,12 +2,9 @@ package fr.formation.api;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-import fr.formation.api.request.CreateOrEdtiMatiereRequest;
+import fr.formation.api.request.CreateOrEditMatiereRequest;
 import fr.formation.api.response.MatiereResponse;
 import fr.formation.model.Matiere;
-import fr.formation.model.Views;
 import fr.formation.service.MatiereService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.transaction.Transactional;
@@ -56,7 +53,7 @@ public class MatiereResource {
 	@POST
 	@Transactional
 	@RolesAllowed("admin")
-	public Response create(@Valid CreateOrEdtiMatiereRequest request) {
+	public Response create(@Valid CreateOrEditMatiereRequest request) {
 		Matiere matiere = new Matiere();
 
 		matiere.setLibelle(request.getLibelle());
@@ -69,8 +66,7 @@ public class MatiereResource {
 	@Path("/{id}")
 	@PUT
 	@Transactional
-	@JsonView(Views.ViewMatiere.class)
-	public Response update(@Valid CreateOrEdtiMatiereRequest request, @PathParam("id") Integer id) {
+	public Response update(@Valid CreateOrEditMatiereRequest request, @PathParam("id") Integer id) {
 		Matiere matiere = this.service.getById(id);
 
 		if (matiere == null) {
