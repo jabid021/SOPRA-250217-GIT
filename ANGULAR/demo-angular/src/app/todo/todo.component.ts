@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, scan } from 'rxjs';
 import { Todo } from '../todo';
 import { TodoService } from '../todo.service';
 
@@ -12,9 +12,20 @@ import { TodoService } from '../todo.service';
 export class TodoComponent {
   private _formTodo: Todo = new Todo(0, "", false, 0);
   public todos$!: Observable<Array<Todo>>;
+  public demoReactif$!: Observable<Array<Number>>;
 
   constructor(private service: TodoService) {
     this.todos$ = this.service.findAll();
+
+    const source = new EventSource("http://localhost:8080/demo-reactif");
+
+    this.demoReactif$ = new Observable<Number>(observer => {
+      source.onmessage = (evt) => {
+        observer.next(evt.data);
+      };
+    }).pipe(
+      scan((acc: Number[], value: Number) => [ ...acc, value ], [])
+    );
   }
 
   public get todos(): Array<Todo> {
